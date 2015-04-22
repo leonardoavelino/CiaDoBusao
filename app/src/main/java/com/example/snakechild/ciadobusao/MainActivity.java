@@ -1,10 +1,12 @@
 package com.example.snakechild.ciadobusao;
 
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -16,6 +18,10 @@ public class MainActivity extends ActionBarActivity {
         // Hide the Status Bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //Customize font
+        TextView txt = (TextView) findViewById(R.id.idAppName);
+        Typeface font = Typeface.createFromAsset(getAssets(), "Amaranth-Regular.otf");
+        txt.setTypeface(font);
     }
 
 
