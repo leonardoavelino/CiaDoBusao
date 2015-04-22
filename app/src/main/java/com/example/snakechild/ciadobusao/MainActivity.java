@@ -1,11 +1,14 @@
 package com.example.snakechild.ciadobusao;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -27,22 +30,28 @@ public class MainActivity extends Activity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         mCallbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
-        LoginButton authButton = (LoginButton) findViewById(R.id.auth_button);
+        final LoginButton authButton = (LoginButton) findViewById(R.id.auth_button);
         authButton.setReadPermissions("public_profile");
         authButton.setReadPermissions("user_friends");
         authButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
+                Log.i("map", "id=" + loginResult.getAccessToken().getUserId());
+                Log.i("map", "success");
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), PerfilActivity.class);
+                startActivity(i);
             }
 
             @Override
             public void onCancel() {
+                Log.i("map", "cancel");
 
             }
 
             @Override
             public void onError(FacebookException e) {
+                Log.i("map", e.toString());
 
             }
         });
@@ -76,5 +85,11 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }
