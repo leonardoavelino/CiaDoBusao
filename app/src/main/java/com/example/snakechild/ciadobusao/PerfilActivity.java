@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.facebook.GraphRequest;
+import com.facebook.AccessToken;
 import com.facebook.GraphResponse;
 import com.facebook.login.widget.ProfilePictureView;
 
@@ -35,12 +36,30 @@ public class PerfilActivity extends Activity {
         profilePictureView = (ProfilePictureView) this
                 .findViewById(R.id.selection_profile_pic);
         profilePictureView.setCropped(true);
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        if (accessToken != null) {
+            makeMeRequest(accessToken);
+        }
         //profilePictureView.setProfileId(user.getId());
         //profilePictureView.setDrawingCacheEnabled(true);
         //Bitmap foto = profilePictureView.getDrawingCache();
         //ByteArrayOutputStream baos = new ByteArrayOutputStream();
         //foto.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         //byte[] b = baos.toByteArray();
+
+    }
+
+    private void makeMeRequest(AccessToken accessToken) {
+        GraphRequest request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
+            @Override
+            public void onCompleted(JSONObject user, GraphResponse response) {
+                if (user != null) {
+                    profilePictureView.setProfileId(user.optString("id"));
+                    userNameView.setText(user.optString("name"));
+                }
+            }
+        });
+        request.executeAsync();
 
     }
 
