@@ -2,6 +2,7 @@ package com.example.snakechild.ciadobusao;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInstaller;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,8 +17,13 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class MainActivity extends Activity {
@@ -33,11 +39,29 @@ public class MainActivity extends Activity {
         final LoginButton authButton = (LoginButton) findViewById(R.id.auth_button);
         authButton.setReadPermissions("public_profile");
         authButton.setReadPermissions("user_friends");
+
         authButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.i("map", "id=" + loginResult.getAccessToken().getUserId());
-                Log.i("map", "success");
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+                                try {
+                                    Log.i("name", object.getString("name"));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                // Application code
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,picture");
+                request.setParameters(parameters);
+                request.executeAsync();
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), PerfilActivity.class);
                 startActivity(i);
