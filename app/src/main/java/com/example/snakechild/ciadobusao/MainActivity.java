@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //Customize font
         TextView txt = (TextView) findViewById(R.id.idAppName);
-        Typeface font = Typeface.createFromAsset(getAssets(), "Amaranth-Regular.otf");
+        Typeface font = Typeface.createFromAsset(getAssets(), "Amaranth-Bold.otf");
         txt.setTypeface(font);
     }
 

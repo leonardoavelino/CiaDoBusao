@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:background="#ffacdce1">
+    android:background="#fffbe3c0">
 
     <ImageView
         android:layout_width="200dp"
@@ -19,16 +19,19 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/app_name"
-        android:textSize="50sp"
+        android:textSize="48sp"
         android:id="@+id/idAppName"
         android:layout_below="@+id/iconInitialCiaDoBusao"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:textColor="#ff3f5153" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/auth_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/idAppName"/>
+        android:layout_below="@+id/idAppName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
 
 </RelativeLayout>
