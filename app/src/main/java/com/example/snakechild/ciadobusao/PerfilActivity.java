@@ -13,6 +13,8 @@ import com.facebook.GraphRequest;
 import com.facebook.AccessToken;
 import com.facebook.GraphResponse;
 import com.facebook.login.widget.ProfilePictureView;
+import com.parse.Parse;
+import com.parse.ParseInstallation;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,6 +48,8 @@ public class PerfilActivity extends Activity {
         //ByteArrayOutputStream baos = new ByteArrayOutputStream();
         //foto.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         //byte[] b = baos.toByteArray();
+        Parse.initialize(this, "r2Hs81lOwoi7YK9mby5m49409JuOx5EzpBULMNnP", "tdeLsjWBSqTd5KRCoULEScSbzKHpW80m2bpHQZzZ");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
     }
 
