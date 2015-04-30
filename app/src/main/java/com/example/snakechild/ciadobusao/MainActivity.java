@@ -39,7 +39,6 @@ public class MainActivity extends Activity {
         final LoginButton authButton = (LoginButton) findViewById(R.id.auth_button);
         authButton.setReadPermissions("public_profile");
         authButton.setReadPermissions("user_friends");
-
         authButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -86,6 +85,11 @@ public class MainActivity extends Activity {
         TextView txt = (TextView) findViewById(R.id.idAppName);
         Typeface font = Typeface.createFromAsset(getAssets(), "Amaranth-Bold.otf");
         txt.setTypeface(font);
+        if (authButton.getText().toString().equals("Log out")) {
+            Intent i = new Intent();
+            i.setClass(getApplicationContext(), PerfilActivity.class);
+            startActivity(i);
+        }
     }
 
 
@@ -109,6 +113,11 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     @Override
