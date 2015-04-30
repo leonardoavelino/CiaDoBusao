@@ -15,6 +15,7 @@ import com.facebook.GraphResponse;
 import com.facebook.login.widget.ProfilePictureView;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
+import com.parse.ParseObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,15 +43,18 @@ public class PerfilActivity extends Activity {
         if (accessToken != null) {
             makeMeRequest(accessToken);
         }
-        //profilePictureView.setProfileId(user.getId());
-        //profilePictureView.setDrawingCacheEnabled(true);
-        //Bitmap foto = profilePictureView.getDrawingCache();
-        //ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        //foto.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        //byte[] b = baos.toByteArray();
+
+        //BD
+        Parse.enableLocalDatastore(this);
+
+        //Notificacao
         Parse.initialize(this, "r2Hs81lOwoi7YK9mby5m49409JuOx5EzpBULMNnP", "tdeLsjWBSqTd5KRCoULEScSbzKHpW80m2bpHQZzZ");
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
+        //EXAMPLE
+        //ParseObject testObject = new ParseObject("TestObject");
+        //testObject.put("foo", "bar");
+        //testObject.saveInBackground();
     }
 
     private void makeMeRequest(AccessToken accessToken) {
