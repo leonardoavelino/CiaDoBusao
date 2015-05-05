@@ -3,101 +3,92 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fffbe3c0">
+    android:background="#fffbe3c0"
+    android:id="@+id/idNewEncontro" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="15dp" >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/idNomeEnc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="Nome Do Encontro:"
-            android:textColor="#000000"/>
+            android:text="@string/str_nome_do_encontro"
+            android:textColor="#000000"
+            android:textStyle="normal"
+            android:fontFamily="@string/com_facebook_loginview_log_in_button_long"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp" />
 
         <EditText
             android:id="@+id/nomeEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLines="1"
-            android:singleLine="true" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+            android:singleLine="true"
+            android:layout_below="@+id/idNomeEnc"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/linhaEdit"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/idLinhaOnibusText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Linha De Ônibus:"
-            android:textColor="#000000"/>
+            android:text="@string/linha_onibus_str"
+            android:textColor="#000000"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/nomeEdit"
+            android:layout_centerHorizontal="true" />
 
         <EditText
             android:id="@+id/linhaEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLines="1"
-            android:singleLine="true" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+            android:singleLine="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/idLinhaOnibusText"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/idPontoRefText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Ponto de Referencia:"
-            android:textColor="#000000"/>
+            android:text="@string/ponto_ref_str"
+            android:textColor="#000000"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/linhaEdit"
+            android:layout_centerHorizontal="true" />
 
         <EditText
             android:id="@+id/pontoEdit"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLines="1"
-            android:singleLine="true" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/buttonLocal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
+            android:singleLine="true"
+            android:layout_below="@+id/idPontoRefText"
             android:layout_marginTop="10dp"
-            android:background="@mipmap/buttonblack"
-            android:text="Local"
-            android:textColor="#FFFFFF" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/textViewLocal"
@@ -105,23 +96,6 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/horarioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@mipmap/buttonblack"
-            android:text="Horário"
-            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/textViewHora"
@@ -129,22 +103,67 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
-    </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        <Button
+            android:id="@+id/cancelarButtonId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@mipmap/btn_red_matte"
+            android:text="Cancelar"
+            android:textColor="#ffffff"
+            android:layout_gravity="right"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/idLinhaOnibusText"
+            android:layout_toStartOf="@+id/idLinhaOnibusText" />
+
+        <Button
+            android:id="@+id/botaocriar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@mipmap/btn_green_matte"
+            android:text="Criar"
+            android:textColor="#ffffff"
+            android:layout_gravity="right"
+            android:layout_alignTop="@+id/cancelarButtonId"
+            android:layout_toRightOf="@+id/idLinhaOnibusText"
+            android:layout_toEndOf="@+id/idLinhaOnibusText" />
+
+        <Button
+            android:id="@+id/idMapaButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/buttonblack"
+            android:text="Clique para marcar no mapa"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="27dp"
+            android:layout_below="@+id/horarioButton"
+            android:layout_alignLeft="@+id/horarioButton"
+            android:layout_alignStart="@+id/horarioButton" />
+
+        <Button
+            android:id="@+id/horarioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/buttonblack"
+            android:text="Clique para editar o Horário"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="24dp"
+            android:layout_below="@+id/dataPickerButton"
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:id="@+id/dataPickerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
             android:background="@mipmap/buttonblack"
-            android:text="Data"
-            android:textColor="#FFFFFF" />
+            android:text="Clique para editar a data"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/textViewLocal"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/textViewData"
@@ -153,35 +172,5 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="154dp"
-        android:layout_weight="1.54"
-        android:gravity="center_horizontal|bottom"
-        android:orientation="horizontal"
-        android:paddingTop="40dp" >
-
-        <Button
-            android:id="@+id/cancelarButtonId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@mipmap/btn_red_matte"
-            android:text="Cancelar"
-            android:textColor="#ffffff" />
-
-        <Button
-            android:id="@+id/botaocriar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginLeft="30dp"
-            android:layout_weight="1"
-            android:background="@mipmap/btn_green_matte"
-            android:text="Criar"
-            android:textColor="#ffffff" />
-    </LinearLayout>
 
 </LinearLayout>

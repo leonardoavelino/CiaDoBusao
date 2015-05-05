@@ -11,4 +11,5 @@
         <!-- Customize your theme here. -->
         <item name="android:windowNoTitle">false</item>
     </style>
+
 </resources>

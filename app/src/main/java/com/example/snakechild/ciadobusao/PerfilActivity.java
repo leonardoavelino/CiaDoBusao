@@ -1,26 +1,20 @@
 package com.example.snakechild.ciadobusao;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.facebook.GraphRequest;
+import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.widget.ProfilePictureView;
-import com.parse.Parse;
-import com.parse.ParseInstallation;
-import com.parse.ParseObject;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
 
 
 public class PerfilActivity extends Activity {
@@ -34,8 +28,12 @@ public class PerfilActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
+        // Hide the Status Bar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         userNameView = (TextView) this.findViewById(R.id.selection_user_name);
-        //userNameView.setText(user.getName());
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", userNameView);
         profilePictureView = (ProfilePictureView) this
                 .findViewById(R.id.selection_profile_pic);
         profilePictureView.setCropped(true);
@@ -43,18 +41,13 @@ public class PerfilActivity extends Activity {
         if (accessToken != null) {
             makeMeRequest(accessToken);
         }
+    }
 
-        //BD
-        Parse.enableLocalDatastore(this);
+    public void criarNovoEncontro(View v){
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), NovoEncontroActivity.class);
+        startActivity(i);
 
-        //Notificacao
-        Parse.initialize(this, "r2Hs81lOwoi7YK9mby5m49409JuOx5EzpBULMNnP", "tdeLsjWBSqTd5KRCoULEScSbzKHpW80m2bpHQZzZ");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
-
-        //EXAMPLE
-        //ParseObject testObject = new ParseObject("TestObject");
-        //testObject.put("foo", "bar");
-        //testObject.saveInBackground();
     }
 
     private void makeMeRequest(AccessToken accessToken) {
@@ -74,7 +67,7 @@ public class PerfilActivity extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        //finish();
     }
 
     @Override

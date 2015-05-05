@@ -21,6 +21,8 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.parse.Parse;
+import com.parse.ParseInstallation;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +35,19 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //BD
+        Parse.enableLocalDatastore(this);
+
+        //Notificacao
+        Parse.initialize(this, "r2Hs81lOwoi7YK9mby5m49409JuOx5EzpBULMNnP", "tdeLsjWBSqTd5KRCoULEScSbzKHpW80m2bpHQZzZ");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+
+        //EXAMPLE
+        //ParseObject testObject = new ParseObject("TestObject");
+        //testObject.put("foo", "bar");
+        //testObject.saveInBackground();
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         mCallbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);

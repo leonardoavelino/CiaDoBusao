@@ -43,7 +43,14 @@
         <activity
             android:name=".PerfilActivity"
             android:label="@string/title_activity_perfil"
-            android:parentActivityName=".MainActivity" >
+            android:theme="@style/InitialTheme" >
+        </activity>
+
+        <activity
+            android:name=".NovoEncontroActivity"
+            android:label="@string/title_activity_encontro"
+            android:theme="@style/InitialTheme"
+            android:parentActivityName="com.example.snakechild.ciadobusao.PerfilActivity" >
         </activity>
 
         <service android:name="com.parse.PushService" />
@@ -73,11 +80,6 @@
                 <category android:name="com.example.snakechild.ciadobusao" />
             </intent-filter>
         </receiver>
-
-        <activity
-            android:name=".NovoEncontroActivity"
-            android:label="@string/title_activity_encontro" >
-        </activity>
     </application>
 
 </manifest>

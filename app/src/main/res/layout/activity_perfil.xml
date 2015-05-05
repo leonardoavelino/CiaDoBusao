@@ -3,28 +3,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fffbe3c0">
+    android:background="#fffbe3c0"
+    android:id="@+id/idPerfilUser">
 
     <com.facebook.login.widget.ProfilePictureView
         android:id="@+id/selection_profile_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:gravity="center_horizontal"
-        facebook:preset_size="normal" >
+        facebook:preset_size="normal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginTop="20dp">
     </com.facebook.login.widget.ProfilePictureView>
 
     <TextView
         android:id="@+id/selection_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/selection_profile_pic"
-        android:layout_marginTop="120dp"
         android:text=""
-        android:textColor="#333"
-        android:textSize="25sp" />
+        android:textColor="#ff3f5153"
+        android:textSize="25sp"
+        android:layout_alignBottom="@+id/selection_profile_pic"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="31dp" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/idNewEncImageButton"
+        android:layout_marginBottom="20dp"
+        android:src="@mipmap/new_enc_button"
+        android:contentDescription="@string/new_description"
+        android:clickable="true"
+        android:onClick="criarNovoEncontro"
+        android:background="#00ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/selection_profile_pic"
+        android:layout_alignEnd="@+id/selection_profile_pic"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="46dp" />
 
 </RelativeLayout>

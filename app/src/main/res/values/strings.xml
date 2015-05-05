@@ -13,4 +13,8 @@
     <string name="name_app">Cia. do Busão</string>
     <string name="title_activity_perfil">PerfilActivity</string>
     <string name="title_activity_encontro">EncontroActivity</string>
+    <string name="new_description">Novo encontro</string>
+    <string name="str_nome_do_encontro">Nome do Encontro:</string>
+    <string name="linha_onibus_str">Linha De Ônibus:</string>
+    <string name="ponto_ref_str">Ponto de Referência:</string>
 </resources>
