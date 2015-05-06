@@ -37,15 +37,12 @@ public class PerfilActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        // Hide the Status Bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         userNameView = (TextView) this.findViewById(R.id.selection_user_name);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", userNameView);
+
         profilePictureView = (ProfilePictureView) this
                 .findViewById(R.id.selection_profile_pic);
         profilePictureView.setCropped(true);
+        customizeItems();
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         if (accessToken != null) {
             makeMeRequest(accessToken);
@@ -95,6 +92,12 @@ public class PerfilActivity extends Activity {
         });
         request.executeAsync();
 
+    }
+
+    public void customizeItems(){
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", userNameView);
     }
 
     @Override
