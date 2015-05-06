@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -32,6 +33,7 @@ public class MainActivity extends Activity {
 
     CallbackManager mCallbackManager;
     protected static String foto;
+    private static TextView appName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,13 +98,9 @@ public class MainActivity extends Activity {
 
             }
         });
-        // Hide the Status Bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //Customize font
-        TextView txt = (TextView) findViewById(R.id.idAppName);
-        Typeface font = Typeface.createFromAsset(getAssets(), "Amaranth-Bold.otf");
-        txt.setTypeface(font);
+
+        appName = (TextView) findViewById(R.id.idAppName);
+
         if (authButton.getText().toString().equals("Log out")) {
             Intent i = new Intent();
             i.setClass(getApplicationContext(), PerfilActivity.class);
@@ -110,6 +108,11 @@ public class MainActivity extends Activity {
         }
     }
 
+    public void customizeItems(){
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        CustomizeFont.customizeFont(this, "Amaranth-Bold.otf", appName);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -26,7 +26,7 @@
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/nomeEdit"
+            android:id="@+id/idNomeEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -36,7 +36,7 @@
             android:layout_below="@+id/idNomeEnc"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/linhaEdit"
+            android:layout_toEndOf="@+id/idLinhaEdit"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textColor="#ff3e5052" />
@@ -48,12 +48,12 @@
             android:text="@string/linha_onibus_str"
             android:textColor="#ff3e5052"
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/nomeEdit"
+            android:layout_below="@+id/idNomeEdit"
             android:layout_centerHorizontal="true"
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/linhaEdit"
+            android:id="@+id/idLinhaEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -75,12 +75,12 @@
             android:text="@string/ponto_ref_str"
             android:textColor="#ff3e5052"
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/linhaEdit"
+            android:layout_below="@+id/idLinhaEdit"
             android:layout_centerHorizontal="true"
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/pontoEdit"
+            android:id="@+id/idPontoEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -111,7 +111,7 @@
             android:layout_centerVertical="true" />
 
         <ImageButton
-            android:id="@+id/cancelarButtonId"
+            android:id="@+id/idCancelarButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -121,11 +121,12 @@
             android:layout_gravity="right"
             android:src="@mipmap/cancel_button_launcher"
             android:onClick="onBack"
-            android:layout_alignTop="@+id/botaocriar"
-            android:layout_toRightOf="@+id/idEditarDataTextView" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <ImageButton
-            android:id="@+id/botaocriar"
+            android:id="@+id/idCriarButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -133,13 +134,11 @@
             android:textColor="#ffffff"
             android:layout_gravity="right"
             android:src="@mipmap/confirm_button_launcher"
-            android:onClick="onBack"
+            android:onClick="saveEncontro"
             android:background="#00ffffff"
             android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/textViewLocal"
-            android:layout_marginLeft="21dp"
-            android:layout_marginStart="21dp"
-            android:layout_marginBottom="21dp" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <ImageButton
             android:id="@+id/idMapaButton"
@@ -190,7 +189,7 @@
             android:id="@+id/idEditarDataTextView"
             android:layout_marginTop="7dp"
             android:layout_below="@+id/idDataButton"
-            android:layout_marginLeft="13dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginStart="13dp"
             android:textColor="#ff3e5052" />
 
@@ -201,17 +200,42 @@
             android:id="@+id/idEditarHoraTextView"
             android:layout_centerHorizontal="true"
             android:textColor="#ff3e5052"
-            android:layout_below="@+id/idHorarioButton" />
+            android:layout_below="@+id/idHorarioButton"
+            android:layout_marginTop="7dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Editar\nLocalização"
+            android:text="Editar Localização"
             android:id="@+id/idEditarMapaTextView"
-            android:layout_toEndOf="@+id/idNomeEnc"
             android:textColor="#ff3e5052"
-            android:layout_below="@+id/idMapaButton"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/idEditarHoraTextView"
+            android:layout_toRightOf="@+id/idLinhaOnibusText"
+            android:layout_toEndOf="@+id/idLinhaOnibusText"
+            android:layout_marginRight="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:id="@+id/idCancelarTextView"
+            android:textColor="#ff3e5052"
+            android:layout_alignTop="@+id/idCriarTextView"
+            android:layout_toRightOf="@+id/idEditarDataTextView"
+            android:layout_toEndOf="@+id/idEditarDataTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Criar"
+            android:id="@+id/idCriarTextView"
+            android:textColor="#ff3e5052"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/idEditarMapaTextView"
+            android:layout_alignStart="@+id/idEditarMapaTextView"
+            android:layout_marginBottom="15dp" />
 
     </RelativeLayout>
 

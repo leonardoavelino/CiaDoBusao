@@ -31,6 +31,7 @@ public class PerfilActivity extends Activity {
     private static final int REAUTH_ACTIVITY_CODE = 100;
     public static ProfilePictureView profilePictureView;
     private static TextView userNameView;
+    protected static String idUsuario = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,6 @@ public class PerfilActivity extends Activity {
         Intent i = new Intent();
         i.setClass(getApplicationContext(), NovoEncontroActivity.class);
         startActivity(i);
-
     }
 
     private void makeMeRequest(AccessToken accessToken) {
@@ -64,7 +64,7 @@ public class PerfilActivity extends Activity {
                 if (user != null) {
                     profilePictureView.setProfileId(user.optString("id"));
                     userNameView.setText(user.optString("name"));
-
+                    idUsuario = user.optString("id");
                     final ParseObject usuario = new ParseObject("Usuario");
                     ParseQuery query = new ParseQuery("Usuario");
                     query.whereEqualTo("id_gcm", user.optString("id"));
