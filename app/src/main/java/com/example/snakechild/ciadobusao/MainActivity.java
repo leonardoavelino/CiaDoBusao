@@ -31,6 +31,7 @@ import org.json.JSONObject;
 public class MainActivity extends Activity {
 
     CallbackManager mCallbackManager;
+    protected static String foto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,8 @@ public class MainActivity extends Activity {
                                     GraphResponse response) {
                                 try {
                                     Log.i("name", object.getString("name"));
+                                    foto = object.getJSONObject("picture").getJSONObject("data").getString("url");
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

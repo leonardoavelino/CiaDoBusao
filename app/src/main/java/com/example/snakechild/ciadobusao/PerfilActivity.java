@@ -20,6 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -76,7 +77,7 @@ public class PerfilActivity extends Activity {
                                 if (profileList.size()==0){
                                     usuario.put("nome", user.optString("name"));
                                     usuario.put("id_gcm", user.optString("id"));
-                                    usuario.put("url_foto", user.optString("link"));
+                                    usuario.put("url_foto", MainActivity.foto);
                                     usuario.saveInBackground();
                                     Log.d("usuario", "Usuario salvo");
                                 }else{
