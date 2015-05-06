@@ -120,6 +120,7 @@
             android:textColor="#ffffff"
             android:layout_gravity="right"
             android:src="@mipmap/cancel_button_launcher"
+            android:onClick="onBack"
             android:layout_alignTop="@+id/botaocriar"
             android:layout_toRightOf="@+id/idEditarDataTextView" />
 
@@ -132,6 +133,7 @@
             android:textColor="#ffffff"
             android:layout_gravity="right"
             android:src="@mipmap/confirm_button_launcher"
+            android:onClick="onBack"
             android:background="#00ffffff"
             android:layout_alignParentBottom="true"
             android:layout_toEndOf="@+id/textViewLocal"
