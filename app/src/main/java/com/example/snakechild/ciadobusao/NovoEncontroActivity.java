@@ -24,7 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-
 public class NovoEncontroActivity extends FragmentActivity {
 
     private static TextView nomeText, linhaText, pontoRefText, editDataText, editHoraText, editLocalMapaText, criarText, cancelarText, dataText, horaText, mapaText;
@@ -145,32 +144,38 @@ public class NovoEncontroActivity extends FragmentActivity {
         newFragment.show(getFragmentManager(), "timePicker");
     }
 
-    public boolean validateParams(){
+    public static boolean validateParams(){
         boolean result = true;
         if (!ValidateInput.isNome(nomeEncEditText.getText().toString())) {
             nomeEncEditText.setError("Nome Inválido!");
+            nomeEncEditText.setText("");
             result = false;
         }
         if (!ValidateInput.isPonto(refEncEditText.getText().toString())) {
             refEncEditText.setError("Ponto Inválido!");
+            refEncEditText.setText("");
             result = false;
         }
         if (!ValidateInput.isLinha(linhaEncEditTex.getText().toString())) {
             linhaEncEditTex.setError("Linha Inválida!");
+            linhaEncEditTex.setText("");
             result = false;
         }
-        if(!ValidateInput.isData(dataText.getText().toString())){
+        /*if(!ValidateInput.isData(dataText.getText().toString())){
             dataText.setError("Data Inválida!");
+            dataText.setText("");
             result = false;
         }
         if(!ValidateInput.isHorario(horaText.getText().toString())){
             horaText.setError("Horário Inválido!");
+            horaText.setText("");
             result = false;
         }
         if(mapaText.getText().toString().isEmpty()){
             mapaText.setError("Localização Inválida!");
+            mapaText.setText("");
             result = false;
-        }
+        }*/
         return result;
     }
 
@@ -189,6 +194,8 @@ public class NovoEncontroActivity extends FragmentActivity {
             encontro.saveInBackground();
             Toast.makeText(getApplicationContext(), "Encontro criado com sucesso!", Toast.LENGTH_SHORT).show();
             onBack(v);
+        } else {
+            Toast.makeText(getApplicationContext(), "Preencha novamente o que está errado!", Toast.LENGTH_SHORT).show();
         }
     }
 }
