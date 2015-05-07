@@ -99,7 +99,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        appName = (TextView) findViewById(R.id.idAppName);
+        customizeItems();
 
         if (authButton.getText().toString().equals("Log out")) {
             Intent i = new Intent();
@@ -111,6 +111,7 @@ public class MainActivity extends Activity {
     public void customizeItems(){
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        appName = (TextView) findViewById(R.id.idAppName);
         CustomizeFont.customizeFont(this, "Amaranth-Bold.otf", appName);
     }
 
