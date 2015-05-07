@@ -14,9 +14,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
+import com.example.snakechild.ciadobusao.util.ValidateInput;
 import com.parse.ParseObject;
 
 import android.text.format.DateFormat;
+import android.widget.Toast;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -24,7 +27,7 @@ import java.util.Locale;
 
 public class NovoEncontroActivity extends FragmentActivity {
 
-    private static TextView nomeText, linhaText, pontoRefText, editDataText, editHoraText, editLocalMapaText, criarText, cancelarText, dataText, horaText;
+    private static TextView nomeText, linhaText, pontoRefText, editDataText, editHoraText, editLocalMapaText, criarText, cancelarText, dataText, horaText, mapaText;
     private static EditText nomeEncEditText, linhaEncEditTex, refEncEditText;
 
     @Override
@@ -42,6 +45,7 @@ public class NovoEncontroActivity extends FragmentActivity {
         cancelarText = (TextView) this.findViewById(R.id.idCancelarTextView);
         dataText = (TextView) this.findViewById(R.id.idDateTextView);
         horaText = (TextView) this.findViewById(R.id.idHoraTextView);
+        mapaText = (TextView) this.findViewById(R.id.idLocalMapaTextView);
 
         nomeEncEditText = (EditText) this.findViewById(R.id.idNomeEdit);
         linhaEncEditTex = (EditText) this.findViewById(R.id.idLinhaEdit);
@@ -141,18 +145,50 @@ public class NovoEncontroActivity extends FragmentActivity {
         newFragment.show(getFragmentManager(), "timePicker");
     }
 
-    public void saveEncontro(View v){
-        ParseObject encontro = new ParseObject("Encontro");
+    public boolean validateParams(){
+        boolean result = true;
+        if (!ValidateInput.isNome(nomeEncEditText.getText().toString())) {
+            nomeEncEditText.setError("Nome Inválido!");
+            result = false;
+        }
+        if (!ValidateInput.isPonto(refEncEditText.getText().toString())) {
+            refEncEditText.setError("Ponto Inválido!");
+            result = false;
+        }
+        if (!ValidateInput.isLinha(linhaEncEditTex.getText().toString())) {
+            linhaEncEditTex.setError("Linha Inválida!");
+            result = false;
+        }
+        if(!ValidateInput.isData(dataText.getText().toString())){
+            dataText.setError("Data Inválida!");
+            result = false;
+        }
+        if(!ValidateInput.isHorario(horaText.getText().toString())){
+            horaText.setError("Horário Inválido!");
+            result = false;
+        }
+        if(mapaText.getText().toString().isEmpty()){
+            mapaText.setError("Localização Inválida!");
+            result = false;
+        }
+        return result;
+    }
 
-        encontro.put("data", dataText.getText().toString());
-        encontro.put("horario", horaText.getText().toString());
-        encontro.put("idDono", PerfilActivity.idUsuario);
-        encontro.put("latitude", "");
-        encontro.put("longitude", "");
-        encontro.put("linha", linhaEncEditTex.getText().toString());
-        encontro.put("nome", nomeEncEditText.getText().toString());
-        encontro.put("referencia", refEncEditText.getText().toString());
-        encontro.saveInBackground();
-        onBack(v);
+    public void saveEncontro(View v){
+        if (validateParams()){
+            ParseObject encontro = new ParseObject("Encontro");
+
+            encontro.put("data", dataText.getText().toString());
+            encontro.put("horario", horaText.getText().toString());
+            encontro.put("idDono", PerfilActivity.idUsuario);
+            encontro.put("latitude", "");
+            encontro.put("longitude", "");
+            encontro.put("linha", linhaEncEditTex.getText().toString());
+            encontro.put("nome", nomeEncEditText.getText().toString());
+            encontro.put("referencia", refEncEditText.getText().toString());
+            encontro.saveInBackground();
+            Toast.makeText(getApplicationContext(), "Encontro criado com sucesso!", Toast.LENGTH_SHORT).show();
+            onBack(v);
+        }
     }
 }
