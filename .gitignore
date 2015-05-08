@@ -9,9 +9,13 @@
 # Java class files
 *.class
 
-# Generated files
+# Generated and ProjectConfig files
 bin/
 gen/
+.idea/
+
+# Facebook lib files
+facebook/
 
 # Gradle files
 .gradle/
