@@ -14,4 +14,5 @@ public class CustomizeFont {
         textView.setTypeface(typeFont);
 
     }
+
 }

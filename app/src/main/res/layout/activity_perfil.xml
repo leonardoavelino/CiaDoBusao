@@ -54,11 +54,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/idMeusEncontroslistView"
-        android:layout_below="@+id/selection_user_name"
-        android:layout_toRightOf="@+id/selection_user_name"
-        android:layout_marginTop="54dp"
-        android:layout_above="@+id/idNewEncImageButton"
-        android:layout_alignRight="@+id/selection_profile_pic"
-        android:layout_alignEnd="@+id/selection_profile_pic" />
+        android:layout_marginTop="170dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="110dp"
+        android:theme="@android:style/Widget.DeviceDefault.ListView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Meus encontros:"
+        android:id="@+id/idMeusEncontrosTextView"
+        android:textColor="#ff3f5153"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="10dp" />
 
 </RelativeLayout>

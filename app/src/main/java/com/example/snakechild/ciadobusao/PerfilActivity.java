@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
@@ -15,14 +17,13 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.widget.ProfilePictureView;
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,6 +33,10 @@ public class PerfilActivity extends Activity {
     public static ProfilePictureView profilePictureView;
     private static TextView userNameView;
     protected static String idUsuario = "";
+    private ListView mListView;
+    private List<String> encontros = new ArrayList<String>();
+    private ArrayAdapter<String> adapter;
+    private TextView meusEncontrosText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +48,24 @@ public class PerfilActivity extends Activity {
         profilePictureView = (ProfilePictureView) this
                 .findViewById(R.id.selection_profile_pic);
         profilePictureView.setCropped(true);
+
+        meusEncontrosText = (TextView) this.findViewById(R.id.idMeusEncontrosTextView);
         customizeItems();
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
+
+        mListView = (ListView) findViewById(R.id.idMeusEncontroslistView);
+        adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, encontros);
         if (accessToken != null) {
             makeMeRequest(accessToken);
+            mListView.setAdapter(adapter);
         }
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getMeusEncontros();
     }
 
     public void criarNovoEncontro(View v){
@@ -65,6 +82,7 @@ public class PerfilActivity extends Activity {
                     profilePictureView.setProfileId(user.optString("id"));
                     userNameView.setText(user.optString("name"));
                     idUsuario = user.optString("id");
+                    getMeusEncontros();
                     final ParseObject usuario = new ParseObject("Usuario");
                     ParseQuery query = new ParseQuery("Usuario");
                     query.whereEqualTo("id_gcm", user.optString("id"));
@@ -94,16 +112,32 @@ public class PerfilActivity extends Activity {
 
     }
 
+    private void getMeusEncontros() {
+        ParseQuery query = new ParseQuery("Encontro");
+        query.whereEqualTo("idDono", idUsuario);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                encontros.clear();
+                for (int i = 0; i < parseObjects.size(); i++) {
+                    String encontro = (String) parseObjects.get(i).get("nome");
+                    encontros.add(i, encontro);
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
     public void customizeItems(){
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", userNameView);
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", meusEncontrosText);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //finish();
     }
 
     @Override
