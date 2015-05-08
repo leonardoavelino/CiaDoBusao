@@ -98,7 +98,7 @@
 
         <ImageButton
             android:id="@+id/idCancelarButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#00ffffff"
@@ -108,9 +108,9 @@
             android:src="@mipmap/cancel_button_launcher"
             android:onClick="onBack"
             android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/idDataButton"
-            android:layout_alignEnd="@+id/idDataButton"
-            android:layout_alignParentLeft="true" />
+            android:layout_toLeftOf="@+id/idCancelarTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <ImageButton
             android:id="@+id/idCriarButton"
@@ -138,7 +138,8 @@
             android:src="@mipmap/location_button_launcher"
             android:layout_alignTop="@+id/idHorarioButton"
             android:layout_alignLeft="@+id/idCriarButton"
-            android:layout_alignStart="@+id/idCriarButton" />
+            android:layout_alignStart="@+id/idCriarButton"
+            android:layout_marginRight="20dp" />
 
         <ImageButton
             android:id="@+id/idHorarioButton"
@@ -206,8 +207,8 @@
             android:textColor="#ff3e5052"
             android:layout_alignWithParentIfMissing="false"
             android:layout_alignTop="@+id/idCriarTextView"
-            android:layout_toRightOf="@+id/idEditarDataTextView"
-            android:layout_toEndOf="@+id/idEditarDataTextView" />
+            android:layout_toLeftOf="@+id/idHorarioButton"
+            android:layout_toStartOf="@+id/idHorarioButton" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -100,7 +100,7 @@ public class NovoEncontroActivity extends FragmentActivity {
             myCalendar.set(Calendar.MONTH, month);
             myCalendar.set(Calendar.DAY_OF_MONTH, day);
 
-            String myFormat = "dd/MM/yy"; //In which format you need put here
+            String myFormat = "dd/MM/yyyy"; //In which format you need put here
             SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
             dataText.setText(sdf.format(myCalendar.getTime()));
@@ -129,7 +129,7 @@ public class NovoEncontroActivity extends FragmentActivity {
 
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             Calendar myCalendar = Calendar.getInstance();
-            myCalendar.set(Calendar.HOUR, hourOfDay);
+            myCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
             myCalendar.set(Calendar.MINUTE, minute);
 
             String myFormat = "HH:mm"; //In which format you need put here
@@ -161,17 +161,14 @@ public class NovoEncontroActivity extends FragmentActivity {
             linhaEncEditTex.setText("");
             result = false;
         }
-        /*if(!ValidateInput.isData(dataText.getText().toString())){
+        if (!ValidateInput.isDataHora(dataText.getText().toString(), horaText.getText().toString())){
+            horaText.setError("Horário Inválido!");
+            horaText.setText("");
             dataText.setError("Data Inválida!");
             dataText.setText("");
             result = false;
         }
-        if(!ValidateInput.isHorario(horaText.getText().toString())){
-            horaText.setError("Horário Inválido!");
-            horaText.setText("");
-            result = false;
-        }
-        if(mapaText.getText().toString().isEmpty()){
+        /*if(mapaText.getText().toString().isEmpty()){
             mapaText.setError("Localização Inválida!");
             mapaText.setText("");
             result = false;

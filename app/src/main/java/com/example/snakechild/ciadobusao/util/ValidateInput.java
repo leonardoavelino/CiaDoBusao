@@ -1,6 +1,7 @@
 package com.example.snakechild.ciadobusao.util;
 
 import android.text.format.DateFormat;
+import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,38 +32,22 @@ public class ValidateInput {
         return false;
     }
 
-    public static boolean isData(String data){
-        if (data != null){
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    public static boolean isDataHora(String data, String hora){
+        Date actual = new Date(System.currentTimeMillis());
+        if (data != "" && hora != ""){
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
             Date date = new Date();
-            Date actual = new Date(System.currentTimeMillis());
             try {
-                date = sdf.parse(data);
+                date = sdf.parse(data + " " + hora);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if(date.after(actual)){
+            Log.i("DATA",date.toString());
+            Log.i("ACTUAL",actual.toString());
+            if(!date.before(actual)){
                 return true;
             }
         }
         return false;
     }
-
-    public static boolean isHorario(String horario){
-        if(horario != null){
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
-            Date date = new Date();
-            Date actual = new Date(System.currentTimeMillis());
-            try {
-                date = sdf.parse(horario);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            if(date.after(actual)){
-                return true;
-            }
-        }
-        return false;
-    }
-
 }
