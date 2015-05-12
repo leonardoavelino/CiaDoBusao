@@ -83,27 +83,7 @@ public class PerfilActivity extends Activity {
                     userNameView.setText(user.optString("name"));
                     idUsuario = user.optString("id");
                     getMeusEncontros();
-                    final ParseObject usuario = new ParseObject("Usuario");
-                    ParseQuery query = new ParseQuery("Usuario");
-                    query.whereEqualTo("id_gcm", user.optString("id"));
-                    query.findInBackground(new FindCallback<ParseObject>() {
-                        public void done(List<ParseObject> profileList, ParseException e) {
-                            if (e == null) {
-                                if (profileList.size()==0){
-                                    usuario.put("nome", user.optString("name"));
-                                    usuario.put("id_gcm", user.optString("id"));
-                                    usuario.put("url_foto", MainActivity.foto);
-                                    usuario.saveInBackground();
-                                    Log.d("usuario", "Usuario salvo");
-                                }else{
-                                    Log.d("usuario", "Usuario ja existe");
-                                }
 
-                            } else {
-                                Log.d("usuario", "Error: " + e.getMessage());
-                            }
-                        }
-                    });
 
                 }
             }
@@ -119,9 +99,11 @@ public class PerfilActivity extends Activity {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
                 encontros.clear();
-                for (int i = 0; i < parseObjects.size(); i++) {
-                    String encontro = (String) parseObjects.get(i).get("nome");
-                    encontros.add(i, encontro);
+                if (parseObjects != null) {
+                    for (int i = 0; i < parseObjects.size(); i++) {
+                        String encontro = (String) parseObjects.get(i).get("nome");
+                        encontros.add(i, encontro);
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }

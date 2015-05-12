@@ -22,34 +22,32 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseInstallation;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 
 public class MainActivity extends Activity {
 
     CallbackManager mCallbackManager;
-    protected static String foto;
+    private static String foto;
     private static TextView appName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //BD
         Parse.enableLocalDatastore(this);
-
-        //Notificacao
         Parse.initialize(this, "r2Hs81lOwoi7YK9mby5m49409JuOx5EzpBULMNnP", "tdeLsjWBSqTd5KRCoULEScSbzKHpW80m2bpHQZzZ");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
-
-        //EXAMPLE
-        //ParseObject testObject = new ParseObject("TestObject");
-        //testObject.put("foo", "bar");
-        //testObject.saveInBackground();
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         mCallbackManager = CallbackManager.Factory.create();
@@ -65,11 +63,44 @@ public class MainActivity extends Activity {
                         new GraphRequest.GraphJSONObjectCallback() {
                             @Override
                             public void onCompleted(
-                                    JSONObject object,
+                                    final JSONObject object,
                                     GraphResponse response) {
                                 try {
                                     Log.i("name", object.getString("name"));
                                     foto = object.getJSONObject("picture").getJSONObject("data").getString("url");
+                                    final ParseObject usuario = new ParseObject("Usuario");
+                                    ParseQuery query = new ParseQuery("Usuario");
+                                    query.whereEqualTo("id_user", object.optString("id"));
+                                    query.findInBackground(new FindCallback<ParseObject>() {
+                                        public void done(List<ParseObject> profileList, ParseException e) {
+                                            if (e == null) {
+                                                if (profileList.size()==0){
+                                                    usuario.put("nome", object.optString("name"));
+                                                    usuario.put("id_user", object.optString("id"));
+                                                    usuario.put("url_foto", foto);
+                                                    usuario.saveInBackground();
+                                                    Log.d("usuario", "Usuario salvo");
+                                                }else{
+                                                    Log.d("usuario", "Usuario ja existe");
+                                                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Usuario");
+                                                    query.getInBackground(profileList.get(0).getObjectId(), new GetCallback<ParseObject>() {
+                                                        public void done(ParseObject user, ParseException e) {
+                                                            if (e == null) {
+                                                                user.put("nome", object.optString("name"));
+                                                                user.put("url_foto", foto);
+                                                                user.saveInBackground();
+                                                                Log.d("usuario", "Usuario atualizado");
+
+                                                            }
+                                                        }
+                                                    });
+                                                }
+
+                                            } else {
+                                                Log.d("usuario", "Error: " + e.getMessage());
+                                            }
+                                        }
+                                    });
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
