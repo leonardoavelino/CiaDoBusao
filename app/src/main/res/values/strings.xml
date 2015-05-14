@@ -17,4 +17,35 @@
     <string name="str_nome_do_encontro">Nome do Encontro:</string>
     <string name="linha_onibus_str">Linha De Ônibus:</string>
     <string name="ponto_ref_str">Ponto de Referência:</string>
+
+    <string name="drawer_open">Abriu o menu lateral</string>
+    <string name="drawer_close">Fechou o menu lateral</string>
+
+    <!-- Nombres de los items -->
+    <string-array name="nav_drawer_items">
+        <item >Perfil</item>
+        <item >Criar Encontro</item>
+        <item >Meus Encontros</item>
+        <item >Mapa</item>
+        <item >Lista de Encontros</item>
+        <item >Ajuda</item>
+        <item >Sair</item>
+    </string-array>
+
+    <!-- Icones dos items -->
+    <array name="nav_drawer_icons">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    <!-- <item>@drawable/ic_whats_hot</item>
+     <item>@drawable/ic_people</item>
+     <item>@drawable/ic_photos</item>
+     <item>@drawable/ic_communities</item><!-->
+ </array>
+
+ <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
 </resources>
