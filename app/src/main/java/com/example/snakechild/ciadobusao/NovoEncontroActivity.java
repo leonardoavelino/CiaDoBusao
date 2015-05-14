@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -105,6 +106,12 @@ public class NovoEncontroActivity extends FragmentActivity {
 
             dataText.setText(sdf.format(myCalendar.getTime()));
         }
+    }
+
+    public void onLocalPressed(View v) {
+        Intent i = new Intent();
+        i.setClass(getApplicationContext(), MapActivity.class);
+        startActivity(i);
     }
 
     public void onDatePressed(View v){

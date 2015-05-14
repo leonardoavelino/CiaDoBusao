@@ -135,6 +135,7 @@
             android:background="#00ffffff"
             android:textColor="#FFFFFF"
             android:layout_gravity="center_horizontal"
+            android:onClick="onLocalPressed"
             android:src="@mipmap/location_button_launcher"
             android:layout_alignTop="@+id/idHorarioButton"
             android:layout_alignLeft="@+id/idCriarButton"
