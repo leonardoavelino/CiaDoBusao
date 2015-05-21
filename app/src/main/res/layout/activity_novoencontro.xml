@@ -1,261 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#fffbe3c0"
-    android:id="@+id/idNewEncontro" >
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent">
+    <!-- The main content view -->
 
-        <TextView
-            android:id="@+id/idNomeEnc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="@string/str_nome_do_encontro"
-            android:textColor="#ff3e5052"
-            android:textStyle="normal"
-            android:fontFamily="@string/com_facebook_loginview_log_in_button_long"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="21dp"
-            android:textSize="20dp" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#fffbe3c0"
+        android:id="@+id/idNewEncontro">
 
-        <EditText
-            android:id="@+id/idNomeEdit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:layout_below="@+id/idNomeEnc"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/idLinhaEdit"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:textColor="#ff3e5052" />
-
-        <TextView
-            android:id="@+id/idLinhaOnibusText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/linha_onibus_str"
-            android:textColor="#ff3e5052"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/idNomeEdit"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/idLinhaEdit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/idLinhaOnibusText"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:textColor="#ff3e5052" />
-
-        <TextView
-            android:id="@+id/idPontoRefText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ponto_ref_str"
-            android:textColor="#ff3e5052"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/idLinhaEdit"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/idPontoEdit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:layout_below="@+id/idPontoRefText"
-            android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:textColor="#ff3e5052" />
-
-        <ImageButton
-            android:id="@+id/idCancelarButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#00ffffff"
-            android:text="Cancelar"
-            android:textColor="#ffffff"
-            android:layout_gravity="right"
-            android:src="@mipmap/cancel_button_launcher"
-            android:onClick="onBack"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/idCancelarTextView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <ImageButton
-            android:id="@+id/idCriarButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Criar"
-            android:textColor="#ffffff"
-            android:layout_gravity="right"
-            android:src="@mipmap/confirm_button_launcher"
-            android:onClick="saveEncontro"
-            android:background="#00ffffff"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:textAlignment="center" />
-
-        <ImageButton
-            android:id="@+id/idMapaButton"
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#00ffffff"
-            android:textColor="#FFFFFF"
-            android:layout_gravity="center_horizontal"
-            android:onClick="onLocalPressed"
-            android:src="@mipmap/location_button_launcher"
-            android:layout_alignTop="@+id/idHorarioButton"
-            android:layout_alignLeft="@+id/idCriarButton"
-            android:layout_alignStart="@+id/idCriarButton"
-            android:layout_marginRight="20dp" />
+            android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/idHorarioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Clique para editar o Horário"
-            android:textColor="#FFFFFF"
-            android:src="@mipmap/clock_button_launcher"
-            android:background="#00ffffff"
-            android:onClick="onTimePressed"
-            android:layout_alignTop="@+id/idDataButton"
-            android:layout_centerHorizontal="true" />
+            <TextView
+                android:id="@+id/idNomeEnc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/str_nome_do_encontro"
+                android:textColor="#ff3e5052"
+                android:textStyle="normal"
+                android:fontFamily="@string/com_facebook_loginview_log_in_button_long"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="21dp"
+                android:textSize="20dp" />
 
-        <ImageButton
-            android:id="@+id/idDataButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:layout_gravity="center_horizontal"
-            android:src="@mipmap/data_button_launcher"
-            android:background="#00ffffff"
-            android:onClick="onDatePressed"
-            android:layout_below="@+id/idPontoEdit"
-            android:layout_toLeftOf="@+id/idNomeEnc"
-            android:layout_toStartOf="@+id/idNomeEnc" />
+            <EditText
+                android:id="@+id/idNomeEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:layout_below="@+id/idNomeEnc"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@+id/idLinhaEdit"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="#ff3e5052" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Editar Data"
-            android:id="@+id/idEditarDataTextView"
-            android:textColor="#ff3e5052"
-            android:layout_below="@+id/idDataButton"
-            android:layout_toLeftOf="@+id/idPontoRefText"
-            android:layout_toStartOf="@+id/idPontoRefText" />
+            <TextView
+                android:id="@+id/idLinhaOnibusText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/linha_onibus_str"
+                android:textColor="#ff3e5052"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/idNomeEdit"
+                android:layout_centerHorizontal="true"
+                android:textSize="20dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Editar Horário"
-            android:id="@+id/idEditarHoraTextView"
-            android:textColor="#ff3e5052"
-            android:layout_below="@+id/idHorarioButton"
-            android:layout_centerHorizontal="true" />
+            <EditText
+                android:id="@+id/idLinhaEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/idLinhaOnibusText"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="#ff3e5052" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Editar Localização"
-            android:id="@+id/idEditarMapaTextView"
-            android:textColor="#ff3e5052"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"
-            android:layout_below="@+id/idMapaButton"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignLeft="@+id/idCriarTextView"
-            android:layout_alignStart="@+id/idCriarTextView" />
+            <TextView
+                android:id="@+id/idPontoRefText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ponto_ref_str"
+                android:textColor="#ff3e5052"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/idLinhaEdit"
+                android:layout_centerHorizontal="true"
+                android:textSize="20dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancelar"
-            android:id="@+id/idCancelarTextView"
-            android:textColor="#ff3e5052"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_alignTop="@+id/idCriarTextView"
-            android:layout_toLeftOf="@+id/idHorarioButton"
-            android:layout_toStartOf="@+id/idHorarioButton" />
+            <EditText
+                android:id="@+id/idPontoEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:layout_below="@+id/idPontoRefText"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="#ff3e5052" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Criar"
-            android:id="@+id/idCriarTextView"
-            android:textColor="#ff3e5052"
-            android:layout_marginBottom="14dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/idNomeEnc"
-            android:layout_toEndOf="@+id/idNomeEnc" />
+            <ImageButton
+                android:id="@+id/idCancelarButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:text="Cancelar"
+                android:textColor="#ffffff"
+                android:layout_gravity="right"
+                android:src="@mipmap/cancel_button_launcher"
+                android:onClick="onBack"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/idCancelarTextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/idDateTextView"
-            android:layout_marginTop="15dp"
-            android:textColor="#ff3e5052"
-            android:layout_below="@+id/idEditarDataTextView"
-            android:layout_alignLeft="@+id/idEditarDataTextView"
-            android:layout_alignStart="@+id/idEditarDataTextView" />
+            <ImageButton
+                android:id="@+id/idCriarButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Criar"
+                android:textColor="#ffffff"
+                android:layout_gravity="right"
+                android:src="@mipmap/confirm_button_launcher"
+                android:onClick="saveEncontro"
+                android:background="#00ffffff"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textAlignment="center" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/idHoraTextView"
-            android:textColor="#ff3e5052"
-            android:layout_alignBaseline="@+id/idDateTextView"
-            android:layout_alignBottom="@+id/idDateTextView"
-            android:layout_toRightOf="@+id/idCancelarTextView"
-            android:layout_toEndOf="@+id/idCancelarTextView"
-            android:layout_marginLeft="15dp"
-            android:layout_marginStart="15dp" />
+            <ImageButton
+                android:id="@+id/idMapaButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#00ffffff"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center_horizontal"
+                android:onClick="onLocalPressed"
+                android:src="@mipmap/location_button_launcher"
+                android:layout_alignTop="@+id/idHorarioButton"
+                android:layout_alignLeft="@+id/idCriarButton"
+                android:layout_alignStart="@+id/idCriarButton"
+                android:layout_marginRight="20dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/idLocalMapaTextView"
-            android:textColor="#ff3e5052"
-            android:layout_below="@+id/idHoraTextView"
-            android:layout_toRightOf="@+id/idCriarTextView"
-            android:layout_toEndOf="@+id/idCriarTextView" />
+            <ImageButton
+                android:id="@+id/idHorarioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clique para editar o Horário"
+                android:textColor="#FFFFFF"
+                android:src="@mipmap/clock_button_launcher"
+                android:background="#00ffffff"
+                android:onClick="onTimePressed"
+                android:layout_alignTop="@+id/idDataButton"
+                android:layout_centerHorizontal="true" />
 
-    </RelativeLayout>
+            <ImageButton
+                android:id="@+id/idDataButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/data_button_launcher"
+                android:background="#00ffffff"
+                android:onClick="onDatePressed"
+                android:layout_below="@+id/idPontoEdit"
+                android:layout_toLeftOf="@+id/idNomeEnc"
+                android:layout_toStartOf="@+id/idNomeEnc" />
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Editar Data"
+                android:id="@+id/idEditarDataTextView"
+                android:textColor="#ff3e5052"
+                android:layout_below="@+id/idDataButton"
+                android:layout_toLeftOf="@+id/idPontoRefText"
+                android:layout_toStartOf="@+id/idPontoRefText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Editar Horário"
+                android:id="@+id/idEditarHoraTextView"
+                android:textColor="#ff3e5052"
+                android:layout_below="@+id/idHorarioButton"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Editar Localização"
+                android:id="@+id/idEditarMapaTextView"
+                android:textColor="#ff3e5052"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/idMapaButton"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignLeft="@+id/idCriarTextView"
+                android:layout_alignStart="@+id/idCriarTextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:id="@+id/idCancelarTextView"
+                android:textColor="#ff3e5052"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_alignTop="@+id/idCriarTextView"
+                android:layout_toLeftOf="@+id/idHorarioButton"
+                android:layout_toStartOf="@+id/idHorarioButton" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Criar"
+                android:id="@+id/idCriarTextView"
+                android:textColor="#ff3e5052"
+                android:layout_marginBottom="14dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/idNomeEnc"
+                android:layout_toEndOf="@+id/idNomeEnc" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/idDateTextView"
+                android:layout_marginTop="15dp"
+                android:textColor="#ff3e5052"
+                android:layout_below="@+id/idEditarDataTextView"
+                android:layout_alignLeft="@+id/idEditarDataTextView"
+                android:layout_alignStart="@+id/idEditarDataTextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/idHoraTextView"
+                android:textColor="#ff3e5052"
+                android:layout_alignBaseline="@+id/idDateTextView"
+                android:layout_alignBottom="@+id/idDateTextView"
+                android:layout_toRightOf="@+id/idCancelarTextView"
+                android:layout_toEndOf="@+id/idCancelarTextView"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/idLocalMapaTextView"
+                android:textColor="#ff3e5052"
+                android:layout_below="@+id/idHoraTextView"
+                android:layout_toRightOf="@+id/idCriarTextView"
+                android:layout_toEndOf="@+id/idCriarTextView" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/left_drawer"
+        android:layout_width="260dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#1a1c25"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp" />
+
+</android.support.v4.widget.DrawerLayout>

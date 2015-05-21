@@ -1,75 +1,93 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:facebook="http://schemas.android.com/apk/res-auto"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#fffbe3c0"
-    android:id="@+id/idPerfilUser">
+    android:layout_height="match_parent">
 
-    <com.facebook.login.widget.ProfilePictureView
-        android:id="@+id/selection_profile_pic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        facebook:preset_size="normal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginTop="20dp">
-    </com.facebook.login.widget.ProfilePictureView>
+    <!-- The main content view -->
 
-    <TextView
-        android:id="@+id/selection_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#ff3f5153"
-        android:textSize="25sp"
-        android:layout_alignBottom="@+id/selection_profile_pic"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginBottom="31dp" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:facebook="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#fffbe3c0"
+        android:id="@+id/idPerfilUser">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/idNewEncImageButton"
-        android:layout_marginBottom="20dp"
-        android:src="@mipmap/new_enc_button"
-        android:contentDescription="@string/new_description"
-        android:clickable="true"
-        android:onClick="criarNovoEncontro"
-        android:background="#00ffffff"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/selection_profile_pic"
-        android:layout_alignEnd="@+id/selection_profile_pic"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="46dp" />
+        <com.facebook.login.widget.ProfilePictureView
+            android:id="@+id/selection_profile_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            facebook:preset_size="normal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="42dp"
+            android:layout_marginTop="20dp"></com.facebook.login.widget.ProfilePictureView>
+
+        <TextView
+            android:id="@+id/selection_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#ff3f5153"
+            android:textSize="25sp"
+            android:layout_alignBottom="@+id/selection_profile_pic"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginBottom="31dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/idNewEncImageButton"
+            android:layout_marginBottom="20dp"
+            android:src="@mipmap/new_enc_button"
+            android:contentDescription="@string/new_description"
+            android:clickable="true"
+            android:onClick="criarNovoEncontro"
+            android:background="#00ffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/selection_profile_pic"
+            android:layout_alignEnd="@+id/selection_profile_pic"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="46dp" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/idMeusEncontroslistView"
+            android:layout_marginTop="170dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="110dp"
+            android:theme="@android:style/Widget.DeviceDefault.ListView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Meus encontros:"
+            android:id="@+id/idMeusEncontrosTextView"
+            android:textColor="#ff3f5153"
+            android:layout_marginTop="150dp"
+            android:layout_marginLeft="10dp" />
+
+    </RelativeLayout>
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/idMeusEncontroslistView"
-        android:layout_marginTop="170dp"
-        android:layout_marginLeft="10dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="110dp"
-        android:theme="@android:style/Widget.DeviceDefault.ListView" />
+        android:id="@+id/left_drawer"
+        android:layout_width="260dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#1a1c25"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Meus encontros:"
-        android:id="@+id/idMeusEncontrosTextView"
-        android:textColor="#ff3f5153"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="10dp" />
-
-</RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

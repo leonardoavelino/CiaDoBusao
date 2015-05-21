@@ -1,9 +1,8 @@
 package com.example.snakechild.ciadobusao;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.snakechild.ciadobusao.util.BaseActivity;
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PerfilActivity extends Activity {
+public class PerfilActivity extends BaseActivity {
 
     private static final int REAUTH_ACTIVITY_CODE = 100;
     public static ProfilePictureView profilePictureView;
@@ -37,6 +37,11 @@ public class PerfilActivity extends Activity {
     private List<String> encontros = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
     private TextView meusEncontrosText;
+
+    //Atributos para Menu Lateral (Obrigatorios)
+    private String[] navMenuTitles;
+    private TypedArray navMenuIcons;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,13 @@ public class PerfilActivity extends Activity {
             makeMeRequest(accessToken);
             mListView.setAdapter(adapter);
         }
+
+
+        //Carrega o menu lateral
+        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
+        navMenuIcons = getResources()
+                .obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
+        set(navMenuTitles, navMenuIcons);
     }
 
     @Override
@@ -68,7 +80,7 @@ public class PerfilActivity extends Activity {
         getMeusEncontros();
     }
 
-    public void criarNovoEncontro(View v){
+    public void criarNovoEncontro(View v) {
         Intent i = new Intent();
         i.setClass(getApplicationContext(), NovoEncontroActivity.class);
         startActivity(i);
@@ -110,7 +122,7 @@ public class PerfilActivity extends Activity {
         });
     }
 
-    public void customizeItems(){
+    public void customizeItems() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", userNameView);
