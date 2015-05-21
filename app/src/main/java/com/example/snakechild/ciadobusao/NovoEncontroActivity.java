@@ -7,6 +7,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.DatePicker;
@@ -16,7 +17,13 @@ import android.widget.TimePicker;
 
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.example.snakechild.ciadobusao.util.ValidateInput;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
+import com.parse.PushService;
+import com.parse.SaveCallback;
 
 import android.text.format.DateFormat;
 import android.widget.Toast;
@@ -52,6 +59,21 @@ public class NovoEncontroActivity extends FragmentActivity {
         refEncEditText = (EditText) this.findViewById(R.id.idPontoEdit);
 
         customizeItems();
+        Parse.initialize(this, "r2Hs81lOwoi7YK9mby5m49409JuOx5EzpBULMNnP", "tdeLsjWBSqTd5KRCoULEScSbzKHpW80m2bpHQZzZ");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+        PushService.setDefaultPushCallback(this, MainActivity.class);
+
+        ParsePush.subscribeInBackground("Encontro", new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    Log.d("com.parse.push", "successfully subscribed to the broadcast channel.");
+                } else {
+                    Log.e("com.parse.push", "failed to subscribe for push", e);
+                }
+            }
+        });
+
     }
 
     public void customizeItems(){
@@ -197,6 +219,13 @@ public class NovoEncontroActivity extends FragmentActivity {
             encontro.put("referencia", refEncEditText.getText().toString());
             encontro.saveInBackground();
             Toast.makeText(getApplicationContext(), "Encontro criado com sucesso!", Toast.LENGTH_SHORT).show();
+
+            ParsePush push = new ParsePush();
+            String message = "Novo encontro criado" ;
+            push.setMessage(message);
+            push.sendInBackground();
+
+
             onBack(v);
         } else {
             Toast.makeText(getApplicationContext(), "Preencha novamente o que está errado!", Toast.LENGTH_SHORT).show();
