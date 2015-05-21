@@ -3,6 +3,7 @@ package com.example.snakechild.ciadobusao;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,9 +18,14 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.widget.ProfilePictureView;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
+import com.parse.PushService;
+import com.parse.SaveCallback;
 
 import org.json.JSONObject;
 
@@ -57,6 +63,22 @@ public class PerfilActivity extends BaseActivity {
         meusEncontrosText = (TextView) this.findViewById(R.id.idMeusEncontrosTextView);
         customizeItems();
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
+
+
+        Parse.initialize(this, "r2Hs81lOwoi7YK9mby5m49409JuOx5EzpBULMNnP", "tdeLsjWBSqTd5KRCoULEScSbzKHpW80m2bpHQZzZ");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+
+        ParsePush.subscribeInBackground("Encontro", new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    Log.d("com.parse.push", "successfully subscribed to the broadcast channel.");
+                } else {
+                    Log.e("com.parse.push", "failed to subscribe for push", e);
+                }
+            }
+        });
+
 
         mListView = (ListView) findViewById(R.id.idMeusEncontroslistView);
         adapter = new ArrayAdapter<String>(this,

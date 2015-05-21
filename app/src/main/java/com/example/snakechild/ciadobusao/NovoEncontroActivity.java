@@ -65,20 +65,6 @@ public class NovoEncontroActivity extends BaseActivity {
         refEncEditText = (EditText) this.findViewById(R.id.idPontoEdit);
 
         customizeItems();
-        Parse.initialize(this, "r2Hs81lOwoi7YK9mby5m49409JuOx5EzpBULMNnP", "tdeLsjWBSqTd5KRCoULEScSbzKHpW80m2bpHQZzZ");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
-        PushService.setDefaultPushCallback(this, MainActivity.class);
-
-        ParsePush.subscribeInBackground("Encontro", new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e == null) {
-                    Log.d("com.parse.push", "successfully subscribed to the broadcast channel.");
-                } else {
-                    Log.e("com.parse.push", "failed to subscribe for push", e);
-                }
-            }
-        });
 
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
 
