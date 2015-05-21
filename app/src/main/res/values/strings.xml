@@ -49,4 +49,5 @@
  <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_todos_encontros">TodosEncontrosActivity</string>
 </resources>

@@ -18,6 +18,7 @@ import com.example.snakechild.ciadobusao.MapActivity;
 import com.example.snakechild.ciadobusao.NovoEncontroActivity;
 import com.example.snakechild.ciadobusao.PerfilActivity;
 import com.example.snakechild.ciadobusao.R;
+import com.example.snakechild.ciadobusao.TodosEncontrosActivity;
 
 import java.util.ArrayList;
 
@@ -165,7 +166,9 @@ public class BaseActivity extends ActionBarActivity {
                 startActivity(i);
                 break;
             case 4:
-                //TODO AO CLICAR EM LISTA DE ENCONTROS
+                i.setClass(getApplicationContext(), TodosEncontrosActivity.class);
+                startActivity(i);
+                break;
             case 5:
                 //TODO AO CLICAR EM AJUDA
             case 6:
