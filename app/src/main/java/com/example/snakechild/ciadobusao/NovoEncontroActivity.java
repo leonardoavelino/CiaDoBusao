@@ -38,6 +38,7 @@ public class NovoEncontroActivity extends BaseActivity {
 
     private static TextView nomeText, linhaText, pontoRefText, editDataText, editHoraText, editLocalMapaText, criarText, cancelarText, dataText, horaText, mapaText;
     private static EditText nomeEncEditText, linhaEncEditTex, refEncEditText;
+    public static double latitude, longitude;
 
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
@@ -145,6 +146,7 @@ public class NovoEncontroActivity extends BaseActivity {
     public void onLocalPressed(View v) {
         Intent i = new Intent();
         i.setClass(getApplicationContext(), MapActivity.class);
+        i.putExtra("nomeEnc", nomeEncEditText.getText().toString());
         startActivity(i);
     }
 
@@ -220,12 +222,14 @@ public class NovoEncontroActivity extends BaseActivity {
     public void saveEncontro(View v){
         if (validateParams()){
             ParseObject encontro = new ParseObject("Encontro");
+            String latitudeString = String.valueOf(latitude);
+            String longitudeString = String.valueOf(longitude);
 
             encontro.put("data", dataText.getText().toString());
             encontro.put("horario", horaText.getText().toString());
             encontro.put("idDono", PerfilActivity.idUsuario);
-            encontro.put("latitude", "");
-            encontro.put("longitude", "");
+            encontro.put("latitude", latitudeString);
+            encontro.put("longitude", longitudeString);
             encontro.put("linha", linhaEncEditTex.getText().toString());
             encontro.put("nome", nomeEncEditText.getText().toString());
             encontro.put("referencia", refEncEditText.getText().toString());
@@ -241,6 +245,34 @@ public class NovoEncontroActivity extends BaseActivity {
             onBack(v);
         } else {
             Toast.makeText(getApplicationContext(), "Preencha novamente o que está errado!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("nomeEnc", nomeEncEditText.getText().toString());
+        outState.putString("linhaEnc", linhaEncEditTex.getText().toString());
+        outState.putString("refEnc", refEncEditText.getText().toString());
+        outState.putString("dataEnc" ,dataText.getText().toString());
+        outState.putString("horaEnc", horaText.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        nomeEncEditText.setText(savedInstanceState.getString("nomeEnc"));
+        linhaEncEditTex.setText(savedInstanceState.getString("linhaEnc"));
+        refEncEditText.setText(savedInstanceState.getString("refEnc"));
+        dataText.setText(savedInstanceState.getString("dataEnc"));
+        horaText.setText(savedInstanceState.getString("horaEnc"));
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(latitude != 0) {
+            mapaText.setText("Local Definido!");
         }
     }
 }

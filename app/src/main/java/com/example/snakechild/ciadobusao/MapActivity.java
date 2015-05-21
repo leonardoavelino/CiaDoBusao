@@ -20,6 +20,8 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
+    private double latitude;
+    private double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +50,21 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
+                latitude = latLng.latitude;
+                longitude = latLng.longitude;
                 googleMap.addMarker(new MarkerOptions()
-                        .position(latLng).title("Encontro"));
+                        .position(latLng).title(getIntent().getStringExtra("nomeEnc")));
             }
         });
         googleMap.setMyLocationEnabled(true);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        NovoEncontroActivity.latitude = latitude;
+        NovoEncontroActivity.longitude = longitude;
+        super.onBackPressed();
 
     }
 }
