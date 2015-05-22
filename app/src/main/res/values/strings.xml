@@ -12,7 +12,7 @@
     <string name="title_section3">Section 3</string>
     <string name="name_app">Cia. do Busão</string>
     <string name="title_activity_perfil">PerfilActivity</string>
-    <string name="title_activity_encontro">EncontroActivity</string>
+    <string name="title_activity_encontro">Novo Encontro</string>
     <string name="new_description">Novo encontro</string>
     <string name="str_nome_do_encontro">Nome do Encontro:</string>
     <string name="linha_onibus_str">Linha De Ônibus:</string>
@@ -25,7 +25,6 @@
     <string-array name="nav_drawer_items">
         <item >Perfil</item>
         <item >Criar Encontro</item>
-        <item >Meus Encontros</item>
         <item >Mapa</item>
         <item >Lista de Encontros</item>
         <item >Ajuda</item>
