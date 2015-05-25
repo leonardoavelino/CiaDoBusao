@@ -31,6 +31,10 @@
         <item >Sair</item>
     </string-array>
 
+    <string-array name="drawer_detalhe_encontro">
+        <item></item>
+    </string-array>
+
     <!-- Icones dos items -->
     <array name="nav_drawer_icons">
         <item></item>
@@ -49,4 +53,5 @@
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_todos_encontros">TodosEncontrosActivity</string>
+    <string name="title_activity_detalhes_encontro">Detalhes do Encontro</string>
 </resources>

@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.WindowManager;
 
 import com.example.snakechild.ciadobusao.util.BaseActivity;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,6 +28,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        customizeItems();
 //        setTitle("Mapa");
 
         mMapFragment = MapFragment.newInstance();
@@ -43,6 +45,11 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
         set(navMenuTitles,navMenuIcons);
 
+    }
+
+    public void customizeItems() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @Override

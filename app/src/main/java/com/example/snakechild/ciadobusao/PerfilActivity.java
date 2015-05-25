@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,7 +24,6 @@ import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
-import com.parse.PushService;
 import com.parse.SaveCallback;
 
 import org.json.JSONObject;
@@ -87,6 +86,18 @@ public class PerfilActivity extends BaseActivity {
             makeMeRequest(accessToken);
             mListView.setAdapter(adapter);
         }
+
+        //Detalha um encontro
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String encontro = adapter.getItem(position);
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), DetalhesEncontroActivity.class);
+                startActivity(i);
+                DetalhesEncontroActivity.setEncontro(encontro);
+            }
+        });
 
 
         //Carrega o menu lateral

@@ -1,15 +1,20 @@
 package com.example.snakechild.ciadobusao;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.snakechild.ciadobusao.util.BaseActivity;
+import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -39,20 +44,36 @@ public class TodosEncontrosActivity extends BaseActivity {
         navMenuIcons = getResources()
                 .obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
         set(navMenuTitles, navMenuIcons);
-
+        //Carrega a lista
         mListView = (ListView) findViewById(R.id.idTodosEncontroslistView);
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, encontros);
         mListView.setAdapter(adapter);
+
+        //Detalha um encontro
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String encontro = adapter.getItem(position);
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), DetalhesEncontroActivity.class);
+                startActivity(i);
+                DetalhesEncontroActivity.setEncontro(encontro);
+            }
+        });
     }
 
     public void customizeItems() {
+        //CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", nomeText);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void getEncontros() {
         ParseQuery query = new ParseQuery("Encontro");
+        /**
+         * Falta inserir a segurança aqui!
+         */
         query.whereNotEqualTo("idDono", PerfilActivity.idUsuario);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
