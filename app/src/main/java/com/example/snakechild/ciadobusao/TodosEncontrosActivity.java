@@ -31,6 +31,7 @@ public class TodosEncontrosActivity extends BaseActivity {
     private TypedArray navMenuIcons;
     private ListView mListView;
     private List<String> encontros = new ArrayList<String>();
+    private List<String> idsEncontros = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
 
     @Override
@@ -54,11 +55,11 @@ public class TodosEncontrosActivity extends BaseActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String encontro = adapter.getItem(position);
+                String idEncontro = getIdEncontro(position);
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), DetalhesEncontroActivity.class);
                 startActivity(i);
-                DetalhesEncontroActivity.setEncontro(encontro);
+                DetalhesEncontroActivity.setEncontro(idEncontro);
             }
         });
     }
@@ -79,10 +80,14 @@ public class TodosEncontrosActivity extends BaseActivity {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
                 encontros.clear();
+                idsEncontros.clear();
                 if (parseObjects != null) {
                     for (int i = 0; i < parseObjects.size(); i++) {
+                        String id = (String) parseObjects.get(i).getObjectId();
                         String encontro = (String) parseObjects.get(i).get("nome");
                         encontros.add(i, encontro);
+                        idsEncontros.add(i, id);
+
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -117,4 +122,9 @@ public class TodosEncontrosActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public String getIdEncontro(int position){
+        return idsEncontros.get(position);
+    }
+
 }
