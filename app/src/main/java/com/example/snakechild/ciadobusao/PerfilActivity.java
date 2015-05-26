@@ -157,7 +157,6 @@ public class PerfilActivity extends BaseActivity {
                         encontros.add(i, encontro);
                         idsEncontros.add(i, id);
                     }
-                    Log.i("LIST", idsEncontros.toString());
                 }
                 adapter.notifyDataSetChanged();
             }

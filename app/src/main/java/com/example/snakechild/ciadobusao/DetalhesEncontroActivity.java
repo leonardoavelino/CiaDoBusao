@@ -3,6 +3,7 @@ package com.example.snakechild.ciadobusao;
 import android.content.res.TypedArray;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ListView;
@@ -24,6 +25,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
     private static String idEncontro = "";
+    private static String nomeDono = "";
     private TextView nomeDoEncontro, donoDoEncontro, linhaDoEncontro, refDoEncontro, dataDoEncontro, horaDoEncontro;
     private TextView participante;
 
@@ -43,14 +45,24 @@ public class DetalhesEncontroActivity extends BaseActivity {
                     refDoEncontro.setText((String) parseObjects.get(0).get("referencia"));
                     dataDoEncontro.setText((String) parseObjects.get(0).get("data"));
                     horaDoEncontro.setText((String) parseObjects.get(0).get("horario"));
-                    donoDoEncontro.setText(getDonoDoEncontro());
+                    donoDoEncontro.setText(getDonoDoEncontro((String) parseObjects.get(0).get("idDono")));
                 }
             }
         });
     }
 
-    public String getDonoDoEncontro() {
-        return null;
+    public String getDonoDoEncontro(String idDono) {
+        ParseQuery query = new ParseQuery("Usuario");
+        query.whereEqualTo("id_user", idDono);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    nomeDono = (String) parseObjects.get(0).get("nome");
+                }
+            }
+        });
+        return nomeDono;
     }
 
     @Override
