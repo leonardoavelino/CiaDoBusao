@@ -18,7 +18,113 @@
             android:id="@+id/idDetalheNomeEncontro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_world" />
+            android:text="@string/hello_world"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/idDetalheLinhaEncontro"
+            android:layout_alignStart="@+id/idDetalheLinhaEncontro" />
+
+        <TextView
+            android:id="@+id/idDetalheNomeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome do encontro:"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Linha de ônibus:"
+            android:layout_below="@+id/idDetalheNomeTextView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="45dp" />
+
+        <TextView
+            android:id="@+id/idDetalheLinhaEncontro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_world"
+            android:layout_above="@+id/textView2"
+            android:layout_alignLeft="@+id/idDetalheRefEncontro"
+            android:layout_alignStart="@+id/idDetalheRefEncontro" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ponto de Referência:"
+            android:layout_marginTop="42dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/idDetalheRefEncontro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_world"
+            android:layout_above="@+id/textView3"
+            android:layout_toLeftOf="@+id/idDetalheHoraEncontro"
+            android:layout_toStartOf="@+id/idDetalheHoraEncontro" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data: "
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/idDetalheDataEncontro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_world"
+            android:layout_above="@+id/textView5"
+            android:layout_toRightOf="@+id/textView5"
+            android:layout_toEndOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora:"
+            android:layout_alignTop="@+id/idDetalheDataEncontro"
+            android:layout_alignRight="@+id/idDetalheDonoEncontro"
+            android:layout_alignEnd="@+id/idDetalheDonoEncontro" />
+
+        <TextView
+            android:id="@+id/idDetalheHoraEncontro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_world"
+            android:layout_above="@+id/textView5"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Criado por:"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/textView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/idDetalheDonoEncontro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_world"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_toRightOf="@+id/idDetalheDataEncontro"
+            android:layout_toEndOf="@+id/idDetalheDataEncontro" />
 
     </RelativeLayout>
 
