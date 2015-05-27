@@ -126,6 +126,45 @@
             android:layout_toRightOf="@+id/idDetalheDataEncontro"
             android:layout_toEndOf="@+id/idDetalheDataEncontro" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirma presença"
+            android:id="@+id/idConfirmaButton"
+            android:layout_alignParentBottom="true"
+            android:onClick="confirmaPresenca"
+            android:layout_toLeftOf="@+id/idDetalheHoraEncontro"
+            android:layout_toStartOf="@+id/idDetalheHoraEncontro" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saindo"
+            android:id="@+id/idSaindoButton"
+            android:layout_above="@+id/idConfirmaButton"
+            android:layout_alignLeft="@+id/idDetalheDonoEncontro"
+            android:layout_alignStart="@+id/idDetalheDonoEncontro"
+            android:visibility="invisible"
+            android:clickable="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirmaram: "
+            android:id="@+id/textView7"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nada"
+            android:id="@+id/idConfirmaram"
+            android:layout_alignTop="@+id/textView7"
+             />
+
     </RelativeLayout>
 
     <ListView
