@@ -160,6 +160,21 @@ public class DetalhesEncontroActivity extends BaseActivity {
         }
     }
 
+    public void aCaminho(View v) {
+        final ParseObject usuario = new ParseObject("PerfisACaminho");
+        usuario.put("idUsuario", PerfilActivity.idUsuario);
+        usuario.put("idEncontro", idEncontro);
+        usuario.saveInBackground();
+
+        if (Build.VERSION.SDK_INT >= 11) {
+            recreate();
+        } else {
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
+    }
+
     public void customizeItems() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);

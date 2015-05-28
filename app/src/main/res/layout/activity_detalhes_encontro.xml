@@ -141,9 +141,10 @@
             android:layout_height="wrap_content"
             android:text="Saindo"
             android:id="@+id/idSaindoButton"
-            android:layout_above="@+id/idConfirmaButton"
-            android:layout_alignLeft="@+id/idDetalheDonoEncontro"
-            android:layout_alignStart="@+id/idDetalheDonoEncontro"
+            android:layout_alignParentBottom="true"
+            android:onClick="aCaminho"
+            android:layout_toLeftOf="@+id/idDetalheHoraEncontro"
+            android:layout_toStartOf="@+id/idDetalheHoraEncontro"
             android:visibility="invisible"
             android:clickable="false"/>
 
