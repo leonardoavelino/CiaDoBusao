@@ -128,20 +128,20 @@ public class DetalhesEncontroActivity extends BaseActivity {
                         confirmaPresencaButton.setClickable(false);
                         saindoButton.setVisibility(View.VISIBLE);
                         saindoButton.setClickable(true);
-                    }
-                }
-            }
-        });
-        query = new ParseQuery("PerfisACaminho");
-        query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);
-        query.whereEqualTo("idEncontro", idEncontro);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> parseObjects, ParseException e) {
-                if (parseObjects != null) {
-                    if (!parseObjects.isEmpty()){
-                        saindoButton.setVisibility(View.INVISIBLE);
-                        saindoButton.setClickable(false);
+                        ParseQuery query = new ParseQuery("PerfisACaminho");
+                        query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);
+                        query.whereEqualTo("idEncontro", idEncontro);
+                        query.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> parseObjects, ParseException e) {
+                                if (parseObjects != null) {
+                                    if (!parseObjects.isEmpty()) {
+                                        saindoButton.setVisibility(View.INVISIBLE);
+                                        saindoButton.setClickable(false);
+                                    }
+                                }
+                            }
+                        });
                     }
                 }
             }
