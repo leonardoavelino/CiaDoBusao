@@ -168,9 +168,10 @@ public class DetalhesEncontroActivity extends BaseActivity {
                                         list.add(i, (String) parseObjects.get(0).get("nome"));
                                     }
                                 }
+                                arrayAdapter.notifyDataSetChanged();
                             }
                         });
-                        arrayAdapter.notifyDataSetChanged();
+
                     }
                 }
             }
