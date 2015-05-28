@@ -30,7 +30,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
     private static String idEncontro = "";
-    private static String nomeDono;
+    private static String nomeDono = "";
     private static String participantesEncontro = "";
     private TextView nomeDoEncontro, donoDoEncontro, linhaDoEncontro, refDoEncontro, dataDoEncontro, horaDoEncontro;
     private List<String> confirmadosPresenca = new ArrayList<String>();
@@ -55,21 +55,18 @@ public class DetalhesEncontroActivity extends BaseActivity {
                     refDoEncontro.setText((String) parseObjects.get(0).get("referencia"));
                     dataDoEncontro.setText((String) parseObjects.get(0).get("data"));
                     horaDoEncontro.setText((String) parseObjects.get(0).get("horario"));
-                    getDonoDoEncontro((String) parseObjects.get(0).get("idDono"));
-                    donoDoEncontro.setText(nomeDono);
-                }
-            }
-        });
-    }
 
-    public void getDonoDoEncontro(String idDono) {
-        ParseQuery query = new ParseQuery("Usuario");
-        query.whereEqualTo("id_user", idDono);
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> parseObjects, ParseException e) {
-                if (parseObjects != null) {
-                    nomeDono = (String) parseObjects.get(0).get("nome");
+                    ParseQuery query = new ParseQuery("Usuario");
+                    query.whereEqualTo("id_user", (String) parseObjects.get(0).get("idDono"));
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> parseObjects, ParseException e) {
+                            if (parseObjects != null) {
+                                donoDoEncontro.setText((String) parseObjects.get(0).get("nome"));
+                            }
+                        }
+                    });
+
                 }
             }
         });
@@ -96,8 +93,8 @@ public class DetalhesEncontroActivity extends BaseActivity {
         confirmaPresencaButton = (Button) findViewById(R.id.idConfirmaButton);
         saindoButton = (Button) findViewById(R.id.idSaindoButton);
 
-        customizeItems();
         getDetalhesEncontro();
+        customizeItems();
 
         //Carrega a lista dos confirmados
         mListViewConfirmados = (ListView) findViewById(R.id.idConfirmadosPresencalistView);
