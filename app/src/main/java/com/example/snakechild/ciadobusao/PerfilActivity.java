@@ -26,9 +26,12 @@ import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -47,6 +50,7 @@ public class PerfilActivity extends BaseActivity {
     //Atributos para Menu Lateral (Obrigatorios)
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
+    private List<String> userFriends = new ArrayList<String>();
 
 
     @Override
@@ -132,12 +136,22 @@ public class PerfilActivity extends BaseActivity {
                     profilePictureView.setProfileId(user.optString("id"));
                     userNameView.setText(user.optString("name"));
                     idUsuario = user.optString("id");
+                    try {
+                        JSONArray friends = (JSONArray) user.getJSONObject("friends").get("data");
+                        for (int i = 0; i < friends.length(); i++) {
+                            JSONObject aux = (JSONObject) friends.get(i);
+                            userFriends.add(aux.get("id").toString());
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     getMeusEncontros();
-
-
                 }
             }
         });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name,picture,friends");
+        request.setParameters(parameters);
         request.executeAsync();
 
     }

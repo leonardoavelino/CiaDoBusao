@@ -109,7 +109,7 @@ public class MainActivity extends Activity {
                             }
                         });
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,picture");
+                parameters.putString("fields", "id,name,picture,friends");
                 request.setParameters(parameters);
                 request.executeAsync();
                 Intent i = new Intent();
@@ -119,13 +119,11 @@ public class MainActivity extends Activity {
 
             @Override
             public void onCancel() {
-                Log.i("map", "cancel");
 
             }
 
             @Override
             public void onError(FacebookException e) {
-                Log.i("map", e.toString());
 
             }
         });
