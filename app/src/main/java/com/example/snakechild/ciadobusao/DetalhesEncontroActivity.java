@@ -2,13 +2,13 @@ package com.example.snakechild.ciadobusao;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,6 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,10 +30,13 @@ public class DetalhesEncontroActivity extends BaseActivity {
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
     private static String idEncontro = "";
-    private static String nomeDono = "";
+    private static String nomeDono;
     private static String participantesEncontro = "";
     private TextView nomeDoEncontro, donoDoEncontro, linhaDoEncontro, refDoEncontro, dataDoEncontro, horaDoEncontro;
-    private TextView participantes;
+    private List<String> confirmadosPresenca = new ArrayList<String>();
+    private List<String> estaoChegando = new ArrayList<String>();
+    private ListView mListViewConfirmados, mListViewChegando;
+    private ArrayAdapter<String> adapterConfirmados, adapterChegando;
     private Button confirmaPresencaButton, saindoButton;
 
     public static void setEncontro(String encontro) {
@@ -51,14 +55,14 @@ public class DetalhesEncontroActivity extends BaseActivity {
                     refDoEncontro.setText((String) parseObjects.get(0).get("referencia"));
                     dataDoEncontro.setText((String) parseObjects.get(0).get("data"));
                     horaDoEncontro.setText((String) parseObjects.get(0).get("horario"));
-                    donoDoEncontro.setText(getDonoDoEncontro((String) parseObjects.get(0).get("idDono")));
-
+                    getDonoDoEncontro((String) parseObjects.get(0).get("idDono"));
+                    donoDoEncontro.setText(nomeDono);
                 }
             }
         });
     }
 
-    public String getDonoDoEncontro(String idDono) {
+    public void getDonoDoEncontro(String idDono) {
         ParseQuery query = new ParseQuery("Usuario");
         query.whereEqualTo("id_user", idDono);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -69,7 +73,6 @@ public class DetalhesEncontroActivity extends BaseActivity {
                 }
             }
         });
-        return nomeDono;
     }
 
     @Override
@@ -89,15 +92,30 @@ public class DetalhesEncontroActivity extends BaseActivity {
         refDoEncontro = (TextView) findViewById(R.id.idDetalheRefEncontro);
         dataDoEncontro = (TextView) findViewById(R.id.idDetalheDataEncontro);
         horaDoEncontro = (TextView) findViewById(R.id.idDetalheHoraEncontro);
-        participantes = (TextView) findViewById(R.id.idConfirmaram);
 
         confirmaPresencaButton = (Button) findViewById(R.id.idConfirmaButton);
         saindoButton = (Button) findViewById(R.id.idSaindoButton);
 
         customizeItems();
         getDetalhesEncontro();
+
+        //Carrega a lista dos confirmados
+        mListViewConfirmados = (ListView) findViewById(R.id.idConfirmadosPresencalistView);
+        adapterConfirmados = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, confirmadosPresenca);
+        mListViewConfirmados.setAdapter(adapterConfirmados);
+
+        //Carrega a lista dos que estao chegando
+        mListViewChegando = (ListView) findViewById(R.id.idEstaoChegandolistView);
+        adapterChegando = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, estaoChegando);
+        mListViewChegando.setAdapter(adapterChegando);
+
+        getPerfis("PerfisACaminho", estaoChegando, adapterChegando);
+        getPerfis("PerfisConfirmaram", confirmadosPresenca, adapterConfirmados);
+
         setButtonsVisible();
-        getPerfisConfirmaram();
+
     }
 
     private void setButtonsVisible(){
@@ -108,7 +126,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
                 if (parseObjects != null) {
-                    if (!parseObjects.isEmpty()){
+                    if (!parseObjects.isEmpty()) {
                         confirmaPresencaButton.setVisibility(View.INVISIBLE);
                         confirmaPresencaButton.setClickable(false);
                         saindoButton.setVisibility(View.VISIBLE);
@@ -117,10 +135,25 @@ public class DetalhesEncontroActivity extends BaseActivity {
                 }
             }
         });
+        query = new ParseQuery("PerfisACaminho");
+        query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);
+        query.whereEqualTo("idEncontro", idEncontro);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    if (!parseObjects.isEmpty()){
+                        saindoButton.setVisibility(View.INVISIBLE);
+                        saindoButton.setClickable(false);
+                    }
+                }
+            }
+        });
     }
 
-    private void getPerfisConfirmaram(){
-        ParseQuery query = new ParseQuery("PerfisConfirmaram");
+    private void getPerfis(String table, final List<String> list, final ArrayAdapter<String> arrayAdapter){
+        list.clear();
+        ParseQuery query = new ParseQuery(table);
         query.whereEqualTo("idEncontro", idEncontro);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -133,16 +166,18 @@ public class DetalhesEncontroActivity extends BaseActivity {
                             @Override
                             public void done(List<ParseObject> parseObjects, ParseException e) {
                                 if (parseObjects != null) {
-                                    participantesEncontro = participantesEncontro + (String) parseObjects.get(0).get("nome") + ",";
+                                    //listView
+                                    for (int i = 0; i < parseObjects.size(); i++) {
+                                        list.add(i, (String) parseObjects.get(0).get("nome"));
+                                    }
                                 }
                             }
                         });
+                        arrayAdapter.notifyDataSetChanged();
                     }
                 }
             }
         });
-        participantes.setText(participantesEncontro);
-        participantesEncontro="";
     }
 
     public void confirmaPresenca(View v) {

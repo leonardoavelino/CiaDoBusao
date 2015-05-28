@@ -73,7 +73,7 @@ public class TodosEncontrosActivity extends BaseActivity {
     private void getEncontros() {
         ParseQuery query = new ParseQuery("Encontro");
         /**
-         * Falta inserir a segurança aqui!
+         * Falta inserir a seguranca aqui!
          */
         query.whereNotEqualTo("idDono", PerfilActivity.idUsuario);
         query.findInBackground(new FindCallback<ParseObject>() {
