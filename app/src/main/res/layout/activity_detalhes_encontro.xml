@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,10 +18,11 @@
             android:id="@+id/idDetalheNomeEncontro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_world"
             android:layout_alignParentTop="true"
             android:layout_alignLeft="@+id/idDetalheLinhaEncontro"
-            android:layout_alignStart="@+id/idDetalheLinhaEncontro" />
+            android:layout_alignStart="@+id/idDetalheLinhaEncontro"
+            android:layout_x="155dp"
+            android:layout_y="20dp" />
 
         <TextView
             android:id="@+id/idDetalheNomeTextView"
@@ -30,7 +31,9 @@
             android:text="Nome do encontro:"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_x="20dp"
+            android:layout_y="20dp" />
 
         <TextView
             android:id="@+id/textView"
@@ -40,35 +43,29 @@
             android:layout_below="@+id/idDetalheNomeTextView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="45dp" />
+            android:layout_marginTop="45dp"
+            android:layout_x="20dp"
+            android:layout_y="60dp" />
 
         <TextView
             android:id="@+id/idDetalheLinhaEncontro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_world"
             android:layout_above="@+id/textView2"
             android:layout_alignLeft="@+id/idDetalheRefEncontro"
-            android:layout_alignStart="@+id/idDetalheRefEncontro" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ponto de Referência:"
-            android:layout_marginTop="42dp"
-            android:layout_below="@+id/textView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignStart="@+id/idDetalheRefEncontro"
+            android:layout_x="155dp"
+            android:layout_y="60dp" />
 
         <TextView
             android:id="@+id/idDetalheRefEncontro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_world"
             android:layout_above="@+id/textView3"
             android:layout_toLeftOf="@+id/idDetalheHoraEncontro"
-            android:layout_toStartOf="@+id/idDetalheHoraEncontro" />
+            android:layout_toStartOf="@+id/idDetalheHoraEncontro"
+            android:layout_x="155dp"
+            android:layout_y="100dp" />
 
         <TextView
             android:id="@+id/textView3"
@@ -78,16 +75,19 @@
             android:layout_marginTop="50dp"
             android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_x="20dp"
+            android:layout_y="140dp" />
 
         <TextView
             android:id="@+id/idDetalheDataEncontro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_world"
             android:layout_above="@+id/textView5"
             android:layout_toRightOf="@+id/textView5"
-            android:layout_toEndOf="@+id/textView5" />
+            android:layout_toEndOf="@+id/textView5"
+            android:layout_x="60dp"
+            android:layout_y="140dp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -96,16 +96,19 @@
             android:text="Hora:"
             android:layout_alignTop="@+id/idDetalheDataEncontro"
             android:layout_alignRight="@+id/idDetalheDonoEncontro"
-            android:layout_alignEnd="@+id/idDetalheDonoEncontro" />
+            android:layout_alignEnd="@+id/idDetalheDonoEncontro"
+            android:layout_x="189dp"
+            android:layout_y="140dp" />
 
         <TextView
             android:id="@+id/idDetalheHoraEncontro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_world"
             android:layout_above="@+id/textView5"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_x="230dp"
+            android:layout_y="140dp" />
 
         <TextView
             android:id="@+id/textView5"
@@ -115,16 +118,19 @@
             android:layout_marginTop="50dp"
             android:layout_below="@+id/textView3"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_x="20dp"
+            android:layout_y="180dp" />
 
         <TextView
             android:id="@+id/idDetalheDonoEncontro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_world"
             android:layout_alignBottom="@+id/textView5"
             android:layout_toRightOf="@+id/idDetalheDataEncontro"
-            android:layout_toEndOf="@+id/idDetalheDataEncontro" />
+            android:layout_toEndOf="@+id/idDetalheDataEncontro"
+            android:layout_x="100dp"
+            android:layout_y="180dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -134,38 +140,90 @@
             android:layout_alignParentBottom="true"
             android:onClick="confirmaPresenca"
             android:layout_toLeftOf="@+id/idDetalheHoraEncontro"
-            android:layout_toStartOf="@+id/idDetalheHoraEncontro" />
+            android:layout_toStartOf="@+id/idDetalheHoraEncontro"
+            android:layout_x="150dp"
+            android:layout_y="400dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Saindo"
             android:id="@+id/idSaindoButton"
-            android:layout_above="@+id/idConfirmaButton"
-            android:layout_alignLeft="@+id/idDetalheDonoEncontro"
-            android:layout_alignStart="@+id/idDetalheDonoEncontro"
+            android:layout_alignParentBottom="true"
+            android:onClick="aCaminho"
+            android:layout_toLeftOf="@+id/idDetalheHoraEncontro"
+            android:layout_toStartOf="@+id/idDetalheHoraEncontro"
             android:visibility="invisible"
-            android:clickable="false"/>
+            android:clickable="false"
+            android:layout_x="160dp"
+            android:layout_y="400dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Confirmaram: "
+            android:text="Confirmaram\nPresença:"
             android:id="@+id/textView7"
             android:layout_marginTop="50dp"
             android:layout_below="@+id/textView5"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_x="20dp"
+            android:layout_y="220dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ponto de Referência:"
+            android:layout_alignTop="@+id/idDetalheDataEncontro"
+            android:layout_alignRight="@+id/idDetalheDonoEncontro"
+            android:layout_alignEnd="@+id/idDetalheDonoEncontro"
+            android:layout_x="20dp"
+            android:layout_y="100dp" />
+
+        <ListView
+            android:layout_width="232dp"
+            android:layout_height="88dp"
+            android:id="@+id/idConfirmadosPresencalistView"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:theme="@android:style/Widget.DeviceDefault.ListView.DropDown"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_x="110dp"
+            android:layout_y="220dp"
+            android:visibility="visible" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nada"
-            android:id="@+id/idConfirmaram"
-            android:layout_alignTop="@+id/textView7"
-             />
+            android:text="Estão\nChegando:"
+            android:id="@+id/textView6"
+            android:layout_marginTop="50dp"
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_x="20dp"
+            android:layout_y="320dp" />
 
-    </RelativeLayout>
+        <ListView
+            android:layout_width="232dp"
+            android:layout_height="88dp"
+            android:id="@+id/idEstaoChegandolistView"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:theme="@android:style/Widget.DeviceDefault.ListView.DropDown"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_x="110dp"
+            android:layout_y="320dp"
+            android:visibility="visible" />
+
+    </AbsoluteLayout>
 
     <ListView
         android:id="@+id/left_drawer"
