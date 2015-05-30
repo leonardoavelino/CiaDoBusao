@@ -132,7 +132,7 @@
             android:layout_x="100dp"
             android:layout_y="180dp" />
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Confirma presença"
@@ -141,10 +141,13 @@
             android:onClick="confirmaPresenca"
             android:layout_toLeftOf="@+id/idDetalheHoraEncontro"
             android:layout_toStartOf="@+id/idDetalheHoraEncontro"
-            android:layout_x="150dp"
-            android:layout_y="400dp" />
+            android:layout_x="219dp"
+            android:layout_y="380dp"
+            android:src="@mipmap/ic_join"
+            android:background="#00cafdff"
+            android:contentDescription="Confirmar Presença" />
 
-        <Button
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Saindo"
@@ -155,8 +158,10 @@
             android:layout_toStartOf="@+id/idDetalheHoraEncontro"
             android:visibility="invisible"
             android:clickable="false"
-            android:layout_x="160dp"
-            android:layout_y="400dp" />
+            android:layout_x="220dp"
+            android:layout_y="380dp"
+            android:background="#00cbfdff"
+            android:src="@mipmap/ic_run" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -97,22 +97,6 @@ public class PerfilActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final String idEncontro = getIdEncontro(position);
-                ParseQuery query = new ParseQuery("PerfisConfirmaram");
-                query.whereEqualTo("idEncontro", idEncontro);
-                query.whereEqualTo("idUsuario", idUsuario);
-                query.findInBackground(new FindCallback<ParseObject>() {
-                    @Override
-                    public void done(List<ParseObject> parseObjects, ParseException e) {
-                        if (parseObjects != null) {
-                            if (parseObjects.isEmpty()) {
-                                ParseObject presente = new ParseObject("PerfisConfirmaram");
-                                presente.put("idEncontro", idEncontro);
-                                presente.put("idUsuario", idUsuario);
-                                presente.saveInBackground();
-                            }
-                        }
-                    }
-                });
 
                 Intent i = new Intent();
                 i.setClass(getApplicationContext(), DetalhesEncontroActivity.class);

@@ -227,7 +227,6 @@ public class NovoEncontroActivity extends BaseActivity {
             push.setMessage(message);
             push.sendInBackground();
 
-
             onBack(v);
         } else {
             Toast.makeText(getApplicationContext(), "Preencha novamente o que está errado!", Toast.LENGTH_SHORT).show();

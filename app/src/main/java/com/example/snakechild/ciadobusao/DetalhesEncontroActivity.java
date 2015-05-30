@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,7 +38,8 @@ public class DetalhesEncontroActivity extends BaseActivity {
     private List<String> estaoChegando = new ArrayList<String>();
     private ListView mListViewConfirmados, mListViewChegando;
     private ArrayAdapter<String> adapterConfirmados, adapterChegando;
-    private Button confirmaPresencaButton, saindoButton;
+    private ImageButton confirmaPresencaButton;
+    private ImageButton saindoButton;
 
     public static void setEncontro(String encontro) {
         DetalhesEncontroActivity.idEncontro = encontro;
@@ -90,8 +92,8 @@ public class DetalhesEncontroActivity extends BaseActivity {
         dataDoEncontro = (TextView) findViewById(R.id.idDetalheDataEncontro);
         horaDoEncontro = (TextView) findViewById(R.id.idDetalheHoraEncontro);
 
-        confirmaPresencaButton = (Button) findViewById(R.id.idConfirmaButton);
-        saindoButton = (Button) findViewById(R.id.idSaindoButton);
+        confirmaPresencaButton = (ImageButton) findViewById(R.id.idConfirmaButton);
+        saindoButton = (ImageButton) findViewById(R.id.idSaindoButton);
 
         getDetalhesEncontro();
         customizeItems();
