@@ -40,6 +40,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
     private ArrayAdapter<String> adapterConfirmados, adapterChegando;
     private ImageButton confirmaPresencaButton;
     private ImageButton saindoButton;
+    private List<ParseObject> allUsers = new ArrayList<ParseObject>();
 
     public static void setEncontro(String encontro) {
         DetalhesEncontroActivity.idEncontro = encontro;
@@ -97,6 +98,9 @@ public class DetalhesEncontroActivity extends BaseActivity {
 
         getDetalhesEncontro();
         customizeItems();
+
+
+        getAllUsers();
 
         //Carrega a lista dos confirmados
         mListViewConfirmados = (ListView) findViewById(R.id.idConfirmadosPresencalistView);
@@ -161,20 +165,27 @@ public class DetalhesEncontroActivity extends BaseActivity {
             public void done(List<ParseObject> parseObjects, ParseException e) {
                 if (parseObjects != null) {
                     for (int i = 0; i < parseObjects.size(); i++) {
-                        ParseQuery query = new ParseQuery("Usuario");
-                        query.whereEqualTo("id_user", (String) parseObjects.get(i).get("idUsuario"));
-                        query.findInBackground(new FindCallback<ParseObject>() {
-                            @Override
-                            public void done(List<ParseObject> parseObjects, ParseException e) {
-                                if (parseObjects != null) {
-                                    //listView
-                                    list.add((String) parseObjects.get(0).get("nome"));
-                                }
-                                arrayAdapter.notifyDataSetChanged();
+                        for (ParseObject p: allUsers){
+                            if (((String) parseObjects.get(i).get("idUsuario")).equals(((String) p.get("id_user")))){
+                                list.add((String) p.get("nome"));
                             }
-                        });
+                        }
 
                     }
+                    arrayAdapter.notifyDataSetChanged();
+                }
+            }
+        });
+    }
+
+    private void getAllUsers(){
+        ParseQuery query = new ParseQuery("Usuario");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    //listView
+                    allUsers = parseObjects;
                 }
             }
         });
