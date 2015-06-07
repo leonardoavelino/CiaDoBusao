@@ -141,6 +141,8 @@
             android:onClick="confirmaPresenca"
             android:layout_toLeftOf="@+id/idDetalheHoraEncontro"
             android:layout_toStartOf="@+id/idDetalheHoraEncontro"
+            android:visibility="invisible"
+            android:clickable="false"
             android:layout_x="219dp"
             android:layout_y="380dp"
             android:src="@mipmap/ic_join"

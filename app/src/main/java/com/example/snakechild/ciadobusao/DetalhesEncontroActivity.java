@@ -126,10 +126,6 @@ public class DetalhesEncontroActivity extends BaseActivity {
             public void done(List<ParseObject> parseObjects, ParseException e) {
                 if (parseObjects != null) {
                     if (!parseObjects.isEmpty()) {
-                        confirmaPresencaButton.setVisibility(View.INVISIBLE);
-                        confirmaPresencaButton.setClickable(false);
-                        saindoButton.setVisibility(View.VISIBLE);
-                        saindoButton.setClickable(true);
                         ParseQuery query = new ParseQuery("PerfisACaminho");
                         query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);
                         query.whereEqualTo("idEncontro", idEncontro);
@@ -140,10 +136,16 @@ public class DetalhesEncontroActivity extends BaseActivity {
                                     if (!parseObjects.isEmpty()) {
                                         saindoButton.setVisibility(View.INVISIBLE);
                                         saindoButton.setClickable(false);
+                                    } else{
+                                        saindoButton.setVisibility(View.VISIBLE);
+                                        saindoButton.setClickable(true);
                                     }
                                 }
                             }
                         });
+                    }else{
+                        confirmaPresencaButton.setVisibility(View.VISIBLE);
+                        confirmaPresencaButton.setClickable(true);
                     }
                 }
             }
@@ -166,9 +168,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
                             public void done(List<ParseObject> parseObjects, ParseException e) {
                                 if (parseObjects != null) {
                                     //listView
-                                    for (int i = 0; i < parseObjects.size(); i++) {
-                                        list.add(i, (String) parseObjects.get(0).get("nome"));
-                                    }
+                                    list.add((String) parseObjects.get(0).get("nome"));
                                 }
                                 arrayAdapter.notifyDataSetChanged();
                             }
