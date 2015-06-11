@@ -25,21 +25,17 @@ import java.util.List;
 public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
     private MapFragment mMapFragment;
-
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
     private double latitude;
     private double longitude;
     public static Boolean novoEncontro = false;
-    private Marker myMarker;
-    //private Marker myMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         customizeItems();
-//        setTitle("Mapa");
 
         mMapFragment = MapFragment.newInstance();
         FragmentTransaction fragmentTransaction =
@@ -113,7 +109,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
                         String nomeEncontro = (String) parseObjects.get(i).get("nome");
                         final String idEncontro = parseObjects.get(i).getObjectId();
                         final Marker marker = googleMap.addMarker(new MarkerOptions()
-                                .position(latLng).title(nomeEncontro));
+                                .position(latLng).title(nomeEncontro).snippet("ID = " + idEncontro));
 
 
                         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -129,7 +125,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
                                 Intent i = new Intent();
                                 i.setClass(getApplicationContext(), DetalhesEncontroActivity.class);
                                 startActivity(i);
-                                DetalhesEncontroActivity.setEncontro(idEncontro);
+                                DetalhesEncontroActivity.setEncontro(marker.getSnippet().replace("ID = ", ""));
                                 return true;
                             }
                         });
@@ -138,5 +134,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
             }
         });
     }
+
+
 
 }

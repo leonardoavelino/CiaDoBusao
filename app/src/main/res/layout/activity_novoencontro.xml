@@ -43,7 +43,6 @@
                 android:layout_below="@+id/idNomeEnc"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@+id/idLinhaEdit"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:textColor="#ff3e5052" />
@@ -260,8 +259,8 @@
                 android:id="@+id/idLocalMapaTextView"
                 android:textColor="#ff3e5052"
                 android:layout_below="@+id/idHoraTextView"
-                android:layout_toRightOf="@+id/idCriarTextView"
-                android:layout_toEndOf="@+id/idCriarTextView" />
+                android:layout_toRightOf="@+id/idPontoRefText"
+                android:layout_toEndOf="@+id/idPontoRefText" />
 
         </RelativeLayout>
 
