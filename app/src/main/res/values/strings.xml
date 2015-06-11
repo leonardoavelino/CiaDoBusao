@@ -21,7 +21,7 @@
     <string name="drawer_open">Abriu o menu lateral</string>
     <string name="drawer_close">Fechou o menu lateral</string>
 
-    <!-- Nombres de los items -->
+    <!-- Nomes dos items -->
     <string-array name="nav_drawer_items">
         <item >Perfil</item>
         <item >Criar Encontro</item>
@@ -37,21 +37,18 @@
 
     <!-- Icones dos items -->
     <array name="nav_drawer_icons">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-    <!-- <item>@drawable/ic_whats_hot</item>
-     <item>@drawable/ic_people</item>
-     <item>@drawable/ic_photos</item>
-     <item>@drawable/ic_communities</item><!-->
- </array>
+        <item>@drawable/ic_perfil</item>
+        <item>@drawable/ic_novo_enc</item>
+        <item>@drawable/ic_mapa</item>
+        <item>@drawable/ic_lista</item>
+        <item>@drawable/ic_ajuda</item>
+        <item>@drawable/ic_sair</item>
+    </array>
 
  <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_todos_encontros">TodosEncontrosActivity</string>
     <string name="title_activity_detalhes_encontro">Detalhes do Encontro</string>
+
 </resources>

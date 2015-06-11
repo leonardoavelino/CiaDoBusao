@@ -21,6 +21,8 @@ import com.example.snakechild.ciadobusao.PerfilActivity;
 import com.example.snakechild.ciadobusao.R;
 import com.example.snakechild.ciadobusao.TodosEncontrosActivity;
 
+import java.util.ArrayList;
+
 /**
  * Created by Pedro on 21/05/2015.
  */
@@ -33,25 +35,42 @@ public class BaseActivity extends Activity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mItensMenuTitles;
+    private TypedArray mItensImageIcons;
+
+    private ArrayList<NavDrawerItem> mNavDrawerItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer);
 
+        mItensImageIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+        mItensMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+
+    }
+
+    public void insertItemsToMenu(){
+        mNavDrawerItems = new ArrayList<NavDrawerItem>();
+
+        for (int i = 0; i < mItensMenuTitles.length; i++){
+            mNavDrawerItems.add(new NavDrawerItem(mItensMenuTitles[i], mItensImageIcons.getResourceId(i, -1)));
+        }
+
     }
 
     public void set(String[] navMenuTitles, TypedArray navMenuIcons) {
         mTitle = mDrawerTitle = getTitle();
-        mItensMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mItensMenuTitles));
+
+        insertItemsToMenu();
+
+        mDrawerList.setAdapter(new NavDrawerListAdapter(getApplicationContext(), mNavDrawerItems));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // enable ActionBar app icon to behave as action to toggle nav drawer
