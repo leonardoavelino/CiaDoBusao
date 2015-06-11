@@ -133,6 +133,7 @@ public class NovoEncontroActivity extends BaseActivity {
         Intent i = new Intent();
         i.setClass(getApplicationContext(), MapActivity.class);
         i.putExtra("nomeEnc", nomeEncEditText.getText().toString());
+        MapActivity.novoEncontro = true;
         startActivity(i);
     }
 
