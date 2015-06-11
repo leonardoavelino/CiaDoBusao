@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.snakechild.ciadobusao.util.BaseActivity;
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
@@ -34,6 +35,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
     private static String nomeDono = "";
     private static String participantesEncontro = "";
     private TextView nomeDoEncontro, donoDoEncontro, linhaDoEncontro, refDoEncontro, dataDoEncontro, horaDoEncontro;
+    private TextView nomeNome, donoDono, linhaLinha, refRef, dataData, horaHora, confirma, saindo;
     private List<String> confirmadosPresenca = new ArrayList<String>();
     private List<String> estaoChegando = new ArrayList<String>();
     private ListView mListViewConfirmados, mListViewChegando;
@@ -94,6 +96,15 @@ public class DetalhesEncontroActivity extends BaseActivity {
         refDoEncontro = (TextView) findViewById(R.id.idDetalheRefEncontro);
         dataDoEncontro = (TextView) findViewById(R.id.idDetalheDataEncontro);
         horaDoEncontro = (TextView) findViewById(R.id.idDetalheHoraEncontro);
+
+        nomeNome = (TextView) findViewById(R.id.idDetalheNomeTextView);
+        donoDono = (TextView) findViewById(R.id.idDetalheDonoTextView);
+        linhaLinha = (TextView) findViewById(R.id.idDetalheLinhaTextView);
+        refRef = (TextView) findViewById(R.id.idDetalheRefTextView);
+        dataData = (TextView) findViewById(R.id.idDetalheDataTextView);
+        horaHora = (TextView) findViewById(R.id.idDetalheHoraTextView);
+        confirma = (TextView) findViewById(R.id.idDetalheConfirmaTextView);
+        saindo = (TextView) findViewById(R.id.idDetalheSaindoTextView);
 
         confirmaPresencaButton = (ImageButton) findViewById(R.id.idConfirmaButton);
         saindoButton = (ImageButton) findViewById(R.id.idSaindoButton);
@@ -204,6 +215,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
             finish();
             startActivity(intent);
         }
+        Toast.makeText(getApplicationContext(), "Você confirmou presença nesse encontro!", Toast.LENGTH_SHORT).show();
     }
 
     public void aCaminho(View v) {
@@ -219,12 +231,20 @@ public class DetalhesEncontroActivity extends BaseActivity {
             finish();
             startActivity(intent);
         }
+        Toast.makeText(getApplicationContext(), "Você está de saída para esse encontro!", Toast.LENGTH_SHORT).show();
     }
 
     public void customizeItems() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", nomeDoEncontro);
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", nomeNome);
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", dataData);
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", horaHora);
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", refRef);
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", linhaLinha);
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", confirma);
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", donoDono);
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", saindo);
     }
 
     @Override

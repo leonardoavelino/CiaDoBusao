@@ -1,17 +1,18 @@
 package com.example.snakechild.ciadobusao;
 
-import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.snakechild.ciadobusao.util.BaseActivity;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -30,6 +31,8 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private double latitude;
     private double longitude;
     public static Boolean novoEncontro = false;
+    private Marker myMarker;
+    //private Marker myMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,11 +111,32 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
                         double longitude = Double.parseDouble((String) parseObjects.get(i).get("longitude"));
                         LatLng latLng = new LatLng(latitude, longitude);
                         String nomeEncontro = (String) parseObjects.get(i).get("nome");
-                        googleMap.addMarker(new MarkerOptions()
+                        final String idEncontro = parseObjects.get(i).getObjectId();
+                        final Marker marker = googleMap.addMarker(new MarkerOptions()
                                 .position(latLng).title(nomeEncontro));
+
+
+                        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                            @Override
+                            public boolean onMarkerClick(Marker marker) {
+                                marker.showInfoWindow();
+                                Toast.makeText(getApplicationContext(), "Abrindo informa\u00e7\u00f5es sobre o encontro...", Toast.LENGTH_SHORT).show();
+                                try {
+                                    Thread.sleep(Toast.LENGTH_SHORT);
+                                } catch (InterruptedException e1) {
+                                    e1.printStackTrace();
+                                }
+                                Intent i = new Intent();
+                                i.setClass(getApplicationContext(), DetalhesEncontroActivity.class);
+                                startActivity(i);
+                                DetalhesEncontroActivity.setEncontro(idEncontro);
+                                return true;
+                            }
+                        });
                     }
                 }
             }
         });
     }
+
 }

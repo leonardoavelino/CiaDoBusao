@@ -3,7 +3,7 @@
     android:shape="rectangle" >
 
     <!-- vista del color del background -->
-    <solid android:color="@color/counter_text_bg" >
+    <solid android:color="@color/list_background" >
     </solid>
 
     <!-- Si queres agregar algun espacio -->
