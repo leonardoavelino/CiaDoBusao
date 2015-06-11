@@ -80,6 +80,8 @@ public class DetalhesEncontroActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_encontro);
 
+        getAllUsers();
+        
         //Carrega o menu lateral
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
         navMenuIcons = getResources()
@@ -99,8 +101,6 @@ public class DetalhesEncontroActivity extends BaseActivity {
         getDetalhesEncontro();
         customizeItems();
 
-
-        getAllUsers();
 
         //Carrega a lista dos confirmados
         mListViewConfirmados = (ListView) findViewById(R.id.idConfirmadosPresencalistView);
