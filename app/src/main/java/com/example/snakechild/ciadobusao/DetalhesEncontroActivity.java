@@ -81,7 +81,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
         setContentView(R.layout.activity_detalhes_encontro);
 
         getAllUsers();
-        
+
         //Carrega o menu lateral
         navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
         navMenuIcons = getResources()
