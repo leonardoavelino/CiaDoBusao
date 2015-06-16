@@ -52,5 +52,7 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_todos_encontros">TodosEncontrosActivity</string>
     <string name="title_activity_detalhes_encontro">Detalhes do Encontro</string>
+    <string name="bt_ok">OK</string>
+    <string name="bt_cancel">CANCELAR</string>
 
 </resources>

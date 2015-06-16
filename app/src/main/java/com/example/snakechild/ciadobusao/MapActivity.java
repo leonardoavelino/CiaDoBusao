@@ -1,12 +1,15 @@
 package com.example.snakechild.ciadobusao;
 
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -35,12 +38,14 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private double latitude;
     private double longitude;
     public static Boolean novoEncontro = false;
+    private LocationManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         customizeItems();
+        manager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
 
         mMapFragment = MapFragment.newInstance();
         FragmentTransaction fragmentTransaction =
@@ -54,7 +59,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         navMenuIcons = getResources()
                 .obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
 
-        set(navMenuTitles,navMenuIcons);
+        set(navMenuTitles, navMenuIcons);
 
     }
 
@@ -66,6 +71,9 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         googleMap.setMyLocationEnabled(true);
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) { //if gps is disabled
+            displayPromptForEnablingGPS();
+        }
         googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
@@ -83,7 +91,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
                     latitude = latLng.latitude;
                     longitude = latLng.longitude;
                     googleMap.addMarker(new MarkerOptions()
-                        .position(latLng).title(getIntent().getStringExtra("nomeEnc")));
+                            .position(latLng).title(getIntent().getStringExtra("nomeEnc")));
                 }
             });
         } else {
@@ -149,6 +157,28 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         });
     }
 
+    public void displayPromptForEnablingGPS() {
+        final AlertDialog.Builder builder =
+                new AlertDialog.Builder(this);
+        final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
+        final String message = "Ative o GPS para que possamos encontrar sua localização";
+
+        builder.setMessage(message)
+                .setPositiveButton(getString(R.string.bt_ok),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int idButton) {
+                                startActivity(new Intent(action));
+                                dialog.dismiss();
+                            }
+                        })
+                .setNegativeButton(getString(R.string.bt_cancel),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int idButton) {
+                                dialog.cancel();
+                            }
+                        });
+        builder.create().show();
+    }
 
 
 }
