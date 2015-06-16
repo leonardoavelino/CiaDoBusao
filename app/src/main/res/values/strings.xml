@@ -17,6 +17,8 @@
     <string name="str_nome_do_encontro">Nome do Encontro:</string>
     <string name="linha_onibus_str">Linha De Ônibus:</string>
     <string name="ponto_ref_str">Ponto de Referência:</string>
+    <string name="confirma_presenca">Você confirmou presença nesse encontro!</string>
+    <string name="confirma_saida">Você está de saída para esse encontro!</string>
 
     <string name="drawer_open">Abriu o menu lateral</string>
     <string name="drawer_close">Fechou o menu lateral</string>

@@ -3,11 +3,16 @@ package com.example.snakechild.ciadobusao;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.snakechild.ciadobusao.util.BaseActivity;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -61,6 +66,15 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         googleMap.setMyLocationEnabled(true);
+        googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+            @Override
+            public void onMyLocationChange(Location location) {
+                LatLng coordinate = new LatLng(location.getLatitude(), location.getLongitude());
+                CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(coordinate, 15);
+                googleMap.animateCamera(yourLocation);
+            }
+        });
+
         if (novoEncontro) {
             googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override

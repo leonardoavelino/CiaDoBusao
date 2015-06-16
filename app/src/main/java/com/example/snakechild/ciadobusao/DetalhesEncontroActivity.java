@@ -215,7 +215,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
             finish();
             startActivity(intent);
         }
-        Toast.makeText(getApplicationContext(), "Você confirmou presença nesse encontro!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.confirma_presenca), Toast.LENGTH_SHORT).show();
     }
 
     public void aCaminho(View v) {
@@ -231,7 +231,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
             finish();
             startActivity(intent);
         }
-        Toast.makeText(getApplicationContext(), "Você está de saída para esse encontro!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.confirma_saida), Toast.LENGTH_SHORT).show();
     }
 
     public void customizeItems() {

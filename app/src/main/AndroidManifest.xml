@@ -105,10 +105,6 @@
             android:name=".DetalhesEncontroActivity"
             android:label="@string/title_activity_detalhes_encontro" >
         </activity>
-        <activity
-            android:name=".SplashScreen"
-            android:label="@string/title_activity_splash_screen" >
-        </activity>
     </application>
 
 </manifest>
