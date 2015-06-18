@@ -10,7 +10,9 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.snakechild.ciadobusao.util.BaseActivity;
@@ -39,6 +41,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     private double longitude;
     public static Boolean novoEncontro = false;
     private LocationManager manager;
+    private ImageButton confirmaLocalizacaoButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,12 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
                 .obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
 
         set(navMenuTitles, navMenuIcons);
+
+        if (novoEncontro){
+            confirmaLocalizacaoButton  = (ImageButton) findViewById(R.id.idConfirmaLocalizacaoButton);
+            confirmaLocalizacaoButton.setVisibility(View.VISIBLE);
+            confirmaLocalizacaoButton.setClickable(true);
+        }
 
     }
 
@@ -138,7 +147,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
                             @Override
                             public boolean onMarkerClick(Marker marker) {
                                 marker.showInfoWindow();
-                                Toast.makeText(getApplicationContext(), "Abrindo informa\u00e7\u00f5es sobre o encontro...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Abrindo informações sobre o encontro...", Toast.LENGTH_SHORT).show();
                                 try {
                                     Thread.sleep(Toast.LENGTH_SHORT);
                                 } catch (InterruptedException e1) {
@@ -180,5 +189,11 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         builder.create().show();
     }
 
+    public void confirmaLocalizacao(View v) {
+        NovoEncontroActivity.latitude = latitude;
+        NovoEncontroActivity.longitude = longitude;
+        novoEncontro = false;
+        super.onBackPressed();
+    }
 
-}
+    }
