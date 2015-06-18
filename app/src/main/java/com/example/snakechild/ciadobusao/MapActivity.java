@@ -42,6 +42,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
     public static Boolean novoEncontro = false;
     private LocationManager manager;
     private ImageButton confirmaLocalizacaoButton;
+    private boolean zoomedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_map);
         customizeItems();
         manager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-
+        zoomedIn = false;
         mMapFragment = MapFragment.newInstance();
         FragmentTransaction fragmentTransaction =
                 getFragmentManager().beginTransaction();
@@ -86,9 +87,12 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
-                LatLng coordinate = new LatLng(location.getLatitude(), location.getLongitude());
-                CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(coordinate, 15);
-                googleMap.animateCamera(yourLocation);
+                if (!zoomedIn) {
+                    LatLng coordinate = new LatLng(location.getLatitude(), location.getLongitude());
+                    CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(coordinate, 15);
+                    googleMap.animateCamera(yourLocation);
+                    zoomedIn = true;
+                }
             }
         });
 
