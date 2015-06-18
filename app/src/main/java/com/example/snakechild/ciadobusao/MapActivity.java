@@ -111,11 +111,8 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
 
     @Override
     public void onBackPressed() {
-        NovoEncontroActivity.latitude = latitude;
-        NovoEncontroActivity.longitude = longitude;
         novoEncontro = false;
         super.onBackPressed();
-
     }
 
     @Override
