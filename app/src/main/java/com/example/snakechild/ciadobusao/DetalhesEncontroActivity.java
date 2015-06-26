@@ -259,7 +259,11 @@ public class DetalhesEncontroActivity extends BaseActivity {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
                 if (parseObjects != null) {
-                    getMenuInflater().inflate(R.menu.menu_detalhes_encontro, menu);
+                    for (int i = 0; i < parseObjects.size(); i++) {
+                        if (parseObjects.get(i).getObjectId().equals(PerfilActivity.idUsuario)) {
+                            getMenuInflater().inflate(R.menu.menu_detalhes_encontro, menu);
+                        }
+                    }
                 }
             }
         });
