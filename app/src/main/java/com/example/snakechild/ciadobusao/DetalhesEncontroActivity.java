@@ -1,15 +1,16 @@
 package com.example.snakechild.ciadobusao;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
     private ImageButton confirmaPresencaButton;
     private ImageButton saindoButton;
     private List<ParseObject> allUsers = new ArrayList<ParseObject>();
+    private boolean participo = false;
 
     public static void setEncontro(String encontro) {
         DetalhesEncontroActivity.idEncontro = encontro;
@@ -141,6 +143,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
             public void done(List<ParseObject> parseObjects, ParseException e) {
                 if (parseObjects != null) {
                     if (!parseObjects.isEmpty()) {
+                        participo = true;
                         ParseQuery query = new ParseQuery("PerfisACaminho");
                         query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);
                         query.whereEqualTo("idEncontro", idEncontro);
@@ -248,6 +251,22 @@ public class DetalhesEncontroActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        ParseQuery query = new ParseQuery("PerfisConfirmaram");
+        query.whereEqualTo("idEncontro", idEncontro);
+        query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    getMenuInflater().inflate(R.menu.menu_detalhes_encontro, menu);
+                }
+            }
+        });
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -255,11 +274,75 @@ public class DetalhesEncontroActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        if (id == R.id.action_excluir_encontro) {
+            //desconfirmaConfirmaram(idEncontro);
+            //desconfirmaACaminho(idEncontro);
+            new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.str_title_dialog_excluir_encontro))
+                .setMessage(getString(R.string.str_description_excluir_encontro))
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        removeEncontro(idEncontro);
+                        if (!adapterConfirmados.isEmpty()) {
+                            desconfirmaConfirmaram(idEncontro);
+                        }
+                        if (!adapterChegando.isEmpty()){
+                            desconfirmaACaminho(idEncontro);
+                        }
+                        onBackPressed();
+                    }
+                })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+            }
+        return true;
+    }
 
-        return super.onOptionsItemSelected(item);
+
+    public void removeEncontro(String idEncontro){
+        ParseQuery query = new ParseQuery("Encontro");
+        query.whereEqualTo("objectId", idEncontro);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    parseObjects.get(0).deleteInBackground();
+                }
+            }
+        });
+    }
+
+    public void desconfirmaACaminho(String idEncontro){
+        ParseQuery query = new ParseQuery("PerfisACaminho");
+        query.whereEqualTo("idEncontro", idEncontro);
+        query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    parseObjects.get(0).deleteInBackground();
+                }
+            }
+        });
+    }//venha simbora deixa isso
+
+    public void desconfirmaConfirmaram(String idEncontro){
+        ParseQuery query = new ParseQuery("PerfisConfirmaram");
+        query.whereEqualTo("idEncontro", idEncontro);
+        query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    parseObjects.get(0).deleteInBackground();
+                }
+            }
+        });
     }
 
     @Override

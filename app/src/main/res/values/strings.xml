@@ -54,5 +54,10 @@
     <string name="title_activity_detalhes_encontro">Detalhes do Encontro</string>
     <string name="bt_ok">OK</string>
     <string name="bt_cancel">CANCELAR</string>
+    <string name="str_action_excluir_encontro">Excluir Encontro</string>
+    <string name="str_action_sair_encontro">Sair do Encontro</string>
+    <string name="str_title_dialog_excluir_encontro">Excluir encontro</string>
+    <string name="str_description_sair_encontro">Há mais pessoas participando! Tem certeza que quer sair do encontro?</string>
+    <string name="str_description_excluir_encontro">Tem certeza que quer excluir o encontro?</string>
 
 </resources>
