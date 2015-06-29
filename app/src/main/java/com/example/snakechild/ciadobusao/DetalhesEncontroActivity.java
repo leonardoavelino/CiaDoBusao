@@ -260,7 +260,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
             public void done(List<ParseObject> parseObjects, ParseException e) {
                 if (parseObjects != null) {
                     for (int i = 0; i < parseObjects.size(); i++) {
-                        if (parseObjects.get(i).getObjectId().equals(PerfilActivity.idUsuario)) {
+                        if (parseObjects.get(i).get("idUsuario").equals(PerfilActivity.idUsuario)) {
                             getMenuInflater().inflate(R.menu.menu_detalhes_encontro, menu);
                         }
                     }
@@ -279,14 +279,14 @@ public class DetalhesEncontroActivity extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_excluir_encontro) {
-            //desconfirmaConfirmaram(idEncontro);
-            //desconfirmaACaminho(idEncontro);
             new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.str_title_dialog_excluir_encontro))
                 .setMessage(getString(R.string.str_description_excluir_encontro))
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        removeEncontro(idEncontro);
+                        if (adapterConfirmados.getCount()==1){
+                            removeEncontro(idEncontro);
+                        }
                         if (!adapterConfirmados.isEmpty()) {
                             desconfirmaConfirmaram(idEncontro);
                         }
