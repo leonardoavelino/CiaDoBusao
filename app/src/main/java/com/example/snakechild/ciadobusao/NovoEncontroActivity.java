@@ -19,19 +19,19 @@ import android.widget.TimePicker;
 import com.example.snakechild.ciadobusao.util.BaseActivity;
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.example.snakechild.ciadobusao.util.ValidateInput;
-import com.parse.Parse;
+
+import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
-import com.parse.PushService;
-import com.parse.SaveCallback;
+import com.parse.ParseQuery;
 
 import android.text.format.DateFormat;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class NovoEncontroActivity extends BaseActivity {
@@ -227,6 +227,21 @@ public class NovoEncontroActivity extends BaseActivity {
             String message = "Novo encontro criado" ;
             push.setMessage(message);
             push.sendInBackground();
+
+            ParseQuery query = new ParseQuery("Encontro");
+            query.whereEqualTo("idDono", PerfilActivity.idUsuario);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> parseObjects, ParseException e) {
+                    if (parseObjects != null) {
+                        final ParseObject usuario = new ParseObject("PerfisConfirmaram");
+                        usuario.put("idUsuario", PerfilActivity.idUsuario);
+                        usuario.put("idEncontro", parseObjects.get(parseObjects.size()-1).getObjectId());
+                        usuario.saveInBackground();
+                        Log.d("ID", parseObjects.get(parseObjects.size()-1).getObjectId());
+                    }
+                }
+            });
 
             onBack(v);
         } else {
