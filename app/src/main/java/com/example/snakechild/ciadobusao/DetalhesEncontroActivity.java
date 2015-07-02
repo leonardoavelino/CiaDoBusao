@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,8 +41,9 @@ public class DetalhesEncontroActivity extends BaseActivity {
     private TextView nomeNome, donoDono, linhaLinha, refRef, dataData, horaHora, confirma, saindo;
     private List<String> confirmadosPresenca = new ArrayList<String>();
     private List<String> estaoChegando = new ArrayList<String>();
-    private ListView mListViewConfirmados, mListViewChegando;
-    private ArrayAdapter<String> adapterConfirmados, adapterChegando;
+    private List<String> chegaram = new ArrayList<String>();
+    private ListView mListViewConfirmados, mListViewChegando, mListViewChegaram;
+    private ArrayAdapter<String> adapterConfirmados, adapterChegando, adapterChegaram;
     private ImageButton confirmaPresencaButton;
     private ImageButton saindoButton;
     private List<ParseObject> allUsers = new ArrayList<ParseObject>();
@@ -132,8 +134,15 @@ public class DetalhesEncontroActivity extends BaseActivity {
                 android.R.layout.simple_list_item_1, estaoChegando);
         mListViewChegando.setAdapter(adapterChegando);
 
+        //Carrega a lista dos que chegaram
+        mListViewChegaram = (ListView) findViewById(R.id.chegouList);
+        adapterChegaram = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, chegaram);
+        mListViewChegaram.setAdapter(adapterChegaram);
+
         getPerfis("PerfisACaminho", estaoChegando, adapterChegando);
         getPerfis("PerfisConfirmaram", confirmadosPresenca, adapterConfirmados);
+        getPerfis("PerfisChegaram", chegaram, adapterChegaram);
 
         setButtonsVisible();
 
@@ -175,7 +184,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
         });
     }
 
-    private void getPerfis(String table, final List<String> list, final ArrayAdapter<String> arrayAdapter){
+    private void getPerfis(final String table, final List<String> list, final ArrayAdapter<String> arrayAdapter){
         list.clear();
         ParseQuery query = new ParseQuery(table);
         query.whereEqualTo("idEncontro", idEncontro);
