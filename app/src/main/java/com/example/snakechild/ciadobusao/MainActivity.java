@@ -2,18 +2,15 @@ package com.example.snakechild.ciadobusao;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInstaller;
-import android.graphics.Typeface;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
+import com.example.snakechild.ciadobusao.util.LocationService;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -24,9 +21,7 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
@@ -41,6 +36,7 @@ public class MainActivity extends Activity {
     CallbackManager mCallbackManager;
     private static String foto;
     private static TextView appName;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,17 +63,18 @@ public class MainActivity extends Activity {
                                     foto = object.getJSONObject("picture").getJSONObject("data").getString("url");
                                     final ParseObject usuario = new ParseObject("Usuario");
                                     ParseQuery query = new ParseQuery("Usuario");
-                                    query.whereEqualTo("id_user", object.optString("id"));
+                                    userId = object.optString("id");
+                                    query.whereEqualTo("id_user", userId);
                                     query.findInBackground(new FindCallback<ParseObject>() {
                                         public void done(List<ParseObject> profileList, ParseException e) {
                                             if (e == null) {
-                                                if (profileList.size()==0){
+                                                if (profileList.size() == 0) {
                                                     usuario.put("nome", object.optString("name"));
                                                     usuario.put("id_user", object.optString("id"));
                                                     usuario.put("url_foto", foto);
                                                     usuario.saveInBackground();
                                                     Log.d("usuario", "Usuario salvo");
-                                                }else{
+                                                } else {
                                                     Log.d("usuario", "Usuario ja existe");
                                                     ParseQuery<ParseObject> query = ParseQuery.getQuery("Usuario");
                                                     query.getInBackground(profileList.get(0).getObjectId(), new GetCallback<ParseObject>() {
@@ -134,7 +131,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void customizeItems(){
+    public void customizeItems() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         appName = (TextView) findViewById(R.id.idAppName);

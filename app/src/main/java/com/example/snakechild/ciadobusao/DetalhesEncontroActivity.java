@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.snakechild.ciadobusao.util.BaseActivity;
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
+import com.example.snakechild.ciadobusao.util.LocationService;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -45,6 +46,8 @@ public class DetalhesEncontroActivity extends BaseActivity {
     private ImageButton saindoButton;
     private List<ParseObject> allUsers = new ArrayList<ParseObject>();
     private boolean participo = false;
+    private String encontroLat;
+    private String encontroLong;
 
     public static void setEncontro(String encontro) {
         DetalhesEncontroActivity.idEncontro = encontro;
@@ -62,6 +65,8 @@ public class DetalhesEncontroActivity extends BaseActivity {
                     refDoEncontro.setText((String) parseObjects.get(0).get("referencia"));
                     dataDoEncontro.setText((String) parseObjects.get(0).get("data"));
                     horaDoEncontro.setText((String) parseObjects.get(0).get("horario"));
+                    encontroLat = (String) parseObjects.get(0).get("latitude");
+                    encontroLong = (String) parseObjects.get(0).get("longitude");
 
                     ParseQuery query = new ParseQuery("Usuario");
                     query.whereEqualTo("id_user", (String) parseObjects.get(0).get("idDono"));
@@ -226,6 +231,16 @@ public class DetalhesEncontroActivity extends BaseActivity {
         usuario.put("idUsuario", PerfilActivity.idUsuario);
         usuario.put("idEncontro", idEncontro);
         usuario.saveInBackground();
+        // ----- Inicia Service passando o numero do usuario
+        Intent servIt = new Intent(getApplicationContext(), LocationService.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("idUsuario", PerfilActivity.idUsuario);
+        bundle.putString("idEncontro", idEncontro);
+        bundle.putString("encontroLat", encontroLat);
+        bundle.putString("encontroLong", encontroLong);
+        servIt.putExtras(bundle);
+        startService(servIt);
+        // ----
 
         if (Build.VERSION.SDK_INT >= 11) {
             recreate();

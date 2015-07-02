@@ -106,6 +106,10 @@
             android:name=".DetalhesEncontroActivity"
             android:label="@string/title_activity_detalhes_encontro" >
         </activity>
+        <service
+            android:name=".util.LocationService"
+            android:label="LocationService" >
+        </service>
     </application>
 
 </manifest>
