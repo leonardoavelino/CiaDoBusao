@@ -3,6 +3,7 @@ package com.example.snakechild.ciadobusao;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -47,7 +48,6 @@ public class PerfilActivity extends BaseActivity {
     private ArrayAdapter<String> adapter;
     private TextView meusEncontrosText;
     private List<ParseObject> encontrosParticipo = new ArrayList<ParseObject>();
-    private boolean aux = false;
 
     //Atributos para Menu Lateral (Obrigatorios)
     private String[] navMenuTitles;
@@ -186,6 +186,7 @@ public class PerfilActivity extends BaseActivity {
                         }
                     }
                 }
+                SystemClock.sleep(1000);
                 adapter.notifyDataSetChanged();
             }
         });
@@ -201,7 +202,6 @@ public class PerfilActivity extends BaseActivity {
                     encontrosParticipo.clear();
                     encontrosParticipo = parseObjects;
                 }
-                aux = true;
             }
         });
     }
