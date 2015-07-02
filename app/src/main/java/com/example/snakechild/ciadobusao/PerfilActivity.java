@@ -46,6 +46,8 @@ public class PerfilActivity extends BaseActivity {
     private List<String> idsEncontros = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
     private TextView meusEncontrosText;
+    private List<ParseObject> encontrosParticipo = new ArrayList<ParseObject>();
+    private boolean aux = false;
 
     //Atributos para Menu Lateral (Obrigatorios)
     private String[] navMenuTitles;
@@ -158,8 +160,8 @@ public class PerfilActivity extends BaseActivity {
     }
 
     private void getMeusEncontros() {
+        getEncontrosParticipo();
         ParseQuery query = new ParseQuery("Encontro");
-        query.whereEqualTo("idDono", idUsuario);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
@@ -167,13 +169,39 @@ public class PerfilActivity extends BaseActivity {
                 idsEncontros.clear();
                 if (parseObjects != null) {
                     for (int i = 0; i < parseObjects.size(); i++) {
-                        String id = (String) parseObjects.get(i).getObjectId();
-                        String encontro = (String) parseObjects.get(i).get("nome");
-                        encontros.add(i, encontro);
-                        idsEncontros.add(i, id);
+                        if (parseObjects.get(i).get("idDono").equals(idUsuario)){
+                            String id = (String) parseObjects.get(i).getObjectId();
+                            String encontro = (String) parseObjects.get(i).get("nome");
+                            encontros.add(encontro);
+                            idsEncontros.add(id);
+                        } else {
+                            for (int j = 0; j < encontrosParticipo.size(); j++) {
+                                if (parseObjects.get(i).getObjectId().equals(encontrosParticipo.get(j).get("idEncontro"))) {
+                                    String id = (String) parseObjects.get(i).getObjectId();
+                                    String encontro = (String) parseObjects.get(i).get("nome");
+                                    encontros.add(encontro);
+                                    idsEncontros.add(id);
+                                }
+                            }
+                        }
                     }
                 }
                 adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void getEncontrosParticipo() {
+        ParseQuery query = new ParseQuery("PerfisConfirmaram");
+        query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    encontrosParticipo.clear();
+                    encontrosParticipo = parseObjects;
+                }
+                aux = true;
             }
         });
     }
