@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.snakechild.ciadobusao.AjudaActivity;
 import com.example.snakechild.ciadobusao.MapActivity;
 import com.example.snakechild.ciadobusao.NovoEncontroActivity;
 import com.example.snakechild.ciadobusao.PerfilActivity;
@@ -156,7 +157,9 @@ public class BaseActivity extends Activity {
                 startActivity(i);
                 break;
             case 4:
-                //TODO AO CLICAR EM AJUDA
+                i.setClass(getApplicationContext(), AjudaActivity.class);
+                startActivity(i);
+                break;
             case 5:
                 //TODO AO CLICAR EM SAIR
             default:

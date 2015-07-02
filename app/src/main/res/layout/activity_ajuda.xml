@@ -1,0 +1,113 @@
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#fffbe3c0"
+    android:weightSum="10"
+    tools:context="com.example.snakechild.ciadobusao.AjudaActivity"
+    android:id="@+id/idAjudaActivity">
+
+    <TextView
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:text="@string/descricao_string"
+        android:id="@+id/idDescricaoApp"
+        android:textSize="11dp"
+        android:layout_x="5dp"
+        android:layout_y="5dp"
+        android:textAlignment="inherit"
+        android:textColor="#ff3f5153" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chame_string"
+        android:layout_weight="1"
+        android:id="@+id/idChame"
+        android:layout_x="100dp"
+        android:layout_y="80dp"
+        android:textSize="20dp"
+        android:textColor="#ff3f5153" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/chame_desc_string"
+        android:layout_weight="1"
+        android:id="@+id/idChameDescricao"
+        android:layout_x="90dp"
+        android:layout_y="120dp"
+        android:textColor="#ff3f5153" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/marque_string"
+        android:layout_weight="1"
+        android:id="@+id/idMarque"
+        android:layout_x="40dp"
+        android:layout_y="200dp"
+        android:textSize="20dp"
+        android:textColor="#ff3f5153" />
+
+    <TextView
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:text="@string/marque_desc_string"
+        android:layout_weight="1"
+        android:id="@+id/idMarqueDescricao"
+        android:layout_x="10dp"
+        android:layout_y="240dp"
+        android:textColor="#ff3f5153" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/naova_string"
+        android:layout_weight="1"
+        android:id="@+id/idNaoVa"
+        android:layout_x="110dp"
+        android:layout_y="340dp"
+        android:textSize="20dp"
+        android:textColor="#ff3f5153" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/naovadesc_string"
+        android:layout_weight="1"
+        android:id="@+id/idNaoVaDescricao"
+        android:layout_x="90dp"
+        android:layout_y="380dp"
+        android:textColor="#ff3f5153" />
+
+    <ImageView
+        android:layout_width="76dp"
+        android:layout_height="89dp"
+        android:id="@+id/imageView"
+        android:layout_weight="1"
+        android:layout_x="5dp"
+        android:layout_y="90dp"
+        android:src="@drawable/ic_help_chame" />
+
+    <ImageView
+        android:layout_width="76dp"
+        android:layout_height="89dp"
+        android:id="@+id/imageView2"
+        android:layout_weight="1"
+        android:layout_x="210dp"
+        android:layout_y="220dp"
+        android:src="@drawable/ic_help_marque" />
+
+    <ImageView
+        android:layout_width="76dp"
+        android:layout_height="89dp"
+        android:id="@+id/imageView3"
+        android:layout_weight="1"
+        android:layout_x="5dp"
+        android:layout_y="360dp"
+        android:src="@drawable/ic_help_naova" />
+
+</AbsoluteLayout>
