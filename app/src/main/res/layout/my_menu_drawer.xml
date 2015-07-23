@@ -3,13 +3,14 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff3f5153">
+    android:background="#C0C0C0">
 
     <!-- Framelayout to display Fragments -->
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#ffc0c0c0" />
 
 
 </android.support.v4.widget.DrawerLayout>

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#fffbe3c0"
+        android:background="@drawable/background"
         android:id="@+id/idPerfilUser">
 
         <com.facebook.login.widget.ProfilePictureView
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textColor="#ff3f5153"
-            android:textSize="25sp"
+            android:textSize="25dp"
             android:layout_alignBottom="@+id/selection_profile_pic"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -40,33 +40,17 @@
             android:layout_marginStart="19dp"
             android:layout_marginBottom="31dp" />
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/idNewEncImageButton"
-            android:layout_marginBottom="20dp"
-            android:src="@mipmap/new_enc_button"
-            android:contentDescription="@string/new_description"
-            android:clickable="true"
-            android:onClick="criarNovoEncontro"
-            android:background="#00ffffff"
-            android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/selection_profile_pic"
-            android:layout_alignEnd="@+id/selection_profile_pic"
-            android:layout_marginRight="20dp"
-            android:layout_marginEnd="46dp" />
-
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/idMeusEncontroslistView"
-            android:layout_marginTop="170dp"
             android:layout_marginLeft="10dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="110dp"
-            android:theme="@android:style/Widget.DeviceDefault.ListView" />
+            android:theme="@android:style/Widget.DeviceDefault.ListView"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/idMeusEncontrosTextView" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,7 +60,8 @@
             android:id="@+id/idMeusEncontrosTextView"
             android:textColor="#ff3f5153"
             android:layout_marginTop="150dp"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp" />
 
     </RelativeLayout>
 
@@ -85,7 +70,7 @@
         android:layout_width="260dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/list_background"
+        android:background="#C0C0C0"
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp" />

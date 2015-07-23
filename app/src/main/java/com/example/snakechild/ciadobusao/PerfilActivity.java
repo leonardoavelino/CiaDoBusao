@@ -120,12 +120,6 @@ public class PerfilActivity extends BaseActivity {
         return idsEncontros.get(position);
     }
 
-    public void criarNovoEncontro(View v) {
-        Intent i = new Intent();
-        i.setClass(getApplicationContext(), NovoEncontroActivity.class);
-        startActivity(i);
-    }
-
     private void makeMeRequest(AccessToken accessToken) {
         GraphRequest request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
             @Override

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#fffbe3c0"
+        android:background="@drawable/background"
         android:id="@+id/idNewEncontro">
 
         <RelativeLayout
@@ -45,7 +45,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="#ff3e5052" />
+                android:textColor="@android:color/holo_red_light" />
 
             <TextView
                 android:id="@+id/idLinhaOnibusText"
@@ -72,7 +72,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="#ff3e5052" />
+                android:textColor="@android:color/holo_red_light" />
 
             <TextView
                 android:id="@+id/idPontoRefText"
@@ -100,7 +100,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="#ff3e5052" />
+                android:textColor="@android:color/holo_red_light" />
 
             <ImageButton
                 android:id="@+id/idCancelarButton"
@@ -186,7 +186,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/idDataButton"
-                android:layout_alignEnd="@+id/idDataButton" />
+                android:layout_alignEnd="@+id/idDataButton"
+                android:textSize="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -195,7 +196,8 @@
                 android:id="@+id/idEditarHoraTextView"
                 android:textColor="#ff3e5052"
                 android:layout_below="@+id/idHorarioButton"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:textSize="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -209,7 +211,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignLeft="@+id/idMapaButton"
-                android:layout_alignStart="@+id/idMapaButton" />
+                android:layout_alignStart="@+id/idMapaButton"
+                android:textSize="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -220,7 +223,8 @@
                 android:layout_alignWithParentIfMissing="false"
                 android:layout_alignBottom="@+id/idCancelarButton"
                 android:layout_toLeftOf="@+id/idHorarioButton"
-                android:layout_toStartOf="@+id/idHorarioButton" />
+                android:layout_toStartOf="@+id/idHorarioButton"
+                android:textSize="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -230,7 +234,8 @@
                 android:textColor="#ff3e5052"
                 android:layout_alignTop="@+id/idCancelarTextView"
                 android:layout_toRightOf="@+id/idHorarioButton"
-                android:layout_toEndOf="@+id/idHorarioButton" />
+                android:layout_toEndOf="@+id/idHorarioButton"
+                android:textSize="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -240,19 +245,20 @@
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
-                android:textColor="#ff3e5052"
+                android:textColor="@android:color/holo_red_light"
                 android:layout_below="@+id/idEditarMapaTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/idEditarDataTextView"
-                android:layout_alignEnd="@+id/idEditarDataTextView" />
+                android:layout_alignEnd="@+id/idEditarDataTextView"
+                android:textSize="14dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/idHoraTextView"
-                android:textColor="#ff3e5052"
+                android:textColor="@android:color/holo_red_light"
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
@@ -260,14 +266,15 @@
                 android:layout_alignLeft="@+id/idEditarHoraTextView"
                 android:layout_alignStart="@+id/idEditarHoraTextView"
                 android:layout_alignRight="@+id/idEditarHoraTextView"
-                android:layout_alignEnd="@+id/idEditarHoraTextView" />
+                android:layout_alignEnd="@+id/idEditarHoraTextView"
+                android:textSize="14dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/idLocalMapaTextView"
-                android:textColor="#ff3e5052"
+                android:textColor="@android:color/holo_red_light"
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
@@ -275,7 +282,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/idHoraTextView"
                 android:layout_toRightOf="@+id/idPontoRefText"
-                android:layout_toEndOf="@+id/idPontoRefText" />
+                android:layout_toEndOf="@+id/idPontoRefText"
+                android:textSize="14dp" />
 
         </RelativeLayout>
 
