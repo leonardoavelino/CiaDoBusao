@@ -1,5 +1,7 @@
 package com.example.snakechild.ciadobusao;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -9,6 +11,7 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.DatePicker;
@@ -34,14 +37,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class NovoEncontroActivity extends BaseActivity {
+public class NovoEncontroActivity extends Activity {
 
     private static TextView nomeText, linhaText, pontoRefText, editDataText, editHoraText, editLocalMapaText, criarText, cancelarText, dataText, horaText, mapaText;
     private static EditText nomeEncEditText, linhaEncEditTex, refEncEditText;
     public static double latitude, longitude;
-
-    private String[] navMenuTitles;
-    private TypedArray navMenuIcons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +66,8 @@ public class NovoEncontroActivity extends BaseActivity {
 
         customizeItems();
 
-        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
-
-        navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
-
-        set(navMenuTitles,navMenuIcons);
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -275,5 +271,14 @@ public class NovoEncontroActivity extends BaseActivity {
         if(latitude != 0) {
             mapaText.setText("Local Definido!");
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

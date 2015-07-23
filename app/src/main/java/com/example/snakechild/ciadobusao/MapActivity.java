@@ -1,5 +1,7 @@
 package com.example.snakechild.ciadobusao;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -10,12 +12,12 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.snakechild.ciadobusao.util.BaseActivity;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,7 +34,7 @@ import com.parse.ParseQuery;
 import java.util.List;
 
 
-public class MapActivity extends BaseActivity implements OnMapReadyCallback {
+public class MapActivity extends Activity implements OnMapReadyCallback {
 
     private MapFragment mMapFragment;
     private String[] navMenuTitles;
@@ -58,15 +60,11 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         fragmentTransaction.commit();
         mMapFragment.getMapAsync(this);
 
-        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
-        navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
-
-        set(navMenuTitles, navMenuIcons);
-
-        if (novoEncontro){
-            confirmaLocalizacaoButton  = (ImageButton) findViewById(R.id.idConfirmaLocalizacaoButton);
+        if (novoEncontro) {
+            confirmaLocalizacaoButton = (ImageButton) findViewById(R.id.idConfirmaLocalizacaoButton);
             confirmaLocalizacaoButton.setVisibility(View.VISIBLE);
             confirmaLocalizacaoButton.setClickable(true);
         }
@@ -197,4 +195,12 @@ public class MapActivity extends BaseActivity implements OnMapReadyCallback {
         super.onBackPressed();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
+}

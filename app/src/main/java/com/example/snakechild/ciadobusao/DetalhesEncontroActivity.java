@@ -1,12 +1,12 @@
 package com.example.snakechild.ciadobusao;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +17,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.snakechild.ciadobusao.util.BaseActivity;
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.example.snakechild.ciadobusao.util.LocationService;
 import com.parse.FindCallback;
@@ -29,11 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DetalhesEncontroActivity extends BaseActivity {
+public class DetalhesEncontroActivity extends Activity {
 
-    //Atributos para Menu Lateral (Obrigatorios)
-    private String[] navMenuTitles;
-    private TypedArray navMenuIcons;
     private static String idEncontro = "";
     private static String nomeDono = "";
     private static String participantesEncontro = "";
@@ -55,7 +51,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
         DetalhesEncontroActivity.idEncontro = encontro;
     }
 
-    public void getDetalhesEncontro(){
+    public void getDetalhesEncontro() {
         ParseQuery query = new ParseQuery("Encontro");
         query.whereEqualTo("objectId", idEncontro);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -93,12 +89,6 @@ public class DetalhesEncontroActivity extends BaseActivity {
 
         getAllUsers();
 
-        //Carrega o menu lateral
-        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
-        navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
-        set(navMenuTitles, navMenuIcons);
-
         nomeDoEncontro = (TextView) findViewById(R.id.idDetalheNomeEncontro);
         donoDoEncontro = (TextView) findViewById(R.id.idDetalheDonoEncontro);
         linhaDoEncontro = (TextView) findViewById(R.id.idDetalheLinhaEncontro);
@@ -121,6 +111,9 @@ public class DetalhesEncontroActivity extends BaseActivity {
 
         getDetalhesEncontro();
         customizeItems();
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
 
         //Carrega a lista dos confirmados
@@ -149,7 +142,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
 
     }
 
-    private void setButtonsVisible(){
+    private void setButtonsVisible() {
         ParseQuery query = new ParseQuery("PerfisConfirmaram");
         query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);
         query.whereEqualTo("idEncontro", idEncontro);
@@ -169,14 +162,14 @@ public class DetalhesEncontroActivity extends BaseActivity {
                                     if (!parseObjects.isEmpty()) {
                                         saindoButton.setVisibility(View.INVISIBLE);
                                         saindoButton.setClickable(false);
-                                    } else{
+                                    } else {
                                         saindoButton.setVisibility(View.VISIBLE);
                                         saindoButton.setClickable(true);
                                     }
                                 }
                             }
                         });
-                    }else{
+                    } else {
                         confirmaPresencaButton.setVisibility(View.VISIBLE);
                         confirmaPresencaButton.setClickable(true);
                     }
@@ -185,7 +178,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
         });
     }
 
-    private void getPerfis(final String table, final List<String> list, final ArrayAdapter<String> arrayAdapter){
+    private void getPerfis(final String table, final List<String> list, final ArrayAdapter<String> arrayAdapter) {
         list.clear();
         ParseQuery query = new ParseQuery(table);
         query.whereEqualTo("idEncontro", idEncontro);
@@ -194,8 +187,8 @@ public class DetalhesEncontroActivity extends BaseActivity {
             public void done(List<ParseObject> parseObjects, ParseException e) {
                 if (parseObjects != null) {
                     for (int i = 0; i < parseObjects.size(); i++) {
-                        for (ParseObject p: allUsers){
-                            if (((String) parseObjects.get(i).get("idUsuario")).equals(((String) p.get("id_user")))){
+                        for (ParseObject p : allUsers) {
+                            if (((String) parseObjects.get(i).get("idUsuario")).equals(((String) p.get("id_user")))) {
                                 list.add((String) p.get("nome"));
                             }
                         }
@@ -207,7 +200,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
         });
     }
 
-    private void getAllUsers(){
+    private void getAllUsers() {
         ParseQuery query = new ParseQuery("Usuario");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -310,37 +303,39 @@ public class DetalhesEncontroActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_excluir_encontro) {
+        if (id == android.R.id.home) {
+            finish();
+        } else if (id == R.id.action_excluir_encontro) {
             new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.str_title_dialog_excluir_encontro))
-                .setMessage(getString(R.string.str_description_excluir_encontro))
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (adapterConfirmados.getCount()==1){
-                            removeEncontro(idEncontro);
+                    .setTitle(getString(R.string.str_title_dialog_excluir_encontro))
+                    .setMessage(getString(R.string.str_description_excluir_encontro))
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (adapterConfirmados.getCount() == 1) {
+                                removeEncontro(idEncontro);
+                            }
+                            if (!adapterConfirmados.isEmpty()) {
+                                desconfirmaConfirmaram(idEncontro);
+                            }
+                            if (!adapterChegando.isEmpty()) {
+                                desconfirmaACaminho(idEncontro);
+                            }
+                            onBackPressed();
                         }
-                        if (!adapterConfirmados.isEmpty()) {
-                            desconfirmaConfirmaram(idEncontro);
-                        }
-                        if (!adapterChegando.isEmpty()){
-                            desconfirmaACaminho(idEncontro);
-                        }
-                        onBackPressed();
-                    }
-                })
+                    })
                     .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // do nothing
                         }
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
-            }
+                    .show();
+        }
         return true;
     }
 
 
-    public void removeEncontro(String idEncontro){
+    public void removeEncontro(String idEncontro) {
         ParseQuery query = new ParseQuery("Encontro");
         query.whereEqualTo("objectId", idEncontro);
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -353,7 +348,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
         });
     }
 
-    public void desconfirmaACaminho(String idEncontro){
+    public void desconfirmaACaminho(String idEncontro) {
         ParseQuery query = new ParseQuery("PerfisACaminho");
         query.whereEqualTo("idEncontro", idEncontro);
         query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);
@@ -367,7 +362,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
         });
     }//venha simbora deixa isso
 
-    public void desconfirmaConfirmaram(String idEncontro){
+    public void desconfirmaConfirmaram(String idEncontro) {
         ParseQuery query = new ParseQuery("PerfisConfirmaram");
         query.whereEqualTo("idEncontro", idEncontro);
         query.whereEqualTo("idUsuario", PerfilActivity.idUsuario);

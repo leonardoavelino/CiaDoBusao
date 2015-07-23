@@ -1,5 +1,6 @@
 package com.example.snakechild.ciadobusao;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -36,10 +37,9 @@ public class AjudaActivity extends Activity {
 
         customizeItems();
 
-        //Carrega o menu lateral
-        /*navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
-        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
-        set(navMenuTitles, navMenuIcons);*/
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
     }
 
     public void customizeItems() {
@@ -53,5 +53,14 @@ public class AjudaActivity extends Activity {
         CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", chameDescText);
         CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", marqueDescText);
         CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", naoVaDescText);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

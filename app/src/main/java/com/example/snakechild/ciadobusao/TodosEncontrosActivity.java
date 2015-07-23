@@ -1,8 +1,8 @@
 package com.example.snakechild.ciadobusao;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.res.TypedArray;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,10 +11,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.snakechild.ciadobusao.util.BaseActivity;
-import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -24,11 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TodosEncontrosActivity extends BaseActivity {
+public class TodosEncontrosActivity extends Activity {
 
-    //Atributos para Menu Lateral (Obrigatorios)
-    private String[] navMenuTitles;
-    private TypedArray navMenuIcons;
     private ListView mListView;
     private List<String> encontros = new ArrayList<String>();
     private List<String> idsEncontros = new ArrayList<String>();
@@ -40,11 +34,9 @@ public class TodosEncontrosActivity extends BaseActivity {
         setContentView(R.layout.activity_todos_encontros);
         customizeItems();
 
-        //Carrega o menu lateral
-        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items); // load titles from strings.xml
-        navMenuIcons = getResources()
-                .obtainTypedArray(R.array.nav_drawer_icons);//load icons from strings.xml
-        set(navMenuTitles, navMenuIcons);
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         //Carrega a lista
         mListView = (ListView) findViewById(R.id.idTodosEncontroslistView);
         adapter = new ArrayAdapter<String>(this,
@@ -110,20 +102,14 @@ public class TodosEncontrosActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == android.R.id.home) {
+            finish();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    public String getIdEncontro(int position){
+    public String getIdEncontro(int position) {
         return idsEncontros.get(position);
     }
 
