@@ -7,7 +7,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fffbe3c0"
+        android:background="@drawable/background"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
@@ -23,9 +23,9 @@
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/idDetalheLinhaEncontro"
             android:layout_weight="1"
-            android:layout_x="155dp"
-            android:layout_y="20dp"
-            android:textStyle="italic" />
+            android:layout_x="147dp"
+            android:layout_y="6dp"
+            android:textColor="#ff3f5153" />
 
         <TextView
             android:id="@+id/idDetalheNomeTextView"
@@ -35,9 +35,10 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_weight="1"
-            android:layout_x="20dp"
-            android:layout_y="20dp"
-            android:text="Nome do encontro:" />
+            android:layout_x="11dp"
+            android:layout_y="6dp"
+            android:text="Nome do encontro:"
+            android:textColor="#ff3f5153" />
 
         <TextView
             android:id="@+id/idDetalheLinhaTextView"
@@ -48,9 +49,10 @@
             android:layout_below="@+id/idDetalheNomeTextView"
             android:layout_marginTop="45dp"
             android:layout_weight="1"
-            android:layout_x="20dp"
-            android:layout_y="60dp"
-            android:text="Linha de ônibus:" />
+            android:layout_x="11dp"
+            android:layout_y="45dp"
+            android:text="Linha de ônibus:"
+            android:textColor="#ff3f5153" />
 
         <TextView
             android:id="@+id/idDetalheLinhaEncontro"
@@ -60,9 +62,9 @@
             android:layout_alignLeft="@+id/idDetalheRefEncontro"
             android:layout_alignStart="@+id/idDetalheRefEncontro"
             android:layout_weight="1"
-            android:layout_x="155dp"
-            android:layout_y="60dp"
-            android:textStyle="italic" />
+            android:layout_x="147dp"
+            android:layout_y="45dp"
+            android:textColor="#ff3f5153" />
 
         <TextView
             android:id="@+id/idDetalheRefEncontro"
@@ -72,9 +74,9 @@
             android:layout_toLeftOf="@+id/idDetalheHoraEncontro"
             android:layout_toStartOf="@+id/idDetalheHoraEncontro"
             android:layout_weight="1"
-            android:layout_x="155dp"
-            android:layout_y="100dp"
-            android:textStyle="italic" />
+            android:layout_x="147dp"
+            android:layout_y="85dp"
+            android:textColor="#ff3f5153" />
 
         <TextView
             android:id="@+id/idDetalheDataTextView"
@@ -85,9 +87,10 @@
             android:layout_below="@+id/idDetalheRefTextView"
             android:layout_marginTop="50dp"
             android:layout_weight="1"
-            android:layout_x="20dp"
-            android:layout_y="140dp"
-            android:text="Data: " />
+            android:layout_x="11dp"
+            android:layout_y="126dp"
+            android:text="Data: "
+            android:textColor="#ff3f5153" />
 
         <TextView
             android:id="@+id/idDetalheDataEncontro"
@@ -97,9 +100,9 @@
             android:layout_toEndOf="@+id/idDetalheDonoTextView"
             android:layout_toRightOf="@+id/idDetalheDonoTextView"
             android:layout_weight="1"
-            android:layout_x="60dp"
-            android:layout_y="140dp"
-            android:textStyle="italic" />
+            android:layout_x="52dp"
+            android:layout_y="126dp"
+            android:textColor="#ff3f5153" />
 
         <TextView
             android:id="@+id/idDetalheHoraTextView"
@@ -109,9 +112,10 @@
             android:layout_alignRight="@+id/idDetalheDonoEncontro"
             android:layout_alignTop="@+id/idDetalheDataEncontro"
             android:layout_weight="1"
-            android:layout_x="189dp"
-            android:layout_y="140dp"
-            android:text="Hora:" />
+            android:layout_x="180dp"
+            android:layout_y="126dp"
+            android:text="Hora:"
+            android:textColor="#ff3f5153" />
 
         <TextView
             android:id="@+id/idDetalheHoraEncontro"
@@ -120,9 +124,9 @@
             android:layout_above="@+id/idDetalheDonoTextView"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_x="230dp"
-            android:layout_y="140dp"
-            android:textStyle="italic" />
+            android:layout_x="222dp"
+            android:layout_y="126dp"
+            android:textColor="#ff3f5153" />
 
         <TextView
             android:id="@+id/idDetalheDonoTextView"
@@ -133,9 +137,10 @@
             android:layout_below="@+id/idDetalheDataTextView"
             android:layout_marginTop="50dp"
             android:layout_weight="1"
-            android:layout_x="20dp"
-            android:layout_y="180dp"
-            android:text="Criado por:" />
+            android:layout_x="11dp"
+            android:layout_y="165dp"
+            android:text="Criado por:"
+            android:textColor="#ff3f5153" />
 
         <TextView
             android:id="@+id/idDetalheDonoEncontro"
@@ -145,9 +150,9 @@
             android:layout_toEndOf="@+id/idDetalheDataEncontro"
             android:layout_toRightOf="@+id/idDetalheDataEncontro"
             android:layout_weight="1"
-            android:layout_x="100dp"
-            android:layout_y="180dp"
-            android:textStyle="italic" />
+            android:layout_x="91dp"
+            android:layout_y="165dp"
+            android:textColor="#ff3f5153" />
 
         <ImageButton
             android:id="@+id/idConfirmaButton"
@@ -157,8 +162,8 @@
             android:layout_toLeftOf="@+id/idDetalheHoraEncontro"
             android:layout_toStartOf="@+id/idDetalheHoraEncontro"
             android:layout_weight="1"
-            android:layout_x="219dp"
-            android:layout_y="380dp"
+            android:layout_x="11dp"
+            android:layout_y="246dp"
             android:background="#00cafdff"
             android:clickable="false"
             android:contentDescription="Confirmar Presença"
@@ -175,8 +180,8 @@
             android:layout_toLeftOf="@+id/idDetalheHoraEncontro"
             android:layout_toStartOf="@+id/idDetalheHoraEncontro"
             android:layout_weight="1"
-            android:layout_x="20dp"
-            android:layout_y="360dp"
+            android:layout_x="11dp"
+            android:layout_y="351dp"
             android:background="#00cbfdff"
             android:clickable="false"
             android:onClick="aCaminho"
@@ -193,9 +198,10 @@
             android:layout_below="@+id/idDetalheDonoTextView"
             android:layout_marginTop="50dp"
             android:layout_weight="1"
-            android:layout_x="20dp"
-            android:layout_y="220dp"
-            android:text="Confirmaram\nPresença:" />
+            android:layout_x="11dp"
+            android:layout_y="205dp"
+            android:text="Confirmaram\nPresença:"
+            android:textColor="#ff3f5153" />
 
         <TextView
             android:id="@+id/idDetalheRefTextView"
@@ -205,9 +211,10 @@
             android:layout_alignRight="@+id/idDetalheDonoEncontro"
             android:layout_alignTop="@+id/idDetalheDataEncontro"
             android:layout_weight="1"
-            android:layout_x="20dp"
-            android:layout_y="100dp"
-            android:text="Ponto de Referência:" />
+            android:layout_x="11dp"
+            android:layout_y="85dp"
+            android:text="Ponto de Referência:"
+            android:textColor="#ff3f5153" />
 
         <ListView
             android:id="@+id/idConfirmadosPresencalistView"
@@ -220,8 +227,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:layout_x="110dp"
-            android:layout_y="220dp"
+            android:layout_x="102dp"
+            android:layout_y="205dp"
             android:theme="@android:style/Widget.DeviceDefault.ListView.DropDown"
             android:visibility="visible" />
 
@@ -234,9 +241,10 @@
             android:layout_below="@+id/idDetalheDonoTextView"
             android:layout_marginTop="50dp"
             android:layout_weight="1"
-            android:layout_x="20dp"
-            android:layout_y="320dp"
-            android:text="Estão\nChegando:" />
+            android:layout_x="11dp"
+            android:layout_y="306dp"
+            android:text="Estão\nde saída:"
+            android:textColor="#ff3f5153" />
 
         <ListView
             android:id="@+id/idEstaoChegandolistView"
@@ -249,8 +257,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:layout_x="110dp"
-            android:layout_y="320dp"
+            android:layout_x="102dp"
+            android:layout_y="306dp"
             android:theme="@android:style/Widget.DeviceDefault.ListView.DropDown"
             android:visibility="visible" />
 
@@ -262,9 +270,10 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="50dp"
             android:layout_weight="1"
-            android:layout_x="20dp"
-            android:layout_y="420dp"
-            android:text="Chegaram:" />
+            android:layout_x="11dp"
+            android:layout_y="405dp"
+            android:text="Chegaram:"
+            android:textColor="#ff3f5153" />
 
         <ListView
             android:id="@+id/chegouList"
@@ -277,8 +286,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:layout_x="110dp"
-            android:layout_y="420dp"
+            android:layout_x="102dp"
+            android:layout_y="405dp"
             android:theme="@android:style/Widget.DeviceDefault.ListView.DropDown"
             android:visibility="visible" />
 

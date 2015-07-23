@@ -38,7 +38,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
     private static String nomeDono = "";
     private static String participantesEncontro = "";
     private TextView nomeDoEncontro, donoDoEncontro, linhaDoEncontro, refDoEncontro, dataDoEncontro, horaDoEncontro;
-    private TextView nomeNome, donoDono, linhaLinha, refRef, dataData, horaHora, confirma, saindo;
+    private TextView nomeNome, donoDono, linhaLinha, refRef, dataData, horaHora, confirma, saindo, chegaramMaps;
     private List<String> confirmadosPresenca = new ArrayList<String>();
     private List<String> estaoChegando = new ArrayList<String>();
     private List<String> chegaram = new ArrayList<String>();
@@ -114,6 +114,7 @@ public class DetalhesEncontroActivity extends BaseActivity {
         horaHora = (TextView) findViewById(R.id.idDetalheHoraTextView);
         confirma = (TextView) findViewById(R.id.idDetalheConfirmaTextView);
         saindo = (TextView) findViewById(R.id.idDetalheSaindoTextView);
+        chegaramMaps = (TextView) findViewById(R.id.chegouText);
 
         confirmaPresencaButton = (ImageButton) findViewById(R.id.idConfirmaButton);
         saindoButton = (ImageButton) findViewById(R.id.idSaindoButton);
@@ -264,14 +265,21 @@ public class DetalhesEncontroActivity extends BaseActivity {
     public void customizeItems() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", nomeNome);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", dataData);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", horaHora);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", refRef);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", linhaLinha);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", confirma);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", donoDono);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", saindo);
+        CustomizeFont.customizeFont(this, "Roboto-Bold.ttf", nomeNome);
+        CustomizeFont.customizeFont(this, "Roboto-Bold.ttf", dataData);
+        CustomizeFont.customizeFont(this, "Roboto-Bold.ttf", horaHora);
+        CustomizeFont.customizeFont(this, "Roboto-Bold.ttf", refRef);
+        CustomizeFont.customizeFont(this, "Roboto-Bold.ttf", linhaLinha);
+        CustomizeFont.customizeFont(this, "Roboto-Bold.ttf", confirma);
+        CustomizeFont.customizeFont(this, "Roboto-Bold.ttf", donoDono);
+        CustomizeFont.customizeFont(this, "Roboto-Bold.ttf", saindo);
+        CustomizeFont.customizeFont(this, "Roboto-Bold.ttf", chegaramMaps);
+        CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", nomeDoEncontro);
+        CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", donoDoEncontro);
+        CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", linhaDoEncontro);
+        CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", refDoEncontro);
+        CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", dataDoEncontro);
+        CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", horaDoEncontro);
     }
 
     @Override
