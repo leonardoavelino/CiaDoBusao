@@ -190,7 +190,7 @@
             android:layout_x="110dp"
             android:layout_y="340dp"
             android:textSize="18dp"
-            android:textColor="#ff3f5153"
+            android:textColor="#F24143"
             android:layout_weight="0.52"
             android:layout_marginTop="10dp" />
 

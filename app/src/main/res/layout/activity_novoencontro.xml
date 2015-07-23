@@ -45,7 +45,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="@android:color/holo_red_light" />
+                android:textColor="#F24143" />
 
             <TextView
                 android:id="@+id/idLinhaOnibusText"
@@ -72,7 +72,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="@android:color/holo_red_light" />
+                android:textColor="#F24143" />
 
             <TextView
                 android:id="@+id/idPontoRefText"
@@ -100,7 +100,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textColor="@android:color/holo_red_light" />
+                android:textColor="#F24143" />
 
             <ImageButton
                 android:id="@+id/idCancelarButton"
@@ -245,7 +245,7 @@
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
-                android:textColor="@android:color/holo_red_light"
+                android:textColor="#F24143"
                 android:layout_below="@+id/idEditarMapaTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -258,7 +258,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/idHoraTextView"
-                android:textColor="@android:color/holo_red_light"
+                android:textColor="#F24143"
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
@@ -274,7 +274,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/idLocalMapaTextView"
-                android:textColor="@android:color/holo_red_light"
+                android:textColor="#F24143"
                 android:layout_centerHorizontal="true"
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
