@@ -106,6 +106,7 @@
                 android:id="@+id/idCancelarButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
                 android:layout_weight="1"
                 android:background="#00ffffff"
                 android:text="Cancelar"
@@ -129,24 +130,24 @@
                 android:src="@mipmap/confirm_button_launcher"
                 android:onClick="saveEncontro"
                 android:background="#00ffffff"
-                android:layout_alignParentBottom="true"
+                android:textAlignment="center"
+                android:layout_alignBottom="@+id/idCriarTextView"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:textAlignment="center" />
+                android:layout_toRightOf="@+id/idCriarTextView"
+                android:layout_toEndOf="@+id/idCriarTextView" />
 
             <ImageButton
                 android:id="@+id/idMapaButton"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="#00ffffff"
-                android:textColor="#FFFFFF"
-                android:layout_gravity="center_horizontal"
                 android:onClick="onLocalPressed"
                 android:src="@mipmap/location_button_launcher"
-                android:layout_alignTop="@+id/idHorarioButton"
-                android:layout_alignLeft="@+id/idCriarButton"
-                android:layout_alignStart="@+id/idCriarButton"
-                android:layout_marginRight="20dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center_horizontal"
+                android:background="#00ffffff"
+                android:layout_below="@+id/idPontoEdit"
+                android:layout_toRightOf="@+id/idNomeEnc" />
 
             <ImageButton
                 android:id="@+id/idHorarioButton"
@@ -174,14 +175,18 @@
                 android:layout_toStartOf="@+id/idNomeEnc" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Editar Data"
                 android:id="@+id/idEditarDataTextView"
                 android:textColor="#ff3e5052"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
                 android:layout_below="@+id/idDataButton"
-                android:layout_toLeftOf="@+id/idPontoRefText"
-                android:layout_toStartOf="@+id/idPontoRefText" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/idDataButton"
+                android:layout_alignEnd="@+id/idDataButton" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -203,8 +208,8 @@
                 android:layout_below="@+id/idMapaButton"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignLeft="@+id/idCriarTextView"
-                android:layout_alignStart="@+id/idCriarTextView" />
+                android:layout_alignLeft="@+id/idMapaButton"
+                android:layout_alignStart="@+id/idMapaButton" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -213,7 +218,7 @@
                 android:id="@+id/idCancelarTextView"
                 android:textColor="#ff3e5052"
                 android:layout_alignWithParentIfMissing="false"
-                android:layout_alignTop="@+id/idCriarTextView"
+                android:layout_alignBottom="@+id/idCancelarButton"
                 android:layout_toLeftOf="@+id/idHorarioButton"
                 android:layout_toStartOf="@+id/idHorarioButton" />
 
@@ -223,10 +228,9 @@
                 android:text="Criar"
                 android:id="@+id/idCriarTextView"
                 android:textColor="#ff3e5052"
-                android:layout_marginBottom="14dp"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/idNomeEnc"
-                android:layout_toEndOf="@+id/idNomeEnc" />
+                android:layout_alignTop="@+id/idCancelarTextView"
+                android:layout_toRightOf="@+id/idHorarioButton"
+                android:layout_toEndOf="@+id/idHorarioButton" />
 
             <TextView
                 android:layout_width="wrap_content"
