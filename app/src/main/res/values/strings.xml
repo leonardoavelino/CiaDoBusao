@@ -60,7 +60,7 @@
     <string name="str_description_sair_encontro">Há mais pessoas participando! Tem certeza que quer sair do encontro?</string>
     <string name="str_description_excluir_encontro">Tem certeza que quer excluir o encontro?</string>
     <string name="title_activity_ajuda">Ajuda</string>
-    <string name="descricao_string">O aplicativo propõe integração entre o usuário e uma rede de amigos para fazer companhia durante as viagens de ônibus dentro da sua cidade, visando conectar o maior número possível de pessoas para esperar ônibus em grupo, de forma a inibir a ocorrência de assaltos e outros delitos frequentes.</string>
+    <string name="descricao_string">O aplicativo propõe integração entre o usuário e uma rede de amigos para fazer companhia durante as viagens de ônibus dentro da sua cidade, conectando o maior número possível de pessoas para esperar ônibus em grupo, de forma a inibir a ocorrência de assaltos e outros delitos frequentes.</string>
     <string name="chame_string">Chame seus amigos.</string>
     <string name="marque_string">Marque um encontro.</string>
     <string name="naova_string">Não vá sozinho!</string>

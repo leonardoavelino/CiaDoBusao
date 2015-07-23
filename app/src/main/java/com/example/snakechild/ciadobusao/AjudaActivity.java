@@ -3,6 +3,7 @@ package com.example.snakechild.ciadobusao;
 import android.app.Activity;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -44,12 +45,13 @@ public class AjudaActivity extends Activity {
     public void customizeItems() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", descText);
         CustomizeFont.customizeFont(this, "Amaranth-Bold.otf", chameText);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", chameDescText);
         CustomizeFont.customizeFont(this, "Amaranth-Bold.otf", marqueText);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", marqueDescText);
         CustomizeFont.customizeFont(this, "Amaranth-Bold.otf", naoVaText);
-        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", naoVaDescText);
+
+        CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", descText);
+        CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", chameDescText);
+        CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", marqueDescText);
+        CustomizeFont.customizeFont(this, "Roboto-Regular.ttf", naoVaDescText);
     }
 }
