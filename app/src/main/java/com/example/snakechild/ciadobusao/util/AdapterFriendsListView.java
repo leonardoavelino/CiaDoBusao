@@ -13,12 +13,12 @@ import com.example.snakechild.ciadobusao.R;
 
 import java.util.List;
 
-public class AdapterMeusEncontrosListView  extends BaseAdapter {
+public class AdapterFriendsListView extends BaseAdapter {
 
     private Context context;
-    private List<String> itens;
+    private List<String> itens; //ArrayList<NavDrawerItem>
 
-    public AdapterMeusEncontrosListView(Context context, List<String> itens) {
+    public AdapterFriendsListView(Context context, List<String> itens) {
         this.context = context;
         this.itens = itens;
     }
@@ -50,6 +50,9 @@ public class AdapterMeusEncontrosListView  extends BaseAdapter {
         txtTitle.setText(itens.get(position));
         Typeface typeFont = Typeface.createFromAsset(context.getAssets(), "Roboto-Regular.ttf");
         txtTitle.setTypeface(typeFont);
+
+        //ImageView imgUser = (ImageView) convertView.findViewById(R.id.icon); //CONSULTA?
+        //imgIcon.setImageResource(itens.get(position).getIcon());
 
         return convertView;
 

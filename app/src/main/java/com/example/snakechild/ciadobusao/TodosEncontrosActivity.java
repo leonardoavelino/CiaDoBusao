@@ -8,11 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.snakechild.ciadobusao.util.AdapterMeusEncontrosListView;
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -28,7 +30,7 @@ public class TodosEncontrosActivity extends Activity {
     private ListView mListView;
     private List<String> encontros = new ArrayList<String>();
     private List<String> idsEncontros = new ArrayList<String>();
-    private ArrayAdapter<String> adapter;
+    private AdapterMeusEncontrosListView adapter;
     private TextView title;
 
     @Override
@@ -45,8 +47,7 @@ public class TodosEncontrosActivity extends Activity {
 
         //Carrega a lista
         mListView = (ListView) findViewById(R.id.idTodosEncontroslistView);
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, encontros);
+        adapter = new AdapterMeusEncontrosListView(this, encontros);
         mListView.setAdapter(adapter);
 
         //Detalha um encontro

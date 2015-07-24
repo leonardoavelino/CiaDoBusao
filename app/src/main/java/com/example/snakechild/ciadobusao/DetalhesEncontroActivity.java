@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.snakechild.ciadobusao.util.AdapterFriendsListView;
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.example.snakechild.ciadobusao.util.LocationService;
 import com.parse.FindCallback;
@@ -39,7 +40,7 @@ public class DetalhesEncontroActivity extends Activity {
     private List<String> estaoChegando = new ArrayList<String>();
     private List<String> chegaram = new ArrayList<String>();
     private ListView mListViewConfirmados, mListViewChegando, mListViewChegaram;
-    private ArrayAdapter<String> adapterConfirmados, adapterChegando, adapterChegaram;
+    private AdapterFriendsListView adapterConfirmados, adapterChegando, adapterChegaram;
     private ImageButton confirmaPresencaButton;
     private ImageButton saindoButton;
     private List<ParseObject> allUsers = new ArrayList<ParseObject>();
@@ -118,20 +119,17 @@ public class DetalhesEncontroActivity extends Activity {
 
         //Carrega a lista dos confirmados
         mListViewConfirmados = (ListView) findViewById(R.id.idConfirmadosPresencalistView);
-        adapterConfirmados = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, confirmadosPresenca);
+        adapterConfirmados = new AdapterFriendsListView(this, confirmadosPresenca);
         mListViewConfirmados.setAdapter(adapterConfirmados);
 
         //Carrega a lista dos que estao chegando
         mListViewChegando = (ListView) findViewById(R.id.idEstaoChegandolistView);
-        adapterChegando = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, estaoChegando);
+        adapterChegando = new AdapterFriendsListView(this, estaoChegando);
         mListViewChegando.setAdapter(adapterChegando);
 
         //Carrega a lista dos que chegaram
         mListViewChegaram = (ListView) findViewById(R.id.chegouList);
-        adapterChegaram = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, chegaram);
+        adapterChegaram = new AdapterFriendsListView(this, chegaram);
         mListViewChegaram.setAdapter(adapterChegaram);
 
         getPerfis("PerfisACaminho", estaoChegando, adapterChegando);
@@ -178,7 +176,7 @@ public class DetalhesEncontroActivity extends Activity {
         });
     }
 
-    private void getPerfis(final String table, final List<String> list, final ArrayAdapter<String> arrayAdapter) {
+    private void getPerfis(final String table, final List<String> list, final AdapterFriendsListView arrayAdapter) {
         list.clear();
         ParseQuery query = new ParseQuery(table);
         query.whereEqualTo("idEncontro", idEncontro);

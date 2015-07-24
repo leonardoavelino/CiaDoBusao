@@ -218,7 +218,7 @@
 
         <ListView
             android:id="@+id/idConfirmadosPresencalistView"
-            android:layout_width="232dp"
+            android:layout_width="match_parent"
             android:layout_height="88dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
@@ -230,7 +230,8 @@
             android:layout_x="102dp"
             android:layout_y="205dp"
             android:theme="@android:style/Widget.DeviceDefault.ListView.DropDown"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:paddingRight="100dp" />
 
         <TextView
             android:id="@+id/idDetalheSaindoTextView"
@@ -248,7 +249,7 @@
 
         <ListView
             android:id="@+id/idEstaoChegandolistView"
-            android:layout_width="232dp"
+            android:layout_width="match_parent"
             android:layout_height="88dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
@@ -260,7 +261,8 @@
             android:layout_x="102dp"
             android:layout_y="306dp"
             android:theme="@android:style/Widget.DeviceDefault.ListView.DropDown"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:paddingRight="100dp" />
 
         <TextView
             android:id="@+id/chegouText"
@@ -277,7 +279,7 @@
 
         <ListView
             android:id="@+id/chegouList"
-            android:layout_width="232dp"
+            android:layout_width="match_parent"
             android:layout_height="88dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
@@ -289,7 +291,8 @@
             android:layout_x="102dp"
             android:layout_y="405dp"
             android:theme="@android:style/Widget.DeviceDefault.ListView.DropDown"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:paddingRight="100dp" />
 
     </AbsoluteLayout>
 

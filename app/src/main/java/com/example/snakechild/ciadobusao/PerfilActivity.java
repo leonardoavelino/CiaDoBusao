@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.snakechild.ciadobusao.util.AdapterMeusEncontrosListView;
 import com.example.snakechild.ciadobusao.util.BaseActivity;
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.facebook.AccessToken;
@@ -45,7 +46,7 @@ public class PerfilActivity extends BaseActivity {
     private ListView mListView;
     private List<String> encontros = new ArrayList<String>();
     private List<String> idsEncontros = new ArrayList<String>();
-    private ArrayAdapter<String> adapter;
+    private AdapterMeusEncontrosListView adapter;
     private TextView meusEncontrosText;
     private List<ParseObject> encontrosParticipo = new ArrayList<ParseObject>();
 
@@ -87,8 +88,7 @@ public class PerfilActivity extends BaseActivity {
 
 
         mListView = (ListView) findViewById(R.id.idMeusEncontroslistView);
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, encontros);
+        adapter = new AdapterMeusEncontrosListView(this, encontros);
         if (accessToken != null) {
             makeMeRequest(accessToken);
             mListView.setAdapter(adapter);
