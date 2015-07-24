@@ -163,8 +163,6 @@ public class BaseActivity extends Activity {
                 i.setClass(getApplicationContext(), AjudaActivity.class);
                 startActivity(i);
                 break;
-            case 5:
-                //TODO AO CLICAR EM SAIR
             default:
                 break;
         }

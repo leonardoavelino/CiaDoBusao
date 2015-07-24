@@ -14,6 +14,14 @@
         android:background="@drawable/background"
         tools:context="com.example.snakechild.ciadobusao.TodosEncontrosActivity">
 
+        <TextView
+            android:id="@+id/tv_lista_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/tv_title_lista"
+            android:textSize="20dp" />
+
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,8 +31,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginRight="10dp"
             android:theme="@android:style/Widget.DeviceDefault.ListView"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/tv_lista_title"/>
 
     </RelativeLayout>
 

@@ -30,7 +30,6 @@
         <item >Mapa</item>
         <item >Lista de Encontros</item>
         <item >Ajuda</item>
-        <item >Sair</item>
     </string-array>
 
     <string-array name="drawer_detalhe_encontro">
@@ -44,7 +43,6 @@
         <item>@drawable/ic_mapa</item>
         <item>@drawable/ic_lista</item>
         <item>@drawable/ic_ajuda</item>
-        <item>@drawable/ic_sair</item>
     </array>
 
  <!-- Content Description -->
@@ -57,6 +55,7 @@
     <string name="str_action_excluir_encontro">Excluir Encontro</string>
     <string name="str_action_sair_encontro">Sair do Encontro</string>
     <string name="str_title_dialog_excluir_encontro">Excluir encontro</string>
+    <string name="tv_title_lista">Encontros de todos os usuários: </string>
     <string name="str_description_sair_encontro">Há mais pessoas participando! Tem certeza que quer sair do encontro?</string>
     <string name="str_description_excluir_encontro">Tem certeza que quer excluir o encontro?</string>
     <string name="title_activity_ajuda">Ajuda</string>
