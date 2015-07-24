@@ -202,4 +202,9 @@ public class PerfilActivity extends BaseActivity {
         CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", meusEncontrosText);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        MainActivity.backToPerfil.setVisibility(View.VISIBLE);
+    }
 }

@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
@@ -37,6 +39,7 @@ public class MainActivity extends Activity {
     private static String foto;
     private static TextView appName;
     private String userId;
+    public static Button backToPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,15 @@ public class MainActivity extends Activity {
         mCallbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
         final LoginButton authButton = (LoginButton) findViewById(R.id.auth_button);
+        backToPerfil = (Button) findViewById(R.id.bt_backToPerfil);
+        backToPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent();
+                i.setClass(getApplicationContext(), PerfilActivity.class);
+                startActivity(i);
+            }
+        });
         authButton.setReadPermissions("public_profile");
         authButton.setReadPermissions("user_friends");
         authButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
