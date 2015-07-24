@@ -11,7 +11,9 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.snakechild.ciadobusao.util.CustomizeFont;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -27,11 +29,15 @@ public class TodosEncontrosActivity extends Activity {
     private List<String> encontros = new ArrayList<String>();
     private List<String> idsEncontros = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todos_encontros);
+
+        title = (TextView) findViewById(R.id.tv_lista_title);
+
         customizeItems();
 
         ActionBar actionBar = getActionBar();
@@ -57,7 +63,7 @@ public class TodosEncontrosActivity extends Activity {
     }
 
     public void customizeItems() {
-        //CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", nomeText);
+        CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", title);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
