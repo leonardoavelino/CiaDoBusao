@@ -3,6 +3,7 @@ package com.example.snakechild.ciadobusao;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +31,11 @@ import com.parse.ParseQuery;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class MainActivity extends Activity {
@@ -112,6 +117,7 @@ public class MainActivity extends Activity {
                                     e.printStackTrace();
                                 }
                                 // Application code
+
                             }
                         });
                 Bundle parameters = new Bundle();
@@ -131,6 +137,25 @@ public class MainActivity extends Activity {
             @Override
             public void onError(FacebookException e) {
 
+            }
+        });
+
+        final ParseQuery query = new ParseQuery("Encontro");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    for (int i = 0; i < parseObjects.size(); i++) {
+                        String date = parseObjects.get(i).get("data").toString();
+                        if (dataAnterior(date)) {
+                            removePerfisChegaram(parseObjects.get(i).getObjectId());
+                            removePerfisACaminho(parseObjects.get(i).getObjectId());
+                            removePerfisConfirmaram(parseObjects.get(i).getObjectId());
+                            removeEncontros(parseObjects.get(i).getObjectId());
+                        }
+                    }
+                }
+                SystemClock.sleep(3000);
             }
         });
 
@@ -182,4 +207,80 @@ public class MainActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+    private void removePerfisConfirmaram(String perfil){
+        ParseQuery query_chegaram = new ParseQuery("PerfisConfirmaram");
+        query_chegaram.whereEqualTo("idEncontro", perfil);
+        query_chegaram.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    for (int i = 0; i < parseObjects.size(); i++) {
+                        parseObjects.get(i).deleteInBackground();
+                    }
+                }
+            }
+        });
+    }
+
+    private void removePerfisACaminho(String perfil){
+        ParseQuery query_chegaram = new ParseQuery("PerfisACaminho");
+        query_chegaram.whereEqualTo("idEncontro", perfil);
+        query_chegaram.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    for (int i = 0; i < parseObjects.size(); i++) {
+                        parseObjects.get(i).deleteInBackground();
+                    }
+                }
+            }
+        });
+    }
+
+    private void removePerfisChegaram(String perfil){
+        ParseQuery query_chegaram = new ParseQuery("PerfisChegaram");
+        query_chegaram.whereEqualTo("idEncontro", perfil);
+        query_chegaram.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    for (int i = 0; i < parseObjects.size(); i++) {
+                        parseObjects.get(i).deleteInBackground();
+                    }
+                }
+            }
+        });
+    }
+
+    private void removeEncontros(final String encontro){
+        ParseQuery query_chegaram = new ParseQuery("Encontro");
+        query_chegaram.whereEqualTo("objectId", encontro);
+        query_chegaram.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> parseObjects, ParseException e) {
+                if (parseObjects != null) {
+                    for (int i = 0; i < parseObjects.size(); i++) {
+                        parseObjects.get(i).deleteInBackground();
+                    }
+                }
+            }
+        });
+    }
+
+    private boolean dataAnterior(String data){
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataAtual = new Date();
+        try {
+            Date date = (Date)formatter.parse(data);
+            long day = TimeUnit.DAYS.convert(date.getTime()-dataAtual.getTime(), TimeUnit.MILLISECONDS);
+            if (day < 0){
+                return true;
+            }
+        } catch (java.text.ParseException e1) {
+            e1.printStackTrace();
+        }
+        return false;
+    }
+
 }
