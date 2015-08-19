@@ -144,22 +144,18 @@ public class BaseActivity extends Activity {
         Intent i = new Intent();
         switch (position) {
             case 0:
-                i.setClass(getApplicationContext(), PerfilActivity.class);
-                startActivity(i);
-                break;
-            case 1:
                 i.setClass(getApplicationContext(), NovoEncontroActivity.class);
                 startActivity(i);
                 break;
-            case 2:
+            case 1:
                 i.setClass(getApplicationContext(), MapActivity.class);
                 startActivity(i);
                 break;
-            case 3:
+            case 2:
                 i.setClass(getApplicationContext(), TodosEncontrosActivity.class);
                 startActivity(i);
                 break;
-            case 4:
+            case 3:
                 i.setClass(getApplicationContext(), AjudaActivity.class);
                 startActivity(i);
                 break;

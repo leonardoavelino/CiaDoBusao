@@ -25,7 +25,6 @@
 
     <!-- Nomes dos items -->
     <string-array name="nav_drawer_items">
-        <item >Perfil</item>
         <item >Criar Encontro</item>
         <item >Mapa</item>
         <item >Lista de Encontros</item>
@@ -38,7 +37,6 @@
 
     <!-- Icones dos items -->
     <array name="nav_drawer_icons">
-        <item>@drawable/ic_perfil</item>
         <item>@drawable/ic_novo_enc</item>
         <item>@drawable/ic_mapa</item>
         <item>@drawable/ic_lista</item>
