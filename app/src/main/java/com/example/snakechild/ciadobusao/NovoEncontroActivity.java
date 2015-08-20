@@ -7,46 +7,56 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
-import com.example.snakechild.ciadobusao.util.BaseActivity;
+import com.example.snakechild.ciadobusao.util.ControladorEncontroRecorrente;
 import com.example.snakechild.ciadobusao.util.CustomizeFont;
+import com.example.snakechild.ciadobusao.util.EncontroRecorrente;
 import com.example.snakechild.ciadobusao.util.ValidateInput;
-
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
 
-import android.text.format.DateFormat;
-import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class NovoEncontroActivity extends Activity {
 
+    private ControladorEncontroRecorrente controladorEncontroRecorrente;
+
     private static TextView nomeText, linhaText, pontoRefText, editDataText, editHoraText, editLocalMapaText, criarText, cancelarText, dataText, horaText, mapaText;
     private static EditText nomeEncEditText, linhaEncEditTex, refEncEditText;
+    private CheckBox repertirCheck, checkDom, checkSeg, checkTer, checkQua, checkQui, checkSex, checkSab;
+    private RadioButton radioTodoDia, radioTodaSemana, radioEscolherDias;
+    private RadioGroup radioGroup;
+    private RelativeLayout relativeDias;
     public static double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_novoencontro);
+
+        controladorEncontroRecorrente = ControladorEncontroRecorrente.getInstance(getApplicationContext());
 
         nomeText = (TextView) this.findViewById(R.id.idNomeEnc);
         linhaText = (TextView) this.findViewById(R.id.idLinhaOnibusText);
@@ -64,6 +74,27 @@ public class NovoEncontroActivity extends Activity {
         linhaEncEditTex = (EditText) this.findViewById(R.id.idLinhaEdit);
         refEncEditText = (EditText) this.findViewById(R.id.idPontoEdit);
 
+        radioTodoDia = (RadioButton) this.findViewById(R.id.radioTodoDia);
+        radioTodoDia.setChecked(true);
+        radioTodaSemana = (RadioButton) this.findViewById(R.id.radioTodaSemana);
+        radioEscolherDias = (RadioButton) this.findViewById(R.id.radioEscolherDias);
+
+        repertirCheck = (CheckBox) this.findViewById(R.id.repertirText);
+        checkDom = (CheckBox) this.findViewById(R.id.checkDom);
+        checkSeg = (CheckBox) this.findViewById(R.id.checkSeg);
+        checkTer = (CheckBox) this.findViewById(R.id.checkTer);
+        checkQua = (CheckBox) this.findViewById(R.id.checkQua);
+        checkQui = (CheckBox) this.findViewById(R.id.checkQui);
+        checkSex = (CheckBox) this.findViewById(R.id.checkSex);
+        checkSab = (CheckBox) this.findViewById(R.id.checkSab);
+
+        radioGroup = (RadioGroup) this.findViewById(R.id.radioGroup);
+        relativeDias = (RelativeLayout) this.findViewById(R.id.relativeDiasSemana);
+        radioGroup.setVisibility(View.INVISIBLE);
+        relativeDias.setVisibility(View.INVISIBLE);
+
+        createListenersRecorrenteButtons();
+
         customizeItems();
 
         ActionBar actionBar = getActionBar();
@@ -71,7 +102,41 @@ public class NovoEncontroActivity extends Activity {
 
     }
 
-    public void customizeItems(){
+    private void createListenersRecorrenteButtons() {
+        repertirCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (radioGroup.getVisibility() == View.VISIBLE) {
+                    radioGroup.setVisibility(View.INVISIBLE);
+                } else {
+                    radioGroup.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        radioEscolherDias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeDias.setVisibility(View.VISIBLE);
+            }
+        });
+        radioTodoDia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeDias.setVisibility(View.INVISIBLE);
+            }
+        });
+        radioTodaSemana.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeDias.setVisibility(View.INVISIBLE);
+            }
+        });
+
+
+    }
+
+    public void customizeItems() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         CustomizeFont.customizeFont(this, "Amaranth-Regular.otf", nomeText);
@@ -90,7 +155,7 @@ public class NovoEncontroActivity extends Activity {
         super.onBackPressed();
     }
 
-    public void onBack(View v){
+    public void onBack(View v) {
         onBackPressed();
         finish();
     }
@@ -133,9 +198,9 @@ public class NovoEncontroActivity extends Activity {
         startActivity(i);
     }
 
-    public void onDatePressed(View v){
+    public void onDatePressed(View v) {
         DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getFragmentManager() ,"datePicker");
+        newFragment.show(getFragmentManager(), "datePicker");
     }
 
     public static class TimePickerFragment extends DialogFragment
@@ -170,7 +235,7 @@ public class NovoEncontroActivity extends Activity {
         newFragment.show(getFragmentManager(), "timePicker");
     }
 
-    public static boolean validateParams(){
+    public static boolean validateParams() {
         boolean result = true;
         if (!ValidateInput.isNome(nomeEncEditText.getText().toString())) {
             nomeEncEditText.setError("Nome Inválido!");
@@ -187,7 +252,7 @@ public class NovoEncontroActivity extends Activity {
             linhaEncEditTex.setText("");
             result = false;
         }
-        if (!ValidateInput.isDataHora(dataText.getText().toString(), horaText.getText().toString())){
+        if (!ValidateInput.isDataHora(dataText.getText().toString(), horaText.getText().toString())) {
             horaText.setError("Horário Inválido!");
             horaText.setText("");
             dataText.setError("Data Inválida!");
@@ -202,8 +267,8 @@ public class NovoEncontroActivity extends Activity {
         return result;
     }
 
-    public void saveEncontro(View v){
-        if (validateParams()){
+    public void saveEncontro(View v) {
+        if (validateParams()) {
             ParseObject encontro = new ParseObject("Encontro");
             String latitudeString = String.valueOf(latitude);
             String longitudeString = String.valueOf(longitude);
@@ -218,9 +283,11 @@ public class NovoEncontroActivity extends Activity {
             encontro.put("referencia", refEncEditText.getText().toString());
             encontro.saveInBackground();
             Toast.makeText(getApplicationContext(), "Encontro criado com sucesso!", Toast.LENGTH_SHORT).show();
+            criaRecorrentes();
+
 
             ParsePush push = new ParsePush();
-            String message = "Novo encontro criado" ;
+            String message = "Novo encontro criado";
             push.setMessage(message);
             push.sendInBackground();
 
@@ -232,9 +299,9 @@ public class NovoEncontroActivity extends Activity {
                     if (parseObjects != null) {
                         final ParseObject usuario = new ParseObject("PerfisConfirmaram");
                         usuario.put("idUsuario", PerfilActivity.idUsuario);
-                        usuario.put("idEncontro", parseObjects.get(parseObjects.size()-1).getObjectId());
+                        usuario.put("idEncontro", parseObjects.get(parseObjects.size() - 1).getObjectId());
                         usuario.saveInBackground();
-                        Log.d("ID", parseObjects.get(parseObjects.size()-1).getObjectId());
+                        Log.d("ID", parseObjects.get(parseObjects.size() - 1).getObjectId());
                     }
                 }
             });
@@ -245,13 +312,60 @@ public class NovoEncontroActivity extends Activity {
         }
     }
 
+    private void criaRecorrentes() {
+        if (repertirCheck.isChecked()) {
+            boolean[] dias = new boolean[7];
+            dias[0] = false;
+            dias[1] = false;
+            dias[2] = false;
+            dias[3] = false;
+            dias[4] = false;
+            dias[5] = false;
+            dias[6] = false;
+            if (radioTodoDia.isChecked()) {
+                dias[0] = true;
+                dias[1] = true;
+                dias[2] = true;
+                dias[3] = true;
+                dias[4] = true;
+                dias[5] = true;
+                dias[6] = true;
+            } else if (radioTodaSemana.isChecked()) {
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    Date date = format.parse(dataText.getText().toString());
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(date);
+                    dias[calendar.get(Calendar.DAY_OF_WEEK)-1] = true;
+                } catch (java.text.ParseException e) {
+                    e.printStackTrace();
+                }
+            } else if (radioEscolherDias.isChecked()) {
+                dias[0] = checkDom.isChecked();
+                dias[1] = checkSeg.isChecked();
+                dias[2] = checkTer.isChecked();
+                dias[3] = checkQua.isChecked();
+                dias[4] = checkQui.isChecked();
+                dias[5] = checkSex.isChecked();
+                dias[6] = checkSab.isChecked();
+            }
+
+            EncontroRecorrente encontroRecorrente =
+                    new EncontroRecorrente(nomeEncEditText.getText().toString(),
+                            horaText.getText().toString(), dias);
+            controladorEncontroRecorrente.addEncontro(encontroRecorrente);
+
+        }
+    }
+
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("nomeEnc", nomeEncEditText.getText().toString());
         outState.putString("linhaEnc", linhaEncEditTex.getText().toString());
         outState.putString("refEnc", refEncEditText.getText().toString());
-        outState.putString("dataEnc" ,dataText.getText().toString());
+        outState.putString("dataEnc", dataText.getText().toString());
         outState.putString("horaEnc", horaText.getText().toString());
     }
 
@@ -268,7 +382,7 @@ public class NovoEncontroActivity extends Activity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        if(latitude != 0) {
+        if (latitude != 0) {
             mapaText.setText("Local Definido!");
         }
     }

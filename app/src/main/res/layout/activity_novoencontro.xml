@@ -7,11 +7,11 @@
     <!-- The main content view -->
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/idNewEncontro"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@drawable/background"
-        android:id="@+id/idNewEncontro">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -21,282 +21,379 @@
                 android:id="@+id/idNomeEnc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="21dp"
+                android:fontFamily="@string/com_facebook_loginview_log_in_button_long"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="@string/str_nome_do_encontro"
                 android:textColor="#ff3e5052"
-                android:textStyle="normal"
-                android:fontFamily="@string/com_facebook_loginview_log_in_button_long"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="21dp"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textStyle="normal" />
 
             <EditText
                 android:id="@+id/idNomeEdit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/idNomeEnc"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:layout_below="@+id/idNomeEnc"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:textColor="#F24143" />
 
             <TextView
                 android:id="@+id/idLinhaOnibusText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/linha_onibus_str"
-                android:textColor="#ff3e5052"
-                android:layout_marginTop="20dp"
                 android:layout_below="@+id/idNomeEdit"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="@string/linha_onibus_str"
+                android:textColor="#ff3e5052"
                 android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/idLinhaEdit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/idLinhaOnibusText"
+                android:layout_marginTop="10dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/idLinhaOnibusText"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:textColor="#F24143" />
 
             <TextView
                 android:id="@+id/idPontoRefText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ponto_ref_str"
-                android:textColor="#ff3e5052"
-                android:layout_marginTop="20dp"
                 android:layout_below="@+id/idLinhaEdit"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="@string/ponto_ref_str"
+                android:textColor="#ff3e5052"
                 android:textSize="20dp" />
 
             <EditText
                 android:id="@+id/idPontoEdit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/idPontoRefText"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:layout_below="@+id/idPontoRefText"
-                android:layout_marginTop="10dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
                 android:textColor="#F24143" />
 
             <ImageButton
                 android:id="@+id/idCancelarButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="right"
                 android:layout_marginBottom="15dp"
+                android:layout_toLeftOf="@+id/idCancelarTextView"
                 android:layout_weight="1"
                 android:background="#00ffffff"
-                android:text="Cancelar"
-                android:textColor="#ffffff"
-                android:layout_gravity="right"
-                android:src="@mipmap/cancel_button_launcher"
                 android:onClick="onBack"
-                android:layout_alignParentBottom="true"
-                android:layout_toLeftOf="@+id/idCancelarTextView"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:src="@mipmap/cancel_button_launcher"
+                android:text="Cancelar"
+                android:textColor="#ffffff" />
 
             <ImageButton
                 android:id="@+id/idCriarButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Criar"
-                android:textColor="#ffffff"
-                android:layout_gravity="right"
-                android:src="@mipmap/confirm_button_launcher"
-                android:onClick="saveEncontro"
-                android:background="#00ffffff"
-                android:textAlignment="center"
                 android:layout_alignBottom="@+id/idCriarTextView"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:layout_toEndOf="@+id/idCriarTextView"
                 android:layout_toRightOf="@+id/idCriarTextView"
-                android:layout_toEndOf="@+id/idCriarTextView" />
+                android:layout_weight="1"
+                android:background="#00ffffff"
+                android:onClick="saveEncontro"
+                android:src="@mipmap/confirm_button_launcher"
+                android:text="Criar"
+                android:textAlignment="center"
+                android:textColor="#ffffff" />
 
             <ImageButton
                 android:id="@+id/idMapaButton"
-                android:onClick="onLocalPressed"
-                android:src="@mipmap/location_button_launcher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:layout_gravity="center_horizontal"
-                android:background="#00ffffff"
                 android:layout_below="@+id/idPontoEdit"
-                android:layout_toRightOf="@+id/idNomeEnc" />
+                android:layout_gravity="center_horizontal"
+                android:layout_toRightOf="@+id/idNomeEnc"
+                android:background="#00ffffff"
+                android:onClick="onLocalPressed"
+                android:src="@mipmap/location_button_launcher"
+                android:textColor="#FFFFFF" />
 
             <ImageButton
                 android:id="@+id/idHorarioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clique para editar o Horário"
-                android:textColor="#FFFFFF"
-                android:src="@mipmap/clock_button_launcher"
+                android:layout_alignTop="@+id/idDataButton"
+                android:layout_centerHorizontal="true"
                 android:background="#00ffffff"
                 android:onClick="onTimePressed"
-                android:layout_alignTop="@+id/idDataButton"
-                android:layout_centerHorizontal="true" />
+                android:src="@mipmap/clock_button_launcher"
+                android:text="Clique para editar o Horário"
+                android:textColor="#FFFFFF" />
 
             <ImageButton
                 android:id="@+id/idDataButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
+                android:layout_below="@+id/idPontoEdit"
                 android:layout_gravity="center_horizontal"
-                android:src="@mipmap/data_button_launcher"
+                android:layout_toLeftOf="@+id/idNomeEnc"
+                android:layout_toStartOf="@+id/idNomeEnc"
                 android:background="#00ffffff"
                 android:onClick="onDatePressed"
-                android:layout_below="@+id/idPontoEdit"
-                android:layout_toLeftOf="@+id/idNomeEnc"
-                android:layout_toStartOf="@+id/idNomeEnc" />
+                android:src="@mipmap/data_button_launcher"
+                android:textColor="#FFFFFF" />
 
             <TextView
-                android:text="Editar Data"
                 android:id="@+id/idEditarDataTextView"
-                android:textColor="#ff3e5052"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:layout_below="@+id/idDataButton"
+                android:layout_alignEnd="@+id/idDataButton"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/idDataButton"
-                android:layout_alignEnd="@+id/idDataButton"
+                android:layout_below="@+id/idDataButton"
+                android:gravity="center_horizontal"
+                android:text="Editar Data"
+                android:textAlignment="center"
+                android:textColor="#ff3e5052"
                 android:textSize="15dp" />
 
             <TextView
+                android:id="@+id/idEditarHoraTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Editar Horário"
-                android:id="@+id/idEditarHoraTextView"
-                android:textColor="#ff3e5052"
                 android:layout_below="@+id/idHorarioButton"
                 android:layout_centerHorizontal="true"
+                android:text="Editar Horário"
+                android:textColor="#ff3e5052"
                 android:textSize="15dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Editar Localização"
                 android:id="@+id/idEditarMapaTextView"
-                android:textColor="#ff3e5052"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:layout_below="@+id/idMapaButton"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/idMapaButton"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_alignStart="@+id/idMapaButton"
+                android:layout_below="@+id/idMapaButton"
+                android:gravity="center_horizontal"
+                android:text="Editar Localização"
+                android:textAlignment="center"
+                android:textColor="#ff3e5052"
                 android:textSize="15dp" />
 
             <TextView
+                android:id="@+id/idCancelarTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancelar"
-                android:id="@+id/idCancelarTextView"
-                android:textColor="#ff3e5052"
-                android:layout_alignWithParentIfMissing="false"
                 android:layout_alignBottom="@+id/idCancelarButton"
+                android:layout_alignWithParentIfMissing="false"
                 android:layout_toLeftOf="@+id/idHorarioButton"
                 android:layout_toStartOf="@+id/idHorarioButton"
-                android:textSize="15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Criar"
-                android:id="@+id/idCriarTextView"
+                android:text="Cancelar"
                 android:textColor="#ff3e5052"
-                android:layout_alignTop="@+id/idCancelarTextView"
-                android:layout_toRightOf="@+id/idHorarioButton"
-                android:layout_toEndOf="@+id/idHorarioButton"
                 android:textSize="15dp" />
 
             <TextView
+                android:id="@+id/idCriarTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_alignTop="@+id/idCancelarTextView"
+                android:layout_toEndOf="@+id/idHorarioButton"
+                android:layout_toRightOf="@+id/idHorarioButton"
+                android:text="Criar"
+                android:textColor="#ff3e5052"
+                android:textSize="15dp" />
+
+            <TextView
                 android:id="@+id/idDateTextView"
-                android:layout_centerHorizontal="true"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:textColor="#F24143"
-                android:layout_below="@+id/idEditarMapaTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/idEditarDataTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/idEditarDataTextView"
-                android:layout_alignEnd="@+id/idEditarDataTextView"
+                android:layout_below="@+id/idEditarMapaTextView"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#F24143"
                 android:textSize="14dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/idHoraTextView"
-                android:textColor="#F24143"
-                android:layout_centerHorizontal="true"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:layout_alignTop="@+id/idDateTextView"
-                android:layout_alignLeft="@+id/idEditarHoraTextView"
-                android:layout_alignStart="@+id/idEditarHoraTextView"
-                android:layout_alignRight="@+id/idEditarHoraTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/idEditarHoraTextView"
+                android:layout_alignLeft="@+id/idEditarHoraTextView"
+                android:layout_alignRight="@+id/idEditarHoraTextView"
+                android:layout_alignStart="@+id/idEditarHoraTextView"
+                android:layout_alignTop="@+id/idDateTextView"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#F24143"
                 android:textSize="14dp" />
 
             <TextView
+                android:id="@+id/idLocalMapaTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:id="@+id/idLocalMapaTextView"
-                android:textColor="#F24143"
-                android:layout_centerHorizontal="true"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/idHoraTextView"
-                android:layout_toRightOf="@+id/idPontoRefText"
+                android:layout_centerHorizontal="true"
                 android:layout_toEndOf="@+id/idPontoRefText"
+                android:layout_toRightOf="@+id/idPontoRefText"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#F24143"
                 android:textSize="14dp" />
+
+            <CheckBox
+                android:id="@+id/repertirText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/idDateTextView"
+                android:layout_marginLeft="5dp"
+                android:text="Repertir Encontro"
+                android:textColor="#ff3e5052"
+                android:textSize="15dp" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/repertirText"
+                android:layout_marginLeft="5dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioTodoDia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Todo dia"
+                    android:textColor="#ff3e5052" />
+
+                <RadioButton
+                    android:id="@+id/radioTodaSemana"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Toda semana"
+                    android:textColor="#ff3e5052" />
+
+                <RadioButton
+                    android:id="@+id/radioEscolherDias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Escolher Dias"
+                    android:textColor="#ff3e5052" />
+            </RadioGroup>
+
+            <RelativeLayout
+                android:id="@+id/relativeDiasSemana"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/radioGroup"
+                android:layout_centerHorizontal="true">
+
+
+                <CheckBox
+                    android:id="@+id/checkDom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="D"
+                    android:textColor="#ff3e5052" />
+
+                <CheckBox
+                    android:id="@+id/checkSeg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/checkDom"
+                    android:text="S"
+                    android:textColor="#ff3e5052" />
+
+                <CheckBox
+                    android:id="@+id/checkTer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/checkSeg"
+                    android:text="T"
+                    android:textColor="#ff3e5052" />
+
+                <CheckBox
+                    android:id="@+id/checkQua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/checkTer"
+                    android:text="Q"
+                    android:textColor="#ff3e5052" />
+
+                <CheckBox
+                    android:id="@+id/checkQui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/checkQua"
+                    android:text="Q"
+                    android:textColor="#ff3e5052" />
+
+                <CheckBox
+                    android:id="@+id/checkSex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/checkQui"
+                    android:text="S"
+                    android:textColor="#ff3e5052" />
+
+                <CheckBox
+                    android:id="@+id/checkSab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/checkSex"
+                    android:text="S"
+                    android:textColor="#ff3e5052" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/left_drawer"
-        android:layout_width="260dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/list_background"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp" />
+
 
 </android.support.v4.widget.DrawerLayout>

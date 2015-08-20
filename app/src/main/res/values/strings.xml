@@ -26,6 +26,7 @@
     <!-- Nomes dos items -->
     <string-array name="nav_drawer_items">
         <item >Criar Encontro</item>
+        <item >Meus Encontros Recorrentes</item>
         <item >Mapa</item>
         <item >Lista de Encontros</item>
         <item >Ajuda</item>
@@ -38,6 +39,7 @@
     <!-- Icones dos items -->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_novo_enc</item>
+        <item>@drawable/ic_recorrent</item>
         <item>@drawable/ic_mapa</item>
         <item>@drawable/ic_lista</item>
         <item>@drawable/ic_ajuda</item>
@@ -65,5 +67,6 @@
     <string name="chame_desc_string">Conectado ao Facebook, o Cia. do Busão possibilita convidar a todos os seus amigos para se juntar aos seus encontros.</string>
     <string name="marque_desc_string">Em cada encontro, você pode descrever informações sobre horário, ponto de referência, linha de ônibus, destino e ainda uma localização exata no GoogleMaps.</string>
     <string name="naovadesc_string">Seus amigos podem se inscrever no seu encontro e informar se já estão de saída, e tudo você pode acompanhar em tempo real no Mapa.</string>
+    <string name="title_activity_encontros_recorrentes">Meus Encontros Recorrentes</string>
 
 </resources>

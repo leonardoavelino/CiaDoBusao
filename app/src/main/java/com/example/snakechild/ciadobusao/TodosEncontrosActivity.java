@@ -8,9 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,7 +36,7 @@ public class TodosEncontrosActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todos_encontros);
 
-        title = (TextView) findViewById(R.id.tv_lista_title);
+        title = (TextView) findViewById(R.id.tv_lista_enc_rec);
 
         customizeItems();
 
@@ -46,7 +44,7 @@ public class TodosEncontrosActivity extends Activity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         //Carrega a lista
-        mListView = (ListView) findViewById(R.id.idTodosEncontroslistView);
+        mListView = (ListView) findViewById(R.id.encontrosRecorrentesList);
         adapter = new AdapterMeusEncontrosListView(this, encontros);
         mListView.setAdapter(adapter);
 

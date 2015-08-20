@@ -14,13 +14,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.snakechild.ciadobusao.AjudaActivity;
+import com.example.snakechild.ciadobusao.EncontrosRecorrentesActivity;
 import com.example.snakechild.ciadobusao.MapActivity;
 import com.example.snakechild.ciadobusao.NovoEncontroActivity;
-import com.example.snakechild.ciadobusao.PerfilActivity;
 import com.example.snakechild.ciadobusao.R;
 import com.example.snakechild.ciadobusao.TodosEncontrosActivity;
 
@@ -30,6 +29,8 @@ import java.util.ArrayList;
  * Created by Pedro on 21/05/2015.
  */
 public class BaseActivity extends Activity {
+
+    private ControladorEncontroRecorrente controladorEncontroRecorrente;
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -46,6 +47,8 @@ public class BaseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer);
+
+        controladorEncontroRecorrente = ControladorEncontroRecorrente.getInstance(getApplicationContext());
 
         mItensImageIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
         mItensMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
@@ -148,14 +151,18 @@ public class BaseActivity extends Activity {
                 startActivity(i);
                 break;
             case 1:
-                i.setClass(getApplicationContext(), MapActivity.class);
+                i.setClass(getApplicationContext(), EncontrosRecorrentesActivity.class);
                 startActivity(i);
                 break;
             case 2:
-                i.setClass(getApplicationContext(), TodosEncontrosActivity.class);
+                i.setClass(getApplicationContext(), MapActivity.class);
                 startActivity(i);
                 break;
             case 3:
+                i.setClass(getApplicationContext(), TodosEncontrosActivity.class);
+                startActivity(i);
+                break;
+            case 4:
                 i.setClass(getApplicationContext(), AjudaActivity.class);
                 startActivity(i);
                 break;
