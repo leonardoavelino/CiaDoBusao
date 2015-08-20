@@ -336,7 +336,7 @@ public class NovoEncontroActivity extends Activity {
                     Date date = format.parse(dataText.getText().toString());
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(date);
-                    dias[calendar.get(Calendar.DAY_OF_WEEK)-1] = true;
+                    dias[calendar.get(Calendar.DAY_OF_WEEK) - 1] = true;
                 } catch (java.text.ParseException e) {
                     e.printStackTrace();
                 }
@@ -351,8 +351,10 @@ public class NovoEncontroActivity extends Activity {
             }
 
             EncontroRecorrente encontroRecorrente =
-                    new EncontroRecorrente(nomeEncEditText.getText().toString(),
-                            horaText.getText().toString(), dias);
+                    new EncontroRecorrente(PerfilActivity.idUsuario, nomeEncEditText.getText().toString(),
+                            horaText.getText().toString(), String.valueOf(latitude),
+                            String.valueOf(longitude), dias, linhaEncEditTex.getText().toString(),
+                            refEncEditText.getText().toString());
             controladorEncontroRecorrente.addEncontro(encontroRecorrente);
 
         }

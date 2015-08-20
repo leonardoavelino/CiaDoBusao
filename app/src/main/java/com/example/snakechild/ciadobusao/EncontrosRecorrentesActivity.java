@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.example.snakechild.ciadobusao.util.ControladorEncontroRecorrente;
@@ -29,6 +30,8 @@ public class EncontrosRecorrentesActivity extends Activity {
 
         controladorEncontroRecorrente = ControladorEncontroRecorrente.getInstance(getApplicationContext());
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 

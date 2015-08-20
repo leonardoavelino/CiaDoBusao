@@ -42,8 +42,6 @@ public class ValidateInput {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Log.i("DATA",date.toString());
-            Log.i("ACTUAL",actual.toString());
             if(!date.before(actual)){
                 return true;
             }
